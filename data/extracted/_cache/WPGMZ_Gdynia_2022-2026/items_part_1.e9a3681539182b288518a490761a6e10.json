@@ -1,0 +1,46 @@
+{
+ "relevant": true,
+ "problems": [
+  {
+   "category": "P11",
+   "statement": "Gmina Miasta Gdyni posiada 150 budynków mieszkalnych, z których 103 budynki wybudowane są przed 1945 rokiem, co sugeruje starość budynków i potencjalne problemy techniczne.",
+   "severity": "notable",
+   "quantified": false,
+   "quant_text": null,
+   "affected_groups": [],
+   "section": null,
+   "evidence": {
+    "page": 3,
+    "quote": "Gmina Miasta Gdyni jest właścicielem 150 budynków mieszkalnych, w tym: 1) 103 budynki wybudowane przed 1945 rokiem"
+   }
+  },
+  {
+   "category": "P12",
+   "statement": "Gmina Miasta Gdyni ma obowiązki związane z zapewnieniem pomieszczeń tymczasowych dla osób objętych wyrokiem eksmisyjnym, co sugeruje potencjalne problemy z dostarczeniem odpowiednich lokali.",
+   "severity": "notable",
+   "quantified": false,
+   "quant_text": null,
+   "affected_groups": [],
+   "section": null,
+   "evidence": {
+    "page": 4,
+    "quote": "każda wykonywana w mieście eksmisja z prawem do najmu socjalnego lokalu wiąże się z obowiązkiem zapewnienia lokalu przez gminę"
+   }
+  },
+  {
+   "category": "P13",
+   "statement": "Gmina Miasta Gdyni musi zarządzać zasobem mieszkaniowym, co wymaga znacznych kosztów i zasobów, szczególnie w przypadku budynków starożytnych.",
+   "severity": "notable",
+   "quantified": false,
+   "quant_text": null,
+   "affected_groups": [],
+   "section": null,
+   "evidence": {
+    "page": 3,
+    "quote": "Gmina Miasta Gdyni poprzez działania realizowane przez jednostki organizacyjne powołane do zarządzania zasobem mieszkaniowym Gminy, wypełniając obowiązki z art.62 ust. l pkt. 1 i 2 Ustawy z dnia 7 lipca 1994 r. Prawo Budowlane (t.j.Dz.U.2020 poz. 1333 z późn. zm.) przeprowadza okresowe kontrole stanu technicznego budynków co najmniej raz na 5 lat."
+   }
+  }
+ ],
+ "goals": [],
+ "actions": []
+}

@@ -1,0 +1,67 @@
+﻿city_id;city;voivodeship
+0261000;Jelenia Góra;dolnośląskie
+0262000;Legnica;dolnośląskie
+0263000;Wałbrzych;dolnośląskie
+0264000;Wrocław;dolnośląskie
+0461000;Bydgoszcz;kujawsko-pomorskie
+0462000;Grudziądz;kujawsko-pomorskie
+0463000;Toruń;kujawsko-pomorskie
+0464000;Włocławek;kujawsko-pomorskie
+0661000;Biała Podlaska;lubelskie
+0662000;Chełm;lubelskie
+0663000;Lublin;lubelskie
+0664000;Zamość;lubelskie
+0861000;Gorzów Wielkopolski;lubuskie
+0862000;Zielona Góra;lubuskie
+1061000;Łódź;łódzkie
+1062000;Piotrków Trybunalski;łódzkie
+1063000;Skierniewice;łódzkie
+1261000;Kraków;małopolskie
+1262000;Nowy Sącz;małopolskie
+1263000;Tarnów;małopolskie
+1461000;Ostrołęka;mazowieckie
+1462000;Płock;mazowieckie
+1463000;Radom;mazowieckie
+1464000;Siedlce;mazowieckie
+1661000;Opole;opolskie
+1861000;Krosno;podkarpackie
+1862000;Przemyśl;podkarpackie
+1863000;Rzeszów;podkarpackie
+1864000;Tarnobrzeg;podkarpackie
+2061000;Białystok;podlaskie
+2062000;Łomża;podlaskie
+2063000;Suwałki;podlaskie
+2261000;Gdańsk;pomorskie
+2262000;Gdynia;pomorskie
+2263000;Słupsk;pomorskie
+2264000;Sopot;pomorskie
+2461000;Bielsko-Biała;śląskie
+2462000;Bytom;śląskie
+2463000;Chorzów;śląskie
+2464000;Częstochowa;śląskie
+2465000;Dąbrowa Górnicza;śląskie
+2466000;Gliwice;śląskie
+2467000;Jastrzębie-Zdrój;śląskie
+2468000;Jaworzno;śląskie
+2469000;Katowice;śląskie
+2470000;Mysłowice;śląskie
+2471000;Piekary Śląskie;śląskie
+2472000;Ruda Śląska;śląskie
+2473000;Rybnik;śląskie
+2474000;Siemianowice Śląskie;śląskie
+2475000;Sosnowiec;śląskie
+2476000;Świętochłowice;śląskie
+2477000;Tychy;śląskie
+2478000;Zabrze;śląskie
+2479000;Żory;śląskie
+2661000;Kielce;świętokrzyskie
+2861000;Elbląg;warmińsko-mazurskie
+2862000;Olsztyn;warmińsko-mazurskie
+3061000;Kalisz;wielkopolskie
+3062000;Konin;wielkopolskie
+3063000;Leszno;wielkopolskie
+3064000;Poznań;wielkopolskie
+3261000;Koszalin;zachodniopomorskie
+3262000;Szczecin;zachodniopomorskie
+3263000;Świnoujście;zachodniopomorskie
+1465000;Warszawa;mazowieckie

@@ -1,0 +1,319 @@
+{
+ "doc_id": "WPGMZ_Gdynia_2022-2026",
+ "doc_type": "WPGMZ",
+ "metadata": {
+  "doc_type": "WPGMZ",
+  "resolution_number": "XXXIV/1127/21",
+  "adoption_date": "2021-10-27",
+  "council": "Gdyni",
+  "publication_journal": null,
+  "publication_date": null,
+  "publication_pos": null,
+  "period_start": 2022,
+  "period_end": 2026,
+  "is_amendment": false,
+  "amends_number": null,
+  "amends_date": null,
+  "replaces_number": null,
+  "needs_review": []
+ },
+ "blocks": {
+  "stock_condition_needs": {
+   "stock": {
+    "stock_definition_note": {
+     "status": "not_present"
+    }
+   },
+   "condition": {
+    "condition_rating": "poor",
+    "units_coal_heating": {
+     "status": "not_present"
+    },
+    "units_central_heating": {
+     "status": "not_present"
+    }
+   },
+   "needs": {
+    "need_trend": "decreasing",
+    "priority_groups": [
+     "low_income",
+     "disabled",
+     "evicted",
+     "seniors",
+     "seniors"
+    ]
+   }
+  },
+  "forecast_sales": {
+   "forecast": {
+    "forecast_start_year": {
+     "value": 2022,
+     "unit": "year"
+    },
+    "forecast_end_year": {
+     "value": 2026,
+     "unit": "year"
+    },
+    "planned_sales_units_total": {
+     "value": 1000,
+     "unit": "units"
+    },
+    "new_projects": [
+     {
+      "name": "Inwestycje i zakupy mieszkań na wolnym rynku",
+      "units": 500,
+      "year": 2022
+     },
+     {
+      "name": "Inwestycje i zakupy mieszkań na wolnym rynku",
+      "units": 600,
+      "year": 2023
+     },
+     {
+      "name": "Inwestycje i zakupy mieszkań na wolnym rynku",
+      "units": 700,
+      "year": 2024
+     },
+     {
+      "name": "Inwestycje i zakupy mieszkań na wolnym rynku",
+      "units": 800,
+      "year": 2025
+     },
+     {
+      "name": "Investycje i zakupy mieszkań na wolnym rynku",
+      "units": 900,
+      "year": 2026
+     }
+    ]
+   },
+   "sales": {
+    "sales_units_per_year": {
+     "value": 200,
+     "unit": "units/year"
+    },
+    "sales_revenue_total_pln": {
+     "value": 50000000,
+     "unit": "PLN"
+    },
+    "sales_proceeds_use": {
+     "value": "Investment in maintenance and improvement of the housing stock",
+     "status": "not_present"
+    }
+   }
+  },
+  "repairs": {
+   "repairs": {
+    "repair_priority_safety_first": {
+     "status": "found",
+     "evidence": [
+      {
+       "quote": "Wskazuje się jako priorytet przy tworzeniu rocznych planów remontowych eliminację zagrożenia bezpieczeństwa użytkowania lokali i ich mienia, w związku z tym w pierwszej kolejności podejmowane są prace zmierzające do zabezpieczenia konstrukcji budynków, remontów i zabezpieczenia instalacji technicznych oraz zabezpieczenia przeciwpożarowego.",
+       "page": 7
+      }
+     ]
+    },
+    "stoves_elimination_units_n": {
+     "status": "found",
+     "evidence": [
+      {
+       "quote": "likwidacja pieców na opał stały",
+       "page": 7
+      }
+     ]
+    },
+    "tenant_funded_renovation": {
+     "status": "found",
+     "evidence": [
+      {
+       "quote": "maksymalne skrócenie okresu, w którym lokal zwolniony w wyniku naturalnego ruchu ludności oczekuje na remont oraz czasu trwania remontów, tak by jak najszybciej możliwe było proponowanie lokali nowym najemcom. Cel ten osiągnięty zostanie przez systematyczne zwiększanie nakładów na remonty oraz usprawnienia organizacyjne.",
+       "page": 7
+      }
+     ]
+    }
+   }
+  },
+  "rent_mgmt": {
+   "rent": {
+    "rent_reduction_low_income": {
+     "status": "not_present",
+     "evidence": [
+      {
+       "quote": "Czynsz, o którym mowa w pkt. 3 w stosunku do najemców o niskich dochodach, może być obniżony",
+       "page": 15
+      }
+     ]
+    },
+    "income_verification": {
+     "status": "not_present",
+     "evidence": []
+    },
+    "income_verification_interval_years": {},
+    "debt_workoff_allowed": {
+     "status": "not_present",
+     "evidence": []
+    }
+   },
+   "mgmt": {
+    "participatory_mgmt": {
+     "status": "not_present",
+     "evidence": [
+      {
+       "quote": "Jednostki, o których mowa w pkt 1 dążyć będą do maksymalnie partycypacyjnego zarządzania zasobem mieszkaniowym, poprzez aktywizację i większe upodmiotowienie najemców obejmujące ich prawo do wypowiadania się w sprawach ich miejsca zamieszkania, przedstawiania swoich propozycji rozwiązań oraz tam gdzie to możliwe prawo do wspólnego podejmowania decyzji.",
+       "page": 16
+      }
+     ]
+    },
+    "mgmt_change_planned": {
+     "status": "not_present",
+     "evidence": [
+      {
+       "quote": "Rozdział 5. Sposób i zasady zarządzania lokalami i budynkami wchodzącego w skład mieszkaniowego zasobu Gminy oraz przewidywane zmiany w zakresie zarządzania mieszkaniowym zasobem Gminy w kolejnych latach",
+       "page": 16
+      }
+     ]
+    },
+    "debt_collection_described": {
+     "status": "not_present",
+     "evidence": []
+    }
+   }
+  },
+  "finance": {
+   "finance": {
+    "total_costs_y1_pln": {
+     "value": 26880000,
+     "status": "found",
+     "evidence": [
+      {
+       "quote": "26 880 000",
+       "page": 17
+      }
+     ]
+    },
+    "financing_sources": [
+     "rent",
+     "rent",
+     "municipal_budget"
+    ],
+    "external_funding_planned": {
+     "value": null,
+     "status": "not_present",
+     "evidence": []
+    }
+   }
+  }
+ },
+ "items": {
+  "relevant": true,
+  "actions": [
+   {
+    "instrument": "I20",
+    "description": "Przekwalifikowanie lokali położonych w suterenach i innych pomieszczeń nie odpowiadających wymogom technicznym na lokale użytkowe, gospodarcze lub pomieszczenia tymczasowe.",
+    "status": "planned",
+    "evidence": {
+     "quote": "Lokale położone w suterenach i inne pomieszczenia nie odpowiadające wymogom technicznym, jakim powinny odpowiadać budynki i ich usytuowanie z przeznaczeniem na stały pobyt ludzi zostaną przekwalifikowane w zależności od potrzeb na lokale użytkowe, gospodarcze lub pomieszczenia tymczasowe."
+    }
+   },
+   {
+    "instrument": "I21",
+    "description": "Likwidacja niesamodzielnych lokali mieszkalnych poprzez scalanie ich do uzyskania lokali w pełni samodzielnych.",
+    "status": "planned",
+    "evidence": {
+     "quote": "Zakłada się kontynuowanie działań zmierzających do stopniowego likwidowania niesamodzielnych lokali mieszkalnych poprzez scalanie ich w celu uzyskania lokali w pełni samodzielnych."
+    }
+   },
+   {
+    "instrument": "I22",
+    "description": "Przystosowanie lokali mieszkalnych wymagających remontu do potrzeb osób z niepełnosprawnościami.",
+    "status": "planned",
+    "evidence": {
+     "quote": "Lokale mieszkalne wymagające remontu, których położenie i układ pomieszczeń umożliwiają dostęp osobom na wózkach inwalidzkich, będą przystosowywane do potrzeb osób z niepełnosprawnościami."
+    }
+   },
+   {
+    "instrument": "I23",
+    "description": "Finansowanie konserwatorskich, restauratorskich lub budowlanych prac przy zabytkach wpisanym do rejestru zabytków oraz budynkach i zabytkach niewpisanych do rejestru.",
+    "status": "planned",
+    "evidence": {
+     "quote": "Gmina Miasta Gdyni planuje w latach 2022- 2026 kontynuację udzielania dotacji celowych na dofinansowanie prac konserwatorskich, restauratorskich lub robót budowlanych przy zabytku wpisanym do rejestru zabytków, który jest własnością Gminy, zabytków niestanowiących wyłącznej własności Gminy oraz budynków oraz zabytków niewpisanych do rejestru."
+    }
+   },
+   {
+    "instrument": "I24",
+    "description": "Rewitalizacja miasta Gdyni w oparciu o Gminny Program Rewitalizacji miasta Gdyni na lata 2017-2026.",
+    "status": "planned",
+    "evidence": {
+     "quote": "Gmina Miasta Gdynia prowadzi proces rewitalizacji w oparciu o Gminny Program Rewitalizacji miasta Gdyni na lata 2017-2026, który obejmuje m.in. działania zmierzające do podniesienia jakości zamieszkiwania na obszarze objętym oddziaływaniem programu."
+    }
+   },
+   {
+    "instrument": "I25",
+    "description": "Realizacja kolejnych inwestycji mieszkaniowych.",
+    "status": "planned",
+    "evidence": {
+     "quote": "Gmina będzie podejmować działania na rzecz realizacji kolejnych inwestycji mieszkaniowych."
+    }
+   },
+   {
+    "instrument": "I26",
+    "description": "Tworzenie większej liczby mieszkań chronionych, wspieranych i treningowych.",
+    "status": "planned",
+    "evidence": {
+     "quote": "Gmina będzie dążyć do utworzenia większej liczby mieszkań chronionych, wspieranych i treningowych."
+    }
+   },
+   {
+    "instrument": "I27",
+    "description": "Wykorzystanie opróżnionych lokalów w budynkach oświatowych na potrzeby działalności statutowej szkoły lub innych celów.",
+    "status": "planned",
+    "evidence": {
+     "quote": "Opróżnione lokale w budynkach oświatowych będą wykorzystywane na potrzeby działalności statutowej szkoły, w której użytkowaniu znajdują się te lokale lub inne cele związane z zaspakajaniem potrzeb wspólnoty samorządowej."
+    }
+   },
+   {
+    "instrument": "I28",
+    "description": "Prowadzenie działań na rzecz prawidłowego funkcjonowania osób i rodzin trafiających do zasobu komunalnego w ramach realizacji wyroków eksmisyjnych.",
+    "status": "planned",
+    "evidence": {
+     "quote": "Prowadzone będą działania mające na celu prawidłowe funkcjonowanie osób i rodzin trafiających do zasobu komunalnego w ramach realizacji wyroków eksmisyjnych, polegające na bieżącym monitorowaniu płatności, zaś w przypadku zaległości podejmowaniu działań zmierzających do podniesienia kompetencji najemców, m.in. prowadzenie treningu budżetowego."
+    }
+   },
+   {
+    "instrument": "I29",
+    "description": "Realizacja wyroków eksmisyjnych dla osób, wobec których nie orzeczono uprawnienia do wskazania najmu socjalnego lokalu.",
+    "status": "planned",
+    "evidence": {
+     "quote": "Gmina będzie podejmować starania na rzecz szybkiej realizacji wyroków eksmisyjnych skierowanych do osób, wobec których nie orzeczono uprawnienia do wskazania najmu socjalnego lokalu poprzez wskazywanie pomieszczeń tymczasowych zapewnianych na okres do 6 miesięcy."
+    }
+   },
+   {
+    "instrument": "I21",
+    "description": "Zabezpieczenie na dłuższy czas schronienia osobom, którym nie przysługuje prawo do lokalu z mieszkaniowego zasobu Gminy.",
+    "status": "planned",
+    "evidence": {
+     "quote": "W przypadku konieczności zabezpieczenia na dłuższy czas schronienia osobom, którym nie przysługuje prawo do lokalu z mieszkaniowego zasobu Gminy za pośrednictwem Miejskiego Ośrodka Pomocy Społecznej realizowane będą programy wsparcia polegające na wynajęciu lokalu na wolnym rynku z długofalowym dofinansowaniem z budżetu miasta."
+    }
+   },
+   {
+    "instrument": "I22",
+    "description": "Przekazanie wspólnotom mieszkaniowym części terenów zewnętrznych.",
+    "status": "planned",
+    "evidence": {
+     "quote": "Wskazuje się potrzebę podjęcia działań w zakresie przekazywania wspólnotom mieszkaniowym terenów przyległych, bez możliwości ich grodzenia, w celu porządkowania stanu formalno-prawnego w zakresie korzystania przez właścicieli nieruchomości z terenów Gminy Miasta Gdyni, a w szczególności podziału kompetencji i obowiązków dotyczących zagospodarowania tych terenów, utrzymania ich stanu technicznego i estetycznego oraz sanitarnego."
+    }
+   }
+  ]
+ },
+ "audit": {
+  "n_evidence": 7,
+  "share_verified": 1.0,
+  "share_exact_on_cited_page": 0.8571428571428571,
+  "unverified": []
+ },
+ "versions": {
+  "prompt_version": "v0.1",
+  "model": "qwen2.5:7b",
+  "run_date": "2026-10-21",
+  "segmentation_fallback": false
+ }
+}

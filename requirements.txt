@@ -1,0 +1,14 @@
+pymupdf>=1.24
+pydantic>=2.6
+anthropic>=0.40
+pandas>=2.1
+numpy>=1.26
+scipy>=1.11
+scikit-learn>=1.4
+matplotlib>=3.8
+openpyxl>=3.1
+pyyaml>=6.0
+rapidfuzz>=3.6        # weryfikacja cytatów (fuzzy match)
+tqdm>=4.66
+# systemowo: tesseract-ocr + pol.traineddata (OCR skanów), opcjonalnie ocrmypdf
+# opcjonalnie do analizy: prince (MCA), stepmix (LCA); w R: QCA, poLCA, cluster

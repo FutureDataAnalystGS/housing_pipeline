@@ -1,0 +1,99 @@
+{
+ "rent": {
+  "rent_target": {
+   "value": null,
+   "status": "not_present",
+   "evidence": []
+  },
+  "rent_target_pct_replacement_value": {
+   "value": null,
+   "unit": null,
+   "ref_date": null,
+   "status": "not_present",
+   "evidence": []
+  },
+  "rent_zones_n": {
+   "value": null,
+   "unit": null,
+   "ref_date": null,
+   "status": "not_present",
+   "evidence": []
+  },
+  "rent_reduction_low_income": {
+   "value": null,
+   "status": "not_present",
+   "evidence": [
+    {
+     "page": 15,
+     "quote": "Czynsz, o którym mowa w pkt. 3 w stosunku do najemców o niskich dochodach, może być obniżony"
+    }
+   ]
+  },
+  "income_verification": {
+   "value": null,
+   "status": "not_present",
+   "evidence": []
+  },
+  "income_verification_interval_years": {
+   "value": null,
+   "unit": null,
+   "ref_date": null,
+   "status": "not_present",
+   "evidence": []
+  },
+  "social_rent_max_pct_of_lowest": {
+   "value": null,
+   "unit": null,
+   "ref_date": null,
+   "status": "not_present",
+   "evidence": []
+  },
+  "debt_workoff_allowed": {
+   "value": null,
+   "status": "not_present",
+   "evidence": []
+  }
+ },
+ "mgmt": {
+  "manager_type": {
+   "value": null,
+   "status": "not_present",
+   "evidence": []
+  },
+  "manager_name": {
+   "value": null,
+   "status": "not_present",
+   "evidence": []
+  },
+  "participatory_mgmt": {
+   "value": null,
+   "status": "not_present",
+   "evidence": [
+    {
+     "page": 16,
+     "quote": "Jednostki, o których mowa w pkt 1 dążyć będą do maksymalnie partycypacyjnego zarządzania zasobem mieszkaniowym, poprzez aktywizację i większe upodmiotowienie najemców obejmujące ich prawo do wypowiadania się w sprawach ich miejsca zamieszkania, przedstawiania swoich propozycji rozwiązań oraz tam gdzie to możliwe prawo do wspólnego podejmowania decyzji."
+    }
+   ]
+  },
+  "mgmt_change_planned": {
+   "value": null,
+   "status": "not_present",
+   "evidence": [
+    {
+     "page": 16,
+     "quote": "Rozdział 5. Sposób i zasady zarządzania lokalami i budynkami wchodzącego w skład mieszkaniowego zasobu Gminy oraz przewidywane zmiany w zakresie zarządzania mieszkaniowym zasobem Gminy w kolejnych latach"
+    }
+   ]
+  },
+  "exchange_programme": {
+   "value": null,
+   "status": "not_present",
+   "evidence": []
+  },
+  "debt_collection_described": {
+   "value": null,
+   "status": "not_present",
+   "evidence": []
+  }
+ }
+}

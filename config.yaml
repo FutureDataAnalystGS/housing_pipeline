@@ -1,0 +1,24 @@
+paths:
+  raw: data/raw                 # PDF-y: <doc_id>.pdf, np. WPGMZ_gdynia_2022-2026.pdf
+  registry: data/registry.csv   # rejestr dokumentów (patrz README)
+  interim: data/interim         # strony po ekstrakcji (jsonl) + segmenty
+  extracted: data/extracted     # surowe i zwalidowane wyniki LLM (json)
+  external: data/external       # BDL GUS, itp.
+  outputs: outputs
+ocr:
+  enabled: true
+  lang: pol
+  dpi: 250
+  min_usable_chars: 120         # strona z mniejszą liczbą znaków po usunięciu nagłówków -> kandydat do OCR
+  tessdata_prefix: null         # np. /usr/share/tesseract-ocr/5/tessdata
+llm:
+  model_extract: qwen2.5:7b   # ekstrakcja strukturalna
+  model_adjudicate: claude-opus-5-5  # rozstrzyganie niezgodności / trudne przypadki
+  model_summary: claude-sonnet-5-5
+  temperature: 0
+  max_tokens: 8000
+  prompt_version: "v0.1"
+retrieval:
+  min_score: 1.0                # próg trafności akapitu strategii (patrz lexicon.py)
+  context_blocks: 1             # ile sąsiednich akapitów dołączać
+  max_chars_per_doc: 90000

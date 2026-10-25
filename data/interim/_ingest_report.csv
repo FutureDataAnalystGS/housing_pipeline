@@ -1,0 +1,7 @@
+doc_id,sha256,n_pages,n_ocr_pages,n_unusable_pages,usable_chars,boilerplate_patterns,needs_review
+SR_Bialystok_2021-2030,f0f78386bd2c61eef13f5ed0dd77767989c52efefcedb9c3b8ac108a9927897c,209,12,26,381248,1,False
+SR_Bielsko_Biała_2030,bd7b1ddc59f0f997671b93c16eb172dbd99c5228de0ca87fb059f6f508bdb2dd,134,0,11,240560,1,False
+SR_Żory_2030,85d053fd997bb01239a8cdf540312af2b65cf95b7b2d534669c3926bfa38a2dc,96,0,7,114870,1,False
+WPGMZ_Biala Podlaska_2021-2025,15e97ab3263146d18a67676bd1fe7dfcd541688eaab83683f401b578105ddfe7,28,27,0,47718,1,False
+WPGMZ_Gdynia_2022-2026,9da60a708d8a261c89c9343589cc09d6ce2bebe91d37e88a896d1eef23747f59,20,0,0,43276,1,False
+WPGMZ_Olsztyn_2022-2026,f7d45c91f898e0ff4236472de578a6339562791adbedee32748c9d9812e79763,30,0,1,73142,1,False

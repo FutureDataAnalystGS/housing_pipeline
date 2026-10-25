@@ -1,0 +1,64 @@
+{
+ "relevant": true,
+ "problems": [],
+ "goals": [
+  {
+   "level": "direction",
+   "statement": "Zaspokajanie potrzeb mieszkaniowych wspólnoty samorządowej, lokali zamiennych, a także zaspokajanie potrzeb mieszkaniowych gospodarstw domowych o niskich dochodach.",
+   "dimension": "social",
+   "evidence": {
+    "page": 4,
+    "quote": "Gmina zapewnia również mieszkania wspierane i treningowe, które dzięki sprawowanemu nad nimi nadzorowi dają możliwość zamieszkiwania osób ze sfery wykluczenia społecznego a także osobom, których stan zdrowia wymaga sprawowania intensywnego nadzoru lub opieki."
+   }
+  },
+  {
+   "level": "direction",
+   "statement": "Tworzenie warunków do zaspokajania potrzeb mieszkaniowych.",
+   "dimension": "social",
+   "evidence": {
+    "page": 4,
+    "quote": "Zadaniem Gminy jest tworzenie warunków do zaspokajania potrzeb mieszkaniowych wspólnoty samorządowej, lokali zamiennych, a także zaspokajanie potrzeb mieszkaniowych gospodarstw domowych o niskich dochodach."
+   }
+  },
+  {
+   "level": "direction",
+   "statement": "Realizacja wyroków o eksmisję z prawem do najmu socjalnego lokalu.",
+   "dimension": "social",
+   "evidence": {
+    "page": 4,
+    "quote": "Realizacja wyroków o eksmisję z prawem do najmu socjalnego lokalu"
+   }
+  },
+  {
+   "level": "direction",
+   "statement": "Realizacja decyzji Prezydenta Miasta Gdyni o wynajęciu lokalu zamiennego poza obowiązującą listą.",
+   "dimension": "social",
+   "evidence": {
+    "page": 4,
+    "quote": "Realizacja decyzji Prezydenta Miasta Gdyni o wynajęciu lokalu zamiennego poza obowiązującą listą"
+   }
+  }
+ ],
+ "actions": [
+  {
+   "instrument": "I14",
+   "description": "Zakładanie i rozbudowy zasobu lokali gminnych.",
+   "stance": "not_applicable",
+   "status": "planned",
+   "named_instrument": true,
+   "has_target_value": false,
+   "target_text": null,
+   "has_budget_or_source": false,
+   "budget_pln": null,
+   "has_deadline_or_owner": false,
+   "responsible": null,
+   "period": null,
+   "addresses_problems": [],
+   "link_explicit": false,
+   "evidence": {
+    "page": 4,
+    "quote": "Konieczność tworzenia i powiększania zasobu lokali gminnych jest przede wszystkim następstwem regulacji ustawowej, zgodnie z którą sądy powszechne w wyroku nakazującym opróżnienie lokalu orzekają o uprawnieniu do otrzymania oferty najmu socjalnego lokalu."
+   }
+  }
+ ]
+}

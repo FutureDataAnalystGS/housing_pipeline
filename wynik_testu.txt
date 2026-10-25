@@ -1,0 +1,2 @@
+stock_ref_date: BRAK TYPU
+units_total: BRAK TYPU

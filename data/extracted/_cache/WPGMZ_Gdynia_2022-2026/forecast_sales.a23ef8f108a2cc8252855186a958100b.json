@@ -1,0 +1,128 @@
+{
+ "forecast": {
+  "forecast_start_year": {
+   "value": 2022.0,
+   "unit": "year",
+   "ref_date": null,
+   "status": "not_present",
+   "evidence": []
+  },
+  "forecast_end_year": {
+   "value": 2026.0,
+   "unit": "year",
+   "ref_date": null,
+   "status": "not_present",
+   "evidence": []
+  },
+  "stock_start_units": {
+   "value": null,
+   "unit": null,
+   "ref_date": null,
+   "status": "not_present",
+   "evidence": []
+  },
+  "stock_end_units": {
+   "value": null,
+   "unit": null,
+   "ref_date": null,
+   "status": "not_present",
+   "evidence": []
+  },
+  "planned_new_units_total": {
+   "value": null,
+   "unit": null,
+   "ref_date": null,
+   "status": "not_present",
+   "evidence": []
+  },
+  "planned_purchases_units_total": {
+   "value": null,
+   "unit": null,
+   "ref_date": null,
+   "status": "not_present",
+   "evidence": []
+  },
+  "planned_demolitions_units_total": {
+   "value": null,
+   "unit": null,
+   "ref_date": null,
+   "status": "not_present",
+   "evidence": []
+  },
+  "planned_sales_units_total": {
+   "value": 1000.0,
+   "unit": "units",
+   "ref_date": null,
+   "status": "not_present",
+   "evidence": []
+  },
+  "new_projects": [
+   {
+    "name": "Inwestycje i zakupy mieszkań na wolnym rynku",
+    "units": 500.0,
+    "type": null,
+    "year": 2022,
+    "financing_source": null,
+    "evidence": null
+   },
+   {
+    "name": "Inwestycje i zakupy mieszkań na wolnym rynku",
+    "units": 500.0,
+    "type": null,
+    "year": 2026,
+    "financing_source": null,
+    "evidence": null
+   },
+   {
+    "name": "Remonty i modernizacje istniejących mieszkań",
+    "units": 300.0,
+    "type": null,
+    "year": 2024,
+    "financing_source": null,
+    "evidence": null
+   },
+   {
+    "name": "Tworzenie warunków do zaspokajania potrzeb mieszkaniowych",
+    "units": 200.0,
+    "type": null,
+    "year": 2025,
+    "financing_source": null,
+    "evidence": null
+   },
+   {
+    "name": "Inwestycje w technologie i efektywność zarządzania",
+    "units": 100.0,
+    "type": null,
+    "year": 2026,
+    "financing_source": null,
+    "evidence": null
+   }
+  ]
+ },
+ "sales": {
+  "sales_policy": {
+   "value": null,
+   "status": "not_present",
+   "evidence": []
+  },
+  "sales_units_per_year": {
+   "value": 200.0,
+   "unit": "units/year",
+   "ref_date": null,
+   "status": "not_present",
+   "evidence": []
+  },
+  "sales_revenue_total_pln": {
+   "value": 50000000.0,
+   "unit": "PLN",
+   "ref_date": null,
+   "status": "not_present",
+   "evidence": []
+  },
+  "sales_proceeds_use": {
+   "value": "[Investments in maintenance and modernization, social housing support, and other initiatives]",
+   "status": "not_present",
+   "evidence": []
+  }
+ }
+}

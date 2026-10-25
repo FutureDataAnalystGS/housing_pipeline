@@ -1,0 +1,7 @@
+doc_id,doc_type,resolution_number,adoption_date,council,publication_journal,publication_date,publication_pos,period_start,period_end,is_amendment,amends_number,amends_date,replaces_number,needs_review
+SR_Bialystok_2021-2030,SR,XLVI/666/21,2021-12-20,,,,,,2030,False,,,,
+SR_Bielsko_Biała_2030,SR,,,,,,,,2030,False,,,,adoption_date
+SR_Żory_2030,SR,,,,,,,,2030,False,,,,adoption_date
+WPGMZ_Biala Podlaska_2021-2025,WPGMZ,XXXVI/43/22,2022-04-29,Biała Podlaska,Dz. Urz. Woj. Lubelskiego,2022-05-10,2599.0,2021.0,2025,True,XXVI/62/21,2021-08-03,,
+WPGMZ_Gdynia_2022-2026,WPGMZ,XXXIV/1127/21,2021-10-27,Gdyni,,,,2022.0,2026,False,,,,
+WPGMZ_Olsztyn_2022-2026,WPGMZ,XXXIX/647/21,2021-11-24,Olsztyna,Dz. Urz. Woj. Warmińsko-Mazurskiego,2022-01-04,36.0,2022.0,2026,False,,,XXXII/514/17,

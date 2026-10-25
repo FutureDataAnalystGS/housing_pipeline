@@ -1,0 +1,66 @@
+{
+ "relevant": true,
+ "problems": [],
+ "goals": [
+  {
+   "level": "direction",
+   "statement": "Określić kategorie mieszkań i wysokość czynszu",
+   "dimension": "market",
+   "evidence": {
+    "page": 10,
+    "quote": "§ 10. Kategorie mieszkań i wysokość czynszu"
+   }
+  },
+  {
+   "level": "direction",
+   "statement": "Kategoryzować mieszkań w oparciu o stawkę punktową",
+   "dimension": "market",
+   "evidence": {
+    "page": 11,
+    "quote": "§ 11. Kategoryzacja mieszkań"
+   }
+  }
+ ],
+ "actions": [
+  {
+   "instrument": "I10",
+   "description": "Określić kategorie mieszkań i wysokość czynszu",
+   "stance": "not_applicable",
+   "status": "planned",
+   "named_instrument": true,
+   "has_target_value": false,
+   "target_text": null,
+   "has_budget_or_source": false,
+   "budget_pln": null,
+   "has_deadline_or_owner": false,
+   "responsible": null,
+   "period": null,
+   "addresses_problems": [],
+   "link_explicit": false,
+   "evidence": {
+    "page": 10,
+    "quote": "§ 10. Kategorie mieszkań i wysokość czynszu"
+   }
+  },
+  {
+   "instrument": "I11",
+   "description": "Kategoryzować mieszkań w oparciu o stawkę punktową",
+   "stance": "not_applicable",
+   "status": "planned",
+   "named_instrument": true,
+   "has_target_value": false,
+   "target_text": null,
+   "has_budget_or_source": false,
+   "budget_pln": null,
+   "has_deadline_or_owner": false,
+   "responsible": null,
+   "period": null,
+   "addresses_problems": [],
+   "link_explicit": false,
+   "evidence": {
+    "page": 11,
+    "quote": "§ 11. Kategoryzacja mieszkań"
+   }
+  }
+ ]
+}
