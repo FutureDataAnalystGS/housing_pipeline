@@ -1,37 +1,37 @@
-"""Etap 4. Ekstrakcja strukturalna LLM (Anthropic API, wymuszone wywołanie narzędzia = JSON zgodny ze schematem).
+"""Etap 4. Ekstrakcja strukturalna LLM — wersja dla lokalnego modelu (Ollama), bez płatnego API.
 
-Zasady metodologiczne wbudowane w kod:
-  * temperatura 0, wersjonowany prompt, pełne cache'owanie odpowiedzi (replikowalność i niski koszt iteracji);
-  * każdy blok = osobne wywołanie na właściwych sekcjach dokumentu (mniejszy kontekst -> mniej błędów);
-  * każdy kodowany fakt ma cytat + stronę; cytaty są weryfikowane programowo (verify_evidence);
-  * w razie błędu walidacji Pydantic — jedna automatyczna poprawka z komunikatem błędu.
+Co jest inaczej niż w wersji „jedno wielkie wywołanie”:
+  * definicje kodów P/I i opisy pól są w PROMPCIE (Ollama używa schematu tylko jako gramatyki wyjścia);
+  * każde wywołanie = jeden mały fragment (domyślnie ~4,5 tys. znaków) i JEDNO zadanie (problemy / działania / cele);
+  * wszystkie pola schematu są wymagane, a okno kontekstu (num_ctx) jest ustawiane jawnie;
+  * pozycje bez cytatu odnajdywalnego w dokumencie są odrzucane (ochrona przed zmyślaniem małego modelu);
+  * liczby bez pokrycia w cytacie dostają status „unclear”; słownik problemów działa jako siatka bezpieczeństwa (possible_misses);
+  * pełne cache'owanie: przerwany przebieg można wznowić, a powtórka daje te same wyniki (seed, temperatura 0).
 """
 from __future__ import annotations
 
 import hashlib
 import json
 import re
-import time
 from datetime import date
 from pathlib import Path
 from typing import Any
 
 from pydantic import BaseModel, ValidationError
 
+from . import ollama_client as OC
+from . import prompts as P
 from . import schema as S
 from .ingest import Page
+from .lexicon import baseline_problems
 from .segment import Section, element_texts
 
-SYSTEM = """Jesteś asystentem badawczym kodującym polskie dokumenty samorządowe (strategie rozwoju miast oraz wieloletnie programy gospodarowania mieszkaniowym zasobem gminy) według księgi kodowej v0.1.
+SYSTEM = P.BASE                       # zgodność wsteczna (summarize.py, test_items.py)
 
-Zasady bezwzględne:
-1. Koduj WYŁĄCZNIE to, co wprost wynika z podanego tekstu. Nie uzupełniaj wiedzą zewnętrzną i nie zgaduj.
-2. Liczby przepisuj dokładnie, wraz z jednostką i datą odniesienia. Nie przeliczaj i nie sumuj sam — jeśli dokument nie podaje sumy, a pole jej wymaga, ustaw status 'not_present'. Wyjątek: pola 'Suma … w okresie programu' wolno obliczyć z tabeli rocznej, jeśli wszystkie lata są podane; zaznacz to w cytacie.
-3. Status: 'found' = wartość wprost w tekście; 'not_present' = tekst nie zawiera tej informacji; 'unclear' = informacja jest niejednoznaczna lub sprzeczna (opisz w cytacie).
-4. Każda wartość ze statusem 'found' MUSI mieć co najmniej jeden dowód: numer strony z markera [[strona N]] i DOSŁOWNY cytat (do 35 słów) skopiowany z tekstu bez zmian.
-5. Rozróżniaj POLITYKĘ mieszkaniową (zasób gminy, dostępność, wykluczenie, wsparcie) od ZABUDOWY MIESZKANIOWEJ jako funkcji przestrzennej. Samo „tereny zabudowy mieszkaniowej” nie jest problemem ani działaniem polityki mieszkaniowej; koduj je tylko, gdy dokument formułuje problem/cel dotyczący mieszkalnictwa (wtedy wymiar = spatial).
-6. Problemy (P-kody) = elementy DIAGNOZY (stan rzeczy). Cele i działania (I-kody) = to, co gmina deklaruje zrobić. Nie mieszaj tych kategorii.
-7. Jeśli w tekście brak treści do zakodowania, zwróć puste listy i relevant=false. Lepiej pominąć niż zmyślić."""
+
+def make_client() -> str:
+    """Adres lokalnego serwera Ollama (OLLAMA_HOST albo http://localhost:11434)."""
+    return OC.host_url()
 
 
 def _stable(obj: Any) -> str:
@@ -42,247 +42,129 @@ def cache_key(*parts) -> str:
     return hashlib.sha256("||".join(_stable(p) if not isinstance(p, str) else p for p in parts).encode()).hexdigest()[:32]
 
 
-
-def make_client():
-    """Adres lokalnego serwera Ollama."""
-    import os
-    return os.getenv("OLLAMA_HOST", "http://localhost:11434").rstrip("/")
-
-
-
-
-def call_model(client, model: str, user: str, json_schema: dict, *,
-               max_tokens: int, temperature: float | None,
-               system: str = SYSTEM, retries: int = 3) -> dict:
-    """Wywołuje lokalny model Ollama i odczytuje wynik JSON."""
-    import urllib.request
-    import urllib.error
-
-    payload = {
-        "model": model,
-        "messages": [
-            {"role": "system", "content": system},
-            {"role": "user", "content": user},
-        ],
-        "stream": False,
-        "format": json_schema,
-        "options": {"num_predict": min(max_tokens, 2048)},
-    }
-
-    if temperature is not None:
-        payload["options"]["temperature"] = temperature
-
-    for attempt in range(retries):
-        try:
-            request = urllib.request.Request(
-                f"{client}/api/chat",
-                data=json.dumps(payload, ensure_ascii=False).encode("utf-8"),
-                headers={"Content-Type": "application/json"},
-                method="POST",
-            )
-
-            try:
-                with urllib.request.urlopen(request, timeout=600) as response:
-                    result = json.loads(
-                        response.read().decode("utf-8")
-                    )
-            except urllib.error.HTTPError as e:
-                details = e.read().decode("utf-8", errors="replace")
-                raise RuntimeError(
-                    f"Ollama HTTP {e.code}: {details}"
-                ) from e
-
-            print(
-                f"[OLLAMA] done_reason={result.get('done_reason')}, "
-                f"eval_count={result.get('eval_count')}, "
-                f"prompt_eval_count={result.get('prompt_eval_count')}"
-            )
-
-            content = result.get("message", {}).get("content", "")
-            data = json.loads(content)
-
-            if not isinstance(data, dict):
-                raise ValueError("Ollama nie zwróciła obiektu JSON.")
-
-            return data
-
-        except Exception:
-            if attempt == retries - 1:
-                raise
-            time.sleep(2 ** attempt * 3)
-
-    raise RuntimeError("Nie udało się uzyskać odpowiedzi z Ollama.")
-
-
-
-
-
-def run_block(client, cfg: dict, name: str, model_cls: type[BaseModel], user_text: str, header: str,
-              cache_dir: Path, force: bool = False) -> dict:
-    schema = S.inline_schema(model_cls)
-    if name.startswith("items_part_"):
-        instruction = (
-            "Przeanalizuj dokładnie cały fragment dokumentu i wyodrębnij "
-            "wszystkie występujące w nim problemy mieszkaniowe, cele oraz działania. "
-            "Nie pomijaj list, punktów numerowanych, diagnoz, opisów stanu istniejącego "
-            "ani problemów opisanych pośrednio. "
-            "W polu problems umieść zidentyfikowane problemy dotyczące mieszkalnictwa, "
-            "zasobu komunalnego, dostępności mieszkań, najmu, pustostanów, stanu "
-            "technicznego budynków i potrzeb mieszkańców. Przypisz każdemu problemowi "
-            "odpowiednią kategorię ze schematu. "
-            "W polu goals umieść cele programu, a w polu actions konkretne działania. "
-            "Nie traktuj braku nagłówka 'Problemy' jako dowodu, że problemy nie występują. "
-            "Każda pozycja musi mieć poparcie w tekście źródłowym: zachowaj dosłowny "
-            "cytat i numer strony z oznaczenia [[strona N]]. Nie wymyślaj treści. "
-            "Jeżeli fragment nie zawiera żadnych problemów, zwróć pustą listę problems."
-        )
-    else:
-        instruction = f"Wypełnij schemat dla bloku „{name}”."
-
-    user = f"{header}\n\n<dokument>\n{user_text}\n</dokument>\n\n{instruction}"
-    key = cache_key(cfg["prompt_version"], cfg["model_extract"], SYSTEM, user, schema)
-    cache_dir.mkdir(parents=True, exist_ok=True)
-    f = cache_dir / f"{name}.{key}.json"
-
-    if f.exists() and not force:
-        return json.loads(f.read_text(encoding="utf-8"))
-
-    print(f"[LLM] start: {name}, chars={len(user)}", flush=True)
-
-    data = call_model(
-        client, cfg["model_extract"], user, schema,
-        max_tokens=cfg["max_tokens"],
-        temperature=cfg.get("temperature")
-    )
-
-    print(f"[LLM] koniec: {name}", flush=True)
-
-    try:
-        data = model_cls.model_validate(data).model_dump(mode="json")
-    except ValidationError as e:
-        fix = (
-            user
-            + f"\n\nTwoja poprzednia odpowiedź nie przeszła walidacji schematu:\n"
-            + f"{str(e)[:1500]}\nPopraw i zwróć kompletny wynik."
-        )
-        data = call_model(
-            client, cfg["model_extract"], fix, schema,
-            max_tokens=cfg["max_tokens"],
-            temperature=cfg.get("temperature")
-        )
-        data = model_cls.model_validate(data).model_dump(mode="json")
-
-    f.write_text(json.dumps(data, ensure_ascii=False, indent=1), encoding="utf-8")
+def call_model(client, model: str, user: str, json_schema: dict, *, max_tokens: int, temperature: float | None,
+               system: str = SYSTEM, retries: int = 2) -> dict:
+    """Prosta powłoka zgodna ze starym API (używana przez summarize.llm_summary)."""
+    data, _ = OC.chat_json(model, [{"role": "system", "content": system}, {"role": "user", "content": user}], json_schema,
+                           num_ctx=16384, num_predict=min(max_tokens, 3000), temperature=temperature, host=client, retries=retries)
     return data
 
 
-
+# ------------------------------------------------------------------ tekst i fragmenty
 def _pages_text(pages: list[Page]) -> str:
     return "\n".join(f"[[strona {p.page}]]\n{p.text}" for p in pages)
 
 
-def merge_housing_items(parts: list[dict]) -> dict:
-    """Łączy wyniki ekstrakcji z kilku fragmentów dokumentu."""
-    merged = {
-        "relevant": any(p.get("relevant", False) for p in parts),
-        "problems": [],
-        "goals": [],
-        "actions": [],
-    }
-
-    for key in ("problems", "goals", "actions"):
-        seen = set()
-
-        for part in parts:
-            for item in part.get(key, []):
-                evidence = item.get("evidence") or {}
-                identity = (
-                    str(item.get("statement", "")).strip().casefold(),
-                    str(evidence.get("quote", "")).strip().casefold(),
-                    evidence.get("page"),
-                )
-
-                if identity not in seen:
-                    seen.add(identity)
-                    merged[key].append(item)
-
-    return merged
-
-def run_document(client, cfg: dict, doc_id: str, doc_type: str, pages: list[Page], sections: list[Section] | None,
-                 passages: list | None, md: dict, extracted_dir: str | Path, force: bool = False) -> dict:
-    """Zwraca i zapisuje rekord dokumentu: metadane + bloki faktów + pozycje + audyt cytatów."""
-    extracted_dir = Path(extracted_dir)
-    cache_dir = extracted_dir / "_cache" / doc_id
-    header = f"<meta doc_id=\"{doc_id}\" typ=\"{doc_type}\" okres=\"{md.get('period_start')}–{md.get('period_end')}\"/>"
-    out: dict[str, Any] = {"doc_id": doc_id, "doc_type": doc_type, "metadata": md, "blocks": {}, "items": None}
-
-    if doc_type == "WPGMZ":
-        el = element_texts(sections or [])
-        fallback = len(el) < 5
-        for name, cls, elements in S.WPGMZ_BLOCKS:
-            txt = _pages_text(pages) if fallback else "\n\n".join(el[e] for e in elements if e in el)
-            if not txt.strip():
-                txt = _pages_text(pages)
-            out["blocks"][name] = run_block(client, cfg, name, cls, txt, header, cache_dir, force)
-        items_text = _pages_text(pages)
-    else:
-        txt = "\n\n".join(p.text for p in (passages or []))
-        name, cls, _ = S.STRATEGY_FRAME_BLOCK
-        out["blocks"][name] = run_block(client, cfg, name, cls, txt, header, cache_dir, force) if txt.strip() else None
-        items_text = txt
-
-    if not items_text.strip():
-        out["items"] = {
-            "relevant": False,
-            "problems": [],
-            "goals": [],
-            "actions": [],
-        }
-    elif doc_type == "WPGMZ":
-        item_parts = []
-
-        # Analizujemy po 4 strony w jednym wywołaniu modelu.
-        chunk_size = 4
-
-        for start in range(0, len(pages), chunk_size):
-            chunk_pages = pages[start:start + chunk_size]
-            chunk_text = _pages_text(chunk_pages)
-
-            if not chunk_text.strip():
-                continue
-
-            part = run_block(
-                client,
-                cfg,
-                f"items_part_{start + 1}",
-                S.HousingItems,
-                chunk_text,
-                header,
-                cache_dir,
-                force,
-            )
-            item_parts.append(part)
-
-        out["items"] = merge_housing_items(item_parts)
-    else:
-        out["items"] = run_block(
-            client,
-            cfg,
-            "items",
-            S.HousingItems,
-            items_text,
-            header,
-            cache_dir,
-            force,
-        )
-    out["audit"] = verify_evidence(out, pages)
-    out["versions"] = dict(prompt_version=cfg["prompt_version"], model=cfg["model_extract"], run_date=date.today().isoformat(),
-                           segmentation_fallback=(doc_type == "WPGMZ" and len(element_texts(sections or [])) < 5))
-    (extracted_dir / f"{doc_id}.json").write_text(json.dumps(out, ensure_ascii=False, indent=1), encoding="utf-8")
-    return out
+_MARK = re.compile(r"\[\[strona (\d+)\]\]")
 
 
-# ------------------------------------------------------------------ weryfikacja cytatów
+def chunk_text(text: str, max_chars: int) -> list[str]:
+    """Dzieli tekst na fragmenty ≤ max_chars na granicach wierszy; każdy fragment zaczyna się od aktualnego znacznika strony."""
+    chunks, cur, size, marker = [], [], 0, None
+    for ln in text.split("\n"):
+        m = _MARK.match(ln)
+        if m:
+            marker = ln
+        if cur and size + len(ln) + 1 > max_chars:
+            chunks.append("\n".join(cur))
+            cur = [marker] if (marker and not m) else []
+            size = sum(len(x) + 1 for x in cur)
+        cur.append(ln)
+        size += len(ln) + 1
+    if cur:
+        chunks.append("\n".join(cur))
+    return [c for c in chunks if len(re.sub(r"\[\[strona \d+\]\]|\s", "", c)) > 60]
+
+
+def split_half(chunk: str) -> list[str]:
+    lines = chunk.split("\n")
+    if len(lines) > 3:
+        mid = len(lines) // 2
+        marker = next((l for l in reversed(lines[:mid]) if _MARK.match(l)), None)
+        second = lines[mid:] if (marker is None or _MARK.match(lines[mid])) else [marker] + lines[mid:]
+        return ["\n".join(lines[:mid]), "\n".join(second)]
+    mid = len(chunk) // 2
+    cut = chunk.rfind(". ", 0, mid)
+    cut = cut + 1 if cut > 0 else mid
+    return [chunk[:cut], chunk[cut:]]
+
+
+# ------------------------------------------------------------------ wywołanie z cache i jedną poprawką
+def _call(host: str, cfg: dict, messages: list[dict], model_cls: type[BaseModel], cache_dir: Path, name: str, force: bool) -> dict:
+    schema = S.inline_schema(model_cls)
+    key = cache_key(cfg["prompt_version"], cfg["model_extract"], cfg.get("num_ctx", 12288), cfg.get("seed", 7), messages, schema)
+    cache_dir.mkdir(parents=True, exist_ok=True)
+    f = cache_dir / f"{name}.{key}.json"
+    if f.exists() and not force:
+        return json.loads(f.read_text(encoding="utf-8"))
+    kw = dict(num_ctx=cfg.get("num_ctx", 12288), num_predict=cfg.get("num_predict", 3000), temperature=cfg.get("temperature", 0.0),
+              seed=cfg.get("seed", 7), host=host, timeout=cfg.get("timeout", 600))
+    data, _ = OC.chat_json(cfg["model_extract"], messages, schema, **kw)
+    data = S.decode_labels(data)
+    try:
+        model_cls.model_validate(data)
+    except ValidationError as e:                     # jedna automatyczna poprawka z komunikatem błędu
+        fix = messages + [{"role": "assistant", "content": json.dumps(data, ensure_ascii=False)},
+                          {"role": "user", "content": f"Odpowiedź nie przeszła walidacji schematu:\n{str(e)[:1200]}\nPopraw i zwróć kompletny JSON."}]
+        data, _ = OC.chat_json(cfg["model_extract"], fix, schema, **kw)
+        data = S.decode_labels(data)
+        model_cls.model_validate(data)
+    f.write_text(json.dumps(data, ensure_ascii=False, indent=1), encoding="utf-8")
+    return data
+
+
+ITEM_SPEC = {"problems": (S.LlmProblems, "problems", S.to_problem_item),
+             "goals": (S.LlmGoals, "goals", S.to_goal_item),
+             "actions": (S.LlmActions, "actions", S.to_action_item)}
+
+
+def run_items_chunk(host, cfg, kind, chunk, header, cache_dir, force, errors, depth=0) -> list[dict]:
+    cls, key, conv = ITEM_SPEC[kind]
+    try:
+        data = _call(host, cfg, P.items_messages(kind, chunk, header, cfg.get("prompt_profile", "v1")), cls, cache_dir, f"items_{kind}", force)
+    except (OC.TruncatedOutput, OC.PromptTooLong) as e:       # dzielimy fragment na pół i próbujemy ponownie
+        if depth >= 2:
+            errors.append(dict(kind=kind, error=str(e), chars=len(chunk)))
+            return []
+        return [x for part in split_half(chunk) for x in run_items_chunk(host, cfg, kind, part, header, cache_dir, force, errors, depth + 1)]
+    return [conv(x) for x in data.get(key, [])]
+
+
+# ------------------------------------------------------------------ bloki faktów (WPGMZ, ramka strategii)
+_RANK = {"found": 2, "unclear": 1, "not_present": 0}
+
+
+def merge_facts(a, b):
+    """Scala wyniki z kolejnych fragmentów: dla pola wygrywa status found > unclear > not_present; listy się sumują."""
+    if isinstance(a, dict) and isinstance(b, dict):
+        if "status" in a and "status" in b:
+            return a if _RANK.get(a["status"], 0) >= _RANK.get(b["status"], 0) else b
+        return {k: merge_facts(a.get(k), b.get(k)) if k in a and k in b else a.get(k, b.get(k)) for k in {**a, **b}}
+    if isinstance(a, list) and isinstance(b, list):
+        seen, out = set(), []
+        for x in a + b:
+            k = json.dumps(x, sort_keys=True, ensure_ascii=False)
+            if k not in seen:
+                seen.add(k)
+                out.append(x)
+        return out
+    return a if a not in (None, [], "") else b
+
+
+def run_facts_block(host, cfg, name, cls, text, header, cache_dir, force, errors) -> dict:
+    parts = chunk_text(text, cfg.get("facts_chunk_chars", 9000)) or [text]
+    result = None
+    for part in parts:
+        try:
+            data = _call(host, cfg, P.facts_messages(cls, part, header), cls, cache_dir, f"facts_{name}", force)
+        except (OC.TruncatedOutput, OC.PromptTooLong) as e:
+            errors.append(dict(kind=f"facts_{name}", error=str(e), chars=len(part)))
+            continue
+        result = data if result is None else merge_facts(result, data)
+    return result or {}
+
+
+# ------------------------------------------------------------------ weryfikacja cytatów i liczb
 _FOLD = str.maketrans("ąćęłńóśźżĄĆĘŁŃÓŚŹŻ", "acelnoszzACELNOSZZ")
 
 
@@ -306,7 +188,7 @@ def verify_evidence(record: dict, pages: list[Page], fuzzy_threshold: int = 90) 
     """Sprawdza, czy cytat występuje na wskazanej stronie (±1) po normalizacji; w razie braku — dopasowanie rozmyte."""
     try:
         from rapidfuzz import fuzz
-    except ImportError:                      # awaryjnie: tylko dopasowanie dokładne
+    except ImportError:
         fuzz = None
     by_page = {p.page: fold_alnum(p.text) for p in pages}
     whole = "".join(by_page[k] for k in sorted(by_page))
@@ -324,3 +206,175 @@ def verify_evidence(record: dict, pages: list[Page], fuzzy_threshold: int = 90) 
     return dict(n_evidence=n, share_verified=(sum(r["verified"] for r in rows) / n if n else None),
                 share_exact_on_cited_page=(sum(r["exact_on_page"] for r in rows) / n if n else None),
                 unverified=[r for r in rows if not r["verified"]])
+
+
+def resolve_page(quote: str, claimed: int | None, by_page: dict[int, str]) -> tuple[int | None, bool]:
+    """Zwraca (strona, czy_dopasowanie_rozmyte). Model często myli numer strony, pomija numerację list („1)”) albo skleja wiersze —
+    dlatego po dopasowaniu dokładnym próbujemy dopasowania rozmytego (≥92%) w okolicy wskazanej strony."""
+    q = fold_alnum(quote)
+    if len(q) < 12:
+        return None, False
+    if isinstance(claimed, int):
+        for p in (claimed, claimed - 1, claimed + 1):
+            if q in by_page.get(p, ""):
+                return p, False
+    for p, t in by_page.items():
+        if q in t:
+            return p, False
+    if len(q) >= 25:
+        try:
+            from rapidfuzz import fuzz
+        except ImportError:
+            return None, False
+        near = [p for p in range(claimed - 2, claimed + 3) if p in by_page] if isinstance(claimed, int) else []
+        cands = near or (list(by_page) if len(by_page) <= 60 else [])
+        best = max(((fuzz.partial_ratio(q, by_page[p]), p) for p in cands), default=(0, None))
+        if best[0] >= 92:
+            return best[1], True
+    return None, False
+
+
+_CUES = re.compile(r"brak|niedobór|niedostat|niewystarcz|zły|zła|złe|zaległ|zadłuż|zagroż|konieczn|obowiązek|obowiązk|problem|deficyt|nieopłacaln|"
+                   r"zużyt|eksmisj|bezdomn|kolejk|oczekując|wymaga|niepodłączon|niesamodziel|piec|sutere|wyburz|katastrof|obniżon\w+\s+standard", re.I)
+
+
+def quality_flags(kind: str, quote: str) -> list[str]:
+    """Reguły jakości dla cytatu pozycji. `table_row` = wiersz tabeli/kwoty (to wskaźnik do bloków faktów, nie problem ani cel)."""
+    q = " ".join(quote.split())
+    flags = []
+    compact = q.replace(" ", "")
+    digit_share = sum(c.isdigit() for c in compact) / max(len(compact), 1)
+    n_numbers = len(re.findall(r"\d+", q))
+    if digit_share > 0.35 or (re.search(r"\d[\d\s.,%-]*$", q) and n_numbers >= 2 and ". " not in q):
+        flags.append("table_row")
+    if len(re.findall(r"[^\W\d_]{4,}", q)) < 4:
+        flags.append("fragment")
+    if re.match(r"^[^.]{3,80}\s[—–]\s", q):
+        flags.append("definition_like")
+    if re.search(r"\bart\.\s*\d+|Stosownie do|Dz\.\s*U\.", q):
+        flags.append("legal_basis")
+    if kind == "problems" and not _CUES.search(q):
+        flags.append("no_problem_cue")
+    return flags
+
+
+def number_supported(value, evidence: list[dict]) -> bool:
+    """Czy cyfry wartości występują w cytacie? (5254 ↔ „5 254”; 85,41 ↔ „85,41%”; tys. zł ↔ ucięte zera)."""
+    if value is None or float(value) == 0:
+        return True
+    digits = re.sub(r"\D", "", " ".join(e.get("quote", "") for e in evidence))
+    v = float(value)
+    cand = re.sub(r"\D", "", str(int(v)) if v.is_integer() else repr(round(v, 2))).rstrip("0")
+    return bool(cand) and cand in digits
+
+
+def check_numbers(blocks: dict) -> list[dict]:
+    bad = []
+
+    def walk(node, path):
+        if isinstance(node, dict):
+            if "status" in node and "value" in node and isinstance(node.get("value"), (int, float)) and not isinstance(node.get("value"), bool):
+                if node["status"] == "found" and not number_supported(node["value"], node.get("evidence") or []):
+                    bad.append(dict(path=path, value=node["value"]))
+                    node["status"] = "unclear"
+            else:
+                for k, v in node.items():
+                    walk(v, f"{path}.{k}" if path else k)
+    walk(blocks, "")
+    return bad
+
+
+# ------------------------------------------------------------------ dokument
+def _dedupe(items: list[dict], key_field: str) -> list[dict]:
+    seen, out = set(), []
+    for it in items:
+        k = (it.get(key_field), fold_alnum(it["evidence"]["quote"])[:60])
+        if k not in seen:
+            seen.add(k)
+            out.append(it)
+    return out
+
+
+def run_document(client, cfg: dict, doc_id: str, doc_type: str, pages: list[Page], sections: list[Section] | None,
+                 passages: list | None, md: dict, extracted_dir: str | Path, force: bool = False) -> dict:
+    """Zwraca i zapisuje rekord dokumentu: metadane + bloki faktów + pozycje + audyt."""
+    host = client
+    extracted_dir = Path(extracted_dir)
+    cache_dir = extracted_dir / "_cache" / doc_id
+    header = f"<meta doc_id=\"{doc_id}\" typ=\"{doc_type}\" okres=\"{md.get('period_start')}–{md.get('period_end')}\"/>\n"
+    errors: list[dict] = []
+    out: dict[str, Any] = {"doc_id": doc_id, "doc_type": doc_type, "metadata": md, "blocks": {}, "items": None}
+
+    use_facts = cfg.get("facts", True)             # facts: false = tylko problemy/cele/działania (szybki test)
+    if doc_type == "WPGMZ":
+        el = element_texts(sections or [])
+        fallback = len(el) < 5
+        for name, cls, elements in (S.WPGMZ_BLOCKS if use_facts else []):
+            txt = _pages_text(pages) if fallback else "\n\n".join(el[e] for e in elements if e in el)
+            if not txt.strip():
+                txt = _pages_text(pages)
+            out["blocks"][name] = run_facts_block(host, cfg, name, cls, txt, header, cache_dir, force, errors)
+            print(f"[LLM] {doc_id}: blok {name} gotowy", flush=True)
+        items_text = _pages_text(pages)
+    else:
+        top = sorted(passages or [], key=lambda p: -p.score)
+        picked, total = [], 0
+        for p in top:                                               # ramka strategii: najtrafniejsze pasaże w limicie
+            if total + len(p.text) <= cfg.get("facts_chunk_chars", 9000):
+                picked.append(p)
+                total += len(p.text)
+        frame_text = "\n\n".join(p.text for p in sorted(picked, key=lambda x: x.page_start))
+        name, cls, _ = S.STRATEGY_FRAME_BLOCK
+        out["blocks"][name] = run_facts_block(host, cfg, name, cls, frame_text, header, cache_dir, force, errors) if (frame_text.strip() and use_facts) else None
+        items_text = "\n\n".join(p.text for p in (passages or []))
+
+    tasks = cfg.get("tasks", ["problems", "actions", "goals"])
+    by_kind: dict[str, list[dict]] = {k: [] for k in ("problems", "goals", "actions")}
+    misses: list[dict] = []
+    chunks = chunk_text(items_text, cfg.get("chunk_chars", 4500)) if items_text.strip() else []
+    for i, ch in enumerate(chunks, 1):
+        found_p: list[dict] = []
+        for kind in tasks:
+            items = run_items_chunk(host, cfg, kind, ch, header, cache_dir, force, errors)
+            by_kind[kind] += items
+            if kind == "problems":
+                found_p = items
+        if "problems" in tasks:
+            gap = baseline_problems(ch) - {p["category"] for p in found_p}
+            if gap:
+                pg = _MARK.findall(ch)
+                misses.append(dict(pages=f"{pg[0]}–{pg[-1]}" if pg else "?", categories=sorted(gap)))
+        print(f"[LLM] {doc_id}: fragment {i}/{len(chunks)}", flush=True)
+
+    by_page = {p.page: fold_alnum(p.text) for p in pages}
+    rejected: list[dict] = []
+    for kind, field in (("problems", "category"), ("goals", "level"), ("actions", "instrument")):
+        ok = []
+        for it in _dedupe(by_kind[kind], field):
+            q = it["evidence"]["quote"]
+            pg, fuzzy = resolve_page(q, it["evidence"].get("page"), by_page)
+            flags = quality_flags(kind, q)
+            if pg is None:
+                rejected.append(dict(kind=kind, quote=q[:120], reason="cytat nie występuje w dokumencie"))
+            elif "table_row" in flags and kind in ("problems", "goals"):
+                rejected.append(dict(kind=kind, quote=q[:120], reason="wiersz tabeli/kwoty: to wskaźnik (blok faktów), nie problem ani cel"))
+            else:
+                it["evidence"]["page"] = pg
+                if fuzzy:
+                    flags.append("fuzzy_quote")
+                if kind == "actions":
+                    flags = [f for f in flags if f not in ("table_row", "no_problem_cue")]    # wiersz budżetu bywa poprawnym działaniem
+                it["flags"] = flags
+                it["low_confidence"] = any(f in flags for f in ("definition_like", "legal_basis", "fragment", "no_problem_cue"))
+                ok.append(it)
+        by_kind[kind] = ok
+    out["items"] = dict(relevant=any(by_kind.values()), **by_kind)
+    unsupported = check_numbers(out["blocks"])
+    out["audit"] = verify_evidence(out, pages)
+    out["audit"].update(items_low_confidence=sum(1 for k in by_kind.values() for x in k if x.get("low_confidence")), items_rejected=rejected, possible_misses=misses, numbers_unsupported=unsupported, llm_errors=errors)
+    out["versions"] = dict(prompt_version=cfg["prompt_version"], model=cfg["model_extract"], model_digest=OC.model_digest(cfg["model_extract"], host),
+                           num_ctx=cfg.get("num_ctx", 12288), seed=cfg.get("seed", 7), chunk_chars=cfg.get("chunk_chars", 4500),
+                           run_date=date.today().isoformat(),
+                           segmentation_fallback=(doc_type == "WPGMZ" and len(element_texts(sections or [])) < 5))
+    (extracted_dir / f"{doc_id}.json").write_text(json.dumps(out, ensure_ascii=False, indent=1), encoding="utf-8")
+    return out

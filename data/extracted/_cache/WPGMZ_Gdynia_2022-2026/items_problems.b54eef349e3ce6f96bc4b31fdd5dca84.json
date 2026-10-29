@@ -1,0 +1,11 @@
+{
+ "problems": [
+  {
+   "quote": "do kapitalnego remontu - budynek wymagający wykonania robót przywracających całemu budynkowi lub jego części (np.: określonemu elementowi konstrukcyjnemu budynku) pierwotnej lub prawie pierwotnej wartości technicznej i użytkowej, a nie stanowiących bieżącej konserwacji",
+   "page": 12,
+   "category": "P02",
+   "severity": "notable",
+   "statement": "Budynki wymagają remontu kapitalnego, co sugeruje zły stan techniczny i wiek zasobu."
+  }
+ ]
+}

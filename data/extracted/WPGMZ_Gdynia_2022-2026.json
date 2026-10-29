@@ -17,947 +17,416 @@
   "replaces_number": null,
   "needs_review": []
  },
- "blocks": {
-  "stock_condition_needs": {
-   "stock": {
-    "stock_ref_date": {
-     "value": null,
-     "status": "not_present",
-     "evidence": []
-    },
-    "units_total": {
-     "value": null,
-     "unit": null,
-     "ref_date": null,
-     "status": "not_present",
-     "evidence": []
-    },
-    "area_total_m2": {
-     "value": null,
-     "unit": null,
-     "ref_date": null,
-     "status": "not_present",
-     "evidence": []
-    },
-    "buildings_total": {
-     "value": null,
-     "unit": null,
-     "ref_date": null,
-     "status": "not_present",
-     "evidence": []
-    },
-    "units_gmina_100pct": {
-     "value": null,
-     "unit": null,
-     "ref_date": null,
-     "status": "not_present",
-     "evidence": []
-    },
-    "units_wspolnoty": {
-     "value": null,
-     "unit": null,
-     "ref_date": null,
-     "status": "not_present",
-     "evidence": []
-    },
-    "units_other_owners": {
-     "value": null,
-     "unit": null,
-     "ref_date": null,
-     "status": "not_present",
-     "evidence": []
-    },
-    "units_social_rent": {
-     "value": null,
-     "unit": null,
-     "ref_date": null,
-     "status": "not_present",
-     "evidence": []
-    },
-    "units_temporary": {
-     "value": null,
-     "unit": null,
-     "ref_date": null,
-     "status": "not_present",
-     "evidence": []
-    },
-    "units_protected_supported": {
-     "value": null,
-     "unit": null,
-     "ref_date": null,
-     "status": "not_present",
-     "evidence": []
-    },
-    "units_company_tbs": {
-     "value": null,
-     "unit": null,
-     "ref_date": null,
-     "status": "not_present",
-     "evidence": []
-    },
-    "stock_definition_note": {
-     "value": null,
-     "status": "not_present",
-     "evidence": []
-    }
-   },
-   "condition": {
-    "buildings_pre1945_share_pct": {
-     "value": null,
-     "unit": null,
-     "ref_date": null,
-     "status": "not_present",
-     "evidence": []
-    },
-    "condition_rating": "poor",
-    "share_buildings_need_major_repair_pct": {
-     "value": null,
-     "unit": null,
-     "ref_date": null,
-     "status": "not_present",
-     "evidence": []
-    },
-    "units_wc_outside": {
-     "value": null,
-     "unit": null,
-     "ref_date": null,
-     "status": "not_present",
-     "evidence": []
-    },
-    "units_shared_facilities": {
-     "value": null,
-     "unit": null,
-     "ref_date": null,
-     "status": "not_present",
-     "evidence": []
-    },
-    "units_coal_heating": {
-     "value": null,
-     "unit": null,
-     "ref_date": null,
-     "status": "not_present",
-     "evidence": []
-    },
-    "units_basement": {
-     "value": null,
-     "unit": null,
-     "ref_date": null,
-     "status": "not_present",
-     "evidence": []
-    },
-    "units_central_heating": {
-     "value": null,
-     "unit": null,
-     "ref_date": null,
-     "status": "not_present",
-     "evidence": []
-    }
-   },
-   "needs": {
-    "eviction_social_pending": {
-     "value": null,
-     "unit": null,
-     "ref_date": null,
-     "status": "not_present",
-     "evidence": []
-    },
-    "eviction_temporary_pending": {
-     "value": null,
-     "unit": null,
-     "ref_date": null,
-     "status": "not_present",
-     "evidence": []
-    },
-    "waiting_list_units": {
-     "value": null,
-     "unit": null,
-     "ref_date": null,
-     "status": "not_present",
-     "evidence": []
-    },
-    "total_need_units": {
-     "value": null,
-     "unit": null,
-     "ref_date": null,
-     "status": "not_present",
-     "evidence": []
-    },
-    "arrears_share_pct": {
-     "value": null,
-     "unit": null,
-     "ref_date": null,
-     "status": "not_present",
-     "evidence": []
-    },
-    "arrears_total_pln": {
-     "value": null,
-     "unit": null,
-     "ref_date": null,
-     "status": "not_present",
-     "evidence": []
-    },
-    "need_trend": "decreasing",
-    "priority_groups": [
-     "low_income",
-     "disabled",
-     "evicted",
-     "seniors",
-     "seniors"
-    ]
-   }
-  },
-  "forecast_sales": {
-   "forecast": {
-    "forecast_start_year": {
-     "value": 2022.0,
-     "unit": "year",
-     "ref_date": null,
-     "status": "not_present",
-     "evidence": []
-    },
-    "forecast_end_year": {
-     "value": 2026.0,
-     "unit": "year",
-     "ref_date": null,
-     "status": "not_present",
-     "evidence": []
-    },
-    "stock_start_units": {
-     "value": null,
-     "unit": null,
-     "ref_date": null,
-     "status": "not_present",
-     "evidence": []
-    },
-    "stock_end_units": {
-     "value": null,
-     "unit": null,
-     "ref_date": null,
-     "status": "not_present",
-     "evidence": []
-    },
-    "planned_new_units_total": {
-     "value": null,
-     "unit": null,
-     "ref_date": null,
-     "status": "not_present",
-     "evidence": []
-    },
-    "planned_purchases_units_total": {
-     "value": null,
-     "unit": null,
-     "ref_date": null,
-     "status": "not_present",
-     "evidence": []
-    },
-    "planned_demolitions_units_total": {
-     "value": null,
-     "unit": null,
-     "ref_date": null,
-     "status": "not_present",
-     "evidence": []
-    },
-    "planned_sales_units_total": {
-     "value": 1000.0,
-     "unit": "units",
-     "ref_date": null,
-     "status": "not_present",
-     "evidence": []
-    },
-    "new_projects": [
-     {
-      "name": "Inwestycje i zakupy mieszkań na wolnym rynku",
-      "units": 500.0,
-      "type": null,
-      "year": 2022,
-      "financing_source": null,
-      "evidence": null
-     },
-     {
-      "name": "Inwestycje i zakupy mieszkań na wolnym rynku",
-      "units": 500.0,
-      "type": null,
-      "year": 2026,
-      "financing_source": null,
-      "evidence": null
-     },
-     {
-      "name": "Remonty i modernizacje istniejących mieszkań",
-      "units": 300.0,
-      "type": null,
-      "year": 2024,
-      "financing_source": null,
-      "evidence": null
-     },
-     {
-      "name": "Tworzenie warunków do zaspokajania potrzeb mieszkaniowych",
-      "units": 200.0,
-      "type": null,
-      "year": 2025,
-      "financing_source": null,
-      "evidence": null
-     },
-     {
-      "name": "Inwestycje w technologie i efektywność zarządzania",
-      "units": 100.0,
-      "type": null,
-      "year": 2026,
-      "financing_source": null,
-      "evidence": null
-     }
-    ]
-   },
-   "sales": {
-    "sales_policy": {
-     "value": null,
-     "status": "not_present",
-     "evidence": []
-    },
-    "sales_units_per_year": {
-     "value": 200.0,
-     "unit": "units/year",
-     "ref_date": null,
-     "status": "not_present",
-     "evidence": []
-    },
-    "sales_revenue_total_pln": {
-     "value": 50000000.0,
-     "unit": "PLN",
-     "ref_date": null,
-     "status": "not_present",
-     "evidence": []
-    },
-    "sales_proceeds_use": {
-     "value": "[Investments in maintenance and modernization, social housing support, and other initiatives]",
-     "status": "not_present",
-     "evidence": []
-    }
-   }
-  },
-  "repairs": {
-   "repairs": {
-    "outlays_repairs_total_pln": {
-     "value": null,
-     "unit": null,
-     "ref_date": null,
-     "status": "not_present",
-     "evidence": []
-    },
-    "outlays_modernization_total_pln": {
-     "value": null,
-     "unit": null,
-     "ref_date": null,
-     "status": "not_present",
-     "evidence": []
-    },
-    "repair_priority_safety_first": {
-     "value": null,
-     "status": "found",
-     "evidence": [
-      {
-       "page": 7,
-       "quote": "Wskazuje się jako priorytet przy tworzeniu rocznych planów remontowych eliminację zagrożenia bezpieczeństwa użytkowania lokali i ich mienia, w związku z tym w pierwszej kolejności podejmowane są prace zmierzające do zabezpieczenia konstrukcji budynków, remontów i zabezpieczenia instalacji technicznych oraz zabezpieczenia przeciwpożarowego."
-      }
-     ]
-    },
-    "thermo_program": {
-     "value": null,
-     "status": "not_present",
-     "evidence": []
-    },
-    "thermo_buildings_n": {
-     "value": null,
-     "unit": null,
-     "ref_date": null,
-     "status": "not_present",
-     "evidence": []
-    },
-    "stoves_elimination_units_n": {
-     "value": null,
-     "unit": null,
-     "ref_date": null,
-     "status": "found",
-     "evidence": [
-      {
-       "page": 7,
-       "quote": "likwidacja pieców na opał stały"
-      }
-     ]
-    },
-    "tenant_funded_renovation": {
-     "value": null,
-     "status": "found",
-     "evidence": [
-      {
-       "page": 7,
-       "quote": "maksymalne skrócenie okresu, w którym lokal zwolniony w wyniku naturalnego ruchu ludności oczekuje na remont oraz czasu trwania remontów, tak by jak najszybciej możliwe było proponowanie lokali nowym najemcom. Cel ten osiągnięty zostanie przez systematyczne zwiększanie nakładów na remonty oraz usprawnienia organizacyjne."
-      }
-     ]
-    }
-   }
-  },
-  "rent_mgmt": {
-   "rent": {
-    "rent_target": {
-     "value": null,
-     "status": "not_present",
-     "evidence": []
-    },
-    "rent_target_pct_replacement_value": {
-     "value": null,
-     "unit": null,
-     "ref_date": null,
-     "status": "not_present",
-     "evidence": []
-    },
-    "rent_zones_n": {
-     "value": null,
-     "unit": null,
-     "ref_date": null,
-     "status": "not_present",
-     "evidence": []
-    },
-    "rent_reduction_low_income": {
-     "value": null,
-     "status": "not_present",
-     "evidence": [
-      {
-       "page": 15,
-       "quote": "Czynsz, o którym mowa w pkt. 3 w stosunku do najemców o niskich dochodach, może być obniżony"
-      }
-     ]
-    },
-    "income_verification": {
-     "value": null,
-     "status": "not_present",
-     "evidence": []
-    },
-    "income_verification_interval_years": {
-     "value": null,
-     "unit": null,
-     "ref_date": null,
-     "status": "not_present",
-     "evidence": []
-    },
-    "social_rent_max_pct_of_lowest": {
-     "value": null,
-     "unit": null,
-     "ref_date": null,
-     "status": "not_present",
-     "evidence": []
-    },
-    "debt_workoff_allowed": {
-     "value": null,
-     "status": "not_present",
-     "evidence": []
-    }
-   },
-   "mgmt": {
-    "manager_type": {
-     "value": null,
-     "status": "not_present",
-     "evidence": []
-    },
-    "manager_name": {
-     "value": null,
-     "status": "not_present",
-     "evidence": []
-    },
-    "participatory_mgmt": {
-     "value": null,
-     "status": "not_present",
-     "evidence": [
-      {
-       "page": 16,
-       "quote": "Jednostki, o których mowa w pkt 1 dążyć będą do maksymalnie partycypacyjnego zarządzania zasobem mieszkaniowym, poprzez aktywizację i większe upodmiotowienie najemców obejmujące ich prawo do wypowiadania się w sprawach ich miejsca zamieszkania, przedstawiania swoich propozycji rozwiązań oraz tam gdzie to możliwe prawo do wspólnego podejmowania decyzji."
-      }
-     ]
-    },
-    "mgmt_change_planned": {
-     "value": null,
-     "status": "not_present",
-     "evidence": [
-      {
-       "page": 16,
-       "quote": "Rozdział 5. Sposób i zasady zarządzania lokalami i budynkami wchodzącego w skład mieszkaniowego zasobu Gminy oraz przewidywane zmiany w zakresie zarządzania mieszkaniowym zasobem Gminy w kolejnych latach"
-      }
-     ]
-    },
-    "exchange_programme": {
-     "value": null,
-     "status": "not_present",
-     "evidence": []
-    },
-    "debt_collection_described": {
-     "value": null,
-     "status": "not_present",
-     "evidence": []
-    }
-   }
-  },
-  "finance": {
-   "finance": {
-    "costs_year": {
-     "value": null,
-     "unit": null,
-     "ref_date": null,
-     "status": "not_present",
-     "evidence": []
-    },
-    "rent_revenue_y1_pln": {
-     "value": null,
-     "unit": null,
-     "ref_date": null,
-     "status": "not_present",
-     "evidence": []
-    },
-    "budget_subsidy_y1_pln": {
-     "value": null,
-     "unit": null,
-     "ref_date": null,
-     "status": "not_present",
-     "evidence": []
-    },
-    "total_costs_y1_pln": {
-     "value": 26880000.0,
-     "unit": null,
-     "ref_date": null,
-     "status": "found",
-     "evidence": [
-      {
-       "page": 17,
-       "quote": "26 880 000"
-      }
-     ]
-    },
-    "financing_sources": [
-     "rent",
-     "rent",
-     "municipal_budget"
-    ],
-    "external_funding_planned": {
-     "value": null,
-     "status": "not_present",
-     "evidence": []
-    }
-   }
-  }
- },
+ "blocks": {},
  "items": {
   "relevant": true,
-  "problems": [],
-  "goals": [
+  "problems": [
    {
-    "level": "direction",
-    "statement": "Zaspokajanie potrzeb mieszkaniowych wspólnoty samorządowej, lokali zamiennych, a także zaspokajanie potrzeb mieszkaniowych gospodarstw domowych o niskich dochodach.",
-    "dimension": "social",
+    "category": "P08",
+    "statement": "Gmina zaspokaja potrzeby grup szczególnych, takich jak osoby z niepełnosprawnościami, osoby opuszczone z placówek opiekuńczo-wychowawczych, osoby usamodzielniające się, osoby z potrzebami zdrowotnymi.",
+    "severity": "notable",
+    "quantified": false,
+    "quant_text": null,
+    "affected_groups": [],
+    "section": null,
     "evidence": {
-     "page": 4,
-     "quote": "Gmina zapewnia również mieszkania wspierane i treningowe, które dzięki sprawowanemu nad nimi nadzorowi dają możliwość zamieszkiwania osób ze sfery wykluczenia społecznego a także osobom, których stan zdrowia wymaga sprawowania intensywnego nadzoru lub opieki."
-    }
+     "page": 2,
+     "quote": "Gmina Miasta Gdyni zaspokaja potrzeby mieszkaniowe gdynian wykorzystując inne narzędzia adekwatne do sytuacji zdrowotnej, majątkowej i społecznej poszczególnych osób i rodzin."
+    },
+    "flags": [
+     "no_problem_cue"
+    ],
+    "low_confidence": true
    },
    {
-    "level": "direction",
-    "statement": "Tworzenie warunków do zaspokajania potrzeb mieszkaniowych.",
-    "dimension": "social",
+    "category": "P02",
+    "statement": "Znaleziono 5 budynków niepodłączonych do kanalizacji, co może stanowić zagrożenie dla hygieny i środowiska.",
+    "severity": "notable",
+    "quantified": true,
+    "quant_text": null,
+    "affected_groups": [],
+    "section": null,
     "evidence": {
-     "page": 4,
-     "quote": "Zadaniem Gminy jest tworzenie warunków do zaspokajania potrzeb mieszkaniowych wspólnoty samorządowej, lokali zamiennych, a także zaspokajanie potrzeb mieszkaniowych gospodarstw domowych o niskich dochodach."
-    }
+     "page": 3,
+     "quote": "Gmina Miasta Gdyni posiada 5 budynków niepodłączonych do kanalizacji sanitarnej"
+    },
+    "flags": [],
+    "low_confidence": false
    },
    {
-    "level": "direction",
-    "statement": "Realizacja wyroków o eksmisję z prawem do najmu socjalnego lokalu.",
-    "dimension": "social",
+    "category": "P02",
+    "statement": "Gmina posiada 103 budynki wybudowane przed 1945 rokiem, co sugeruje starość budynków i potencjalne problemy techniczne.",
+    "severity": "key",
+    "quantified": true,
+    "quant_text": null,
+    "affected_groups": [],
+    "section": null,
     "evidence": {
-     "page": 4,
-     "quote": "Realizacja wyroków o eksmisję z prawem do najmu socjalnego lokalu"
-    }
+     "page": 3,
+     "quote": "Gmina Miasta Gdyni jest właścicielem 150 budynków mieszkalnych, w tym: 103 budynki wybudowane przed 1945 rokiem"
+    },
+    "flags": [
+     "no_problem_cue",
+     "fuzzy_quote"
+    ],
+    "low_confidence": true
    },
    {
-    "level": "direction",
-    "statement": "Realizacja decyzji Prezydenta Miasta Gdyni o wynajęciu lokalu zamiennego poza obowiązującą listą.",
-    "dimension": "social",
+    "category": "P05",
+    "statement": "Każda eksmisja obciąża gminę obowiązkiem dostarczenia lokalu.",
+    "severity": "key",
+    "quantified": false,
+    "quant_text": null,
+    "affected_groups": [],
+    "section": null,
     "evidence": {
      "page": 4,
-     "quote": "Realizacja decyzji Prezydenta Miasta Gdyni o wynajęciu lokalu zamiennego poza obowiązującą listą"
-    }
+     "quote": "każda wykonywana w mieście eksmisja wiąże się z obowiązkiem zapewnienia lokalu przez gminę"
+    },
+    "flags": [],
+    "low_confidence": false
    },
    {
-    "level": "direction",
-    "statement": "Zakładanym przez Gminę celem jest maksymalne skrócenie okresu, w którym lokal zwolniony w wyniku naturalnego ruchu ludności oczekuje na remont oraz czasu trwania remontów, tak by jak najszybciej możliwe było proponowanie lokali nowym najemcom.",
-    "dimension": "market",
+    "category": "P01",
+    "statement": "Likwidacja placówek oświatowych prowadzi do utraty zasobu mieszkalnego, co może prowadzić do dalszego deficytu.",
+    "severity": "notable",
+    "quantified": false,
+    "quant_text": null,
+    "affected_groups": [],
+    "section": null,
+    "evidence": {
+     "page": 6,
+     "quote": "Likwidacja lokali mieszkalnych w placówkach oświatowych będzie następiała stopniowo"
+    },
+    "flags": [
+     "no_problem_cue",
+     "fuzzy_quote"
+    ],
+    "low_confidence": true
+   },
+   {
+    "category": "P07",
+    "statement": "Wstrzymana sprzedaż lokali na rzecz najemców może prowadzić do zwiększenia zaległości czynszowych.",
+    "severity": "notable",
+    "quantified": false,
+    "quant_text": null,
+    "affected_groups": [],
+    "section": null,
+    "evidence": {
+     "page": 6,
+     "quote": "nie jest przewidywany ubytek w mieszkaniowym zasobie Gminy Miasta Gdyni związany ze sprzedaży, gdyż wstrzymana została sprzedaż lokali na rzecz najemców, zarówno w budynkach należących"
+    },
+    "flags": [
+     "no_problem_cue",
+     "fuzzy_quote"
+    ],
+    "low_confidence": true
+   },
+   {
+    "category": "P02",
+    "statement": "Gmina koncentruje się na zabezpieczeniu przeciwpożarowym, co sugeruje zły stan techniczny budynków.",
+    "severity": "notable",
+    "quantified": false,
+    "quant_text": null,
+    "affected_groups": [],
+    "section": null,
     "evidence": {
      "page": 7,
-     "quote": "Zakładanym przez Gminę celem jest maksymalne skrócenie okresu, w którym lokal zwolniony w wyniku naturalnego ruchu ludności oczekuje na remont oraz czasu trwania remontów, tak by jak najszybciej możliwe było proponowanie lokali nowym najemcom."
-    }
+     "quote": "zabezpieczenia przeciwpożarowego"
+    },
+    "flags": [
+     "fragment"
+    ],
+    "low_confidence": true
    },
    {
-    "level": "direction",
-    "statement": "Określić kategorie mieszkań i wysokość czynszu",
-    "dimension": "market",
+    "category": "P04",
+    "statement": "Gmina planuje modernizację instalacji ciepłowniczych, co sugeruje niską efektywność energetyczną.",
+    "severity": "notable",
+    "quantified": false,
+    "quant_text": null,
+    "affected_groups": [],
+    "section": null,
     "evidence": {
-     "page": 10,
-     "quote": "§ 10. Kategorie mieszkań i wysokość czynszu"
-    }
+     "page": 7,
+     "quote": "pieców na opał stały i przyłączenie do miejskiej sieci ciepłowniczej lub zastosowanie pomp ciepła, a także montaż kotłów gazowych dwufunkcyjnych lub ogrzewanie elektryczne"
+    },
+    "flags": [],
+    "low_confidence": false
    },
    {
-    "level": "direction",
-    "statement": "Kategoryzować mieszkań w oparciu o stawkę punktową",
-    "dimension": "market",
+    "category": "P02",
+    "statement": "Budynki wymagają regularnych remontów, co może być kosztowne i nieefektywne.",
+    "severity": "notable",
+    "quantified": false,
+    "quant_text": null,
+    "affected_groups": [],
+    "section": null,
     "evidence": {
-     "page": 11,
-     "quote": "§ 11. Kategoryzacja mieszkań"
-    }
+     "page": 12,
+     "quote": "budynek wymagający remontu bieżącego — budynek wymagający wykonania robót polegających na stałej konserwacji urządzeń, elementów, detali wyposażenia niezbędnych do utrzymania budynku oraz jego otoczenia"
+    },
+    "flags": [
+     "definition_like"
+    ],
+    "low_confidence": true
    },
    {
-    "level": "direction",
-    "statement": "Obniżenie czynszu dla najemców, którzy spełniają określone kryteria.",
-    "dimension": "social",
+    "category": "P02",
+    "statement": "Budynki wymagają remontu kapitalnego, co sugeruje zły stan techniczny i wiek zasobu.",
+    "severity": "notable",
+    "quantified": false,
+    "quant_text": null,
+    "affected_groups": [],
+    "section": null,
+    "evidence": {
+     "page": 12,
+     "quote": "do kapitalnego remontu - budynek wymagający wykonania robót przywracających całemu budynkowi lub jego części (np.: określonemu elementowi konstrukcyjnemu budynku) pierwotnej lub prawie pierwotnej wartości technicznej i użytkowej, a nie stanowiących bieżącej konserwacji"
+    },
+    "flags": [
+     "fuzzy_quote"
+    ],
+    "low_confidence": false
+   },
+   {
+    "category": "P05",
+    "statement": "Gmina tworzy zasób pomieszczeń tymczasowych, ale nie jest to główny problem.",
+    "severity": "notable",
+    "quantified": false,
+    "quant_text": null,
+    "affected_groups": [],
+    "section": null,
     "evidence": {
      "page": 14,
-     "quote": "5. Obniżka czynszu dla najemców, którzy spełniają określone kryteria, wynika z zasady, że czynsz nie powinien przekraczać 40% średniego dochodu netto najemcy w przeliczeniu na członka gospodarstwa domowego."
-    }
+     "quote": "Gmina Miasta Gdyni tworzy zasób pomieszczeń tymczasowych, które przeznacza na wynajem z tytułu realizacji wyroków sądowych orzekających eksmisję bez prawa do lokalu o najmie socjalnym lub zamiennego"
+    },
+    "flags": [],
+    "low_confidence": false
    },
    {
-    "level": "strategic_goal",
-    "statement": "Zarządzanie zasobem mieszkaniowym w sposób partycypacyjny i maksymalnie aktywny.",
-    "dimension": "social",
+    "category": "P07",
+    "statement": "Gmina nie pobiera opłat czynszowych za najem lokali kryzysowych, co może prowadzić do zaległości finansowych.",
+    "severity": "notable",
+    "quantified": false,
+    "quant_text": null,
+    "affected_groups": [],
+    "section": null,
+    "evidence": {
+     "page": 14,
+     "quote": "Gmina Miasta Gdyni nie pobiera opłat czynszowych za najem lokali kryzysowych"
+    },
+    "flags": [
+     "no_problem_cue"
+    ],
+    "low_confidence": true
+   },
+   {
+    "category": "P07",
+    "statement": "Gmina musi finansować różne koszty związani z utrzymaniem i remontem zasobu mieszkalnego, co może prowadzić do zaległości finansowych.",
+    "severity": "notable",
+    "quantified": false,
+    "quant_text": null,
+    "affected_groups": [],
+    "section": null,
     "evidence": {
      "page": 16,
-     "quote": "2. Jednostki, o których mowa w §17 reprezentują Gminę Miasta Gdyni we wspólnotach mieszkaniowych."
-    }
+     "quote": "Gospodarka mieszkaniowym zasobem Gminy Miasta Gdyni finansowana jest bezpośrednio z budżetu samorządu gminnego według określonego harmonogramu potrzeb na środki pieniężne przez jednostki z przeznaczeniem na: pokrycie kosztów utrzymania gminnych lokali mieszkalnych i budynków komunalnych, pokrycie kosztów remontów gminnych lokali mieszkalnych i budynków komunalnych, finansowanie kosztów realizacji inwestycji, pokrycie kosztów dozoru lub zabezpieczenia budynków i lokali mieszkalnych czasowo wolnych oraz budynków mieszkalnych, zagospodarowanie terenów wokół budynków mieszkalnych."
+    },
+    "flags": [
+     "fuzzy_quote"
+    ],
+    "low_confidence": false
    },
    {
-    "level": "strategic_goal",
-    "statement": "Finansowanie gospodarki mieszkaniowej z budżetu samorządu gminnego.",
-    "dimension": "energy_climate",
+    "category": "P05",
+    "statement": "Gmina jest zobowiązana do tworzenia i powiększania zasobu komunalnego, co może stanowić kluczowe wyzwanie.",
+    "severity": "notable",
+    "quantified": true,
+    "quant_text": null,
+    "affected_groups": [],
+    "section": null,
     "evidence": {
-     "page": 16,
-     "quote": "2. Gospodarka mieszkaniowym zasobem Gminy Miasta Gdyni finansowana jest bezpośrednio z budżetu samorządu gminnego według określonego harmonogramu potrzeb na środki pieniężne przez jednostki z przeznaczeniem na: 1) pokrycie kosztów utrzymania gminnych lokali mieszkalnych i budynków komunalnych, 2) pokrycie kosztów remontów gminnych lokali mieszkalnych i budynków komunalnych, 3) finansowanie kosztów realizacji inwestycji, 4) pokrycie kosztów dozoru lub zabezpieczenia budynków i lokali mieszkalnych czasowo wolnych oraz budynków mieszkalnych, 5) zagospodarowanie terenów wokół budynków mieszkalnych."
-    }
+     "page": 20,
+     "quote": "Stosownie do art. 21 ust. 1 ustawy z dnia 21 czerwca 2001 r. o ochronie praw lokatorów, mieszkaniowym zasobie gminy i zmianie Kodeksu cywilnego (t.j. Dz.U. 2020 poz. 611 z późn.zm.), Rada Gminy uchwala wieloletnie programy gospodarowania mieszkaniowym zasobem gminnym."
+    },
+    "flags": [
+     "legal_basis",
+     "no_problem_cue"
+    ],
+    "low_confidence": true
    },
    {
-    "level": "strategic_goal",
-    "statement": "Modernizacja budynków mieszkalnych i lokali mieszkalnych.",
-    "dimension": "energy_climate",
+    "category": "P01",
+    "statement": "Gmina ma na uwadze zaspokajanie potrzeb mieszkaniowych mieszkańców, co sugeruje istnienie niedoboru mieszkań.",
+    "severity": "notable",
+    "quantified": true,
+    "quant_text": null,
+    "affected_groups": [],
+    "section": null,
     "evidence": {
-     "page": 16,
-     "quote": "4. Dla poprawienia stanu technicznego substancji mieszkanowej w budynkach Wspólnot Mieszkaniowych, Wspólnoty mogą zaciągać kredyty termomodernizacyjne na docieplenie ścian zewnętrznych, docieplenie stropodachu, zmianę systemu grzewczego w budynku, wymianę stolarki budowlanej oraz kredyty inwestycyjne na remonty budynków (przede wszystkim: izolacja ścian zewnętrznych piwnic, remonty klatek schodowych, roboty dekarsko - blacharskie, modernizacja dźwigów osobowych). Gmina Miasta Gdyni będzie partycypować w kosztach kredytu zgodnie z posiadanym udziałem we własności."
-    }
-   },
-   {
-    "level": "strategic_goal",
-    "statement": "Pobranie dodatkowego finansowego wsparcia na pozyskanie nowych lokali komunalnych i modernizację lokali mieszkalnych.",
-    "dimension": "energy_climate",
-    "evidence": {
-     "page": 16,
-     "quote": "4. Gmina Miasta Gdyni podejmie działania w kierunku uzyskania dodatkowego finansowego wsparcia na pozyskanie nowych lokali komunalnych, jak również na modernizację lokali mieszkalnych, termomodernizację budynków mieszkalnych i likwidację niskich emisji."
-    }
-   },
-   {
-    "level": "direction",
-    "statement": "Zakłada się kontynuowanie działań zmierzających do stopniowego likwidowania niesamodzielnych lokali mieszkalnych poprzez scalanie ich w celu uzyskania lokali w pełni samodzielnych.",
-    "dimension": "market",
-    "evidence": {
-     "page": 18,
-     "quote": "2"
-    }
-   },
-   {
-    "level": "direction",
-    "statement": "Lokale mieszkalne wymagające remontu, których położenie i układ pomieszczeń umożliwiają dostęp osobom na wózkach inwalidzkich, będą przystosowywane do potrzeb osób z niepełnosprawnościami.",
-    "dimension": "social",
-    "evidence": {
-     "page": 18,
-     "quote": "3"
-    }
-   },
-   {
-    "level": "direction",
-    "statement": "Gmina będzie podejmować działania na rzecz realizacji kolejnych inwestycji mieszkaniowych.",
-    "dimension": "market",
-    "evidence": {
-     "page": 18,
-     "quote": "6"
-    }
-   },
-   {
-    "level": "direction",
-    "statement": "Gmina będzie dążyć do utworzenia większej liczby mieszkań chronionych, wspieranych i treningowych.",
-    "dimension": "social",
-    "evidence": {
-     "page": 18,
-     "quote": "7"
-    }
-   },
-   {
-    "level": "direction",
-    "statement": "Opróżnione lokale w budynkach oświatowych będą wykorzystywane na potrzeby działalności statutowej szkoły, w której użytkowaniu znajdują się te lokale lub inne cele związane z zaspakajaniem potrzeb wspólnoty samorządowej.",
-    "dimension": "social",
-    "evidence": {
-     "page": 18,
-     "quote": "8"
-    }
-   },
-   {
-    "level": "direction",
-    "statement": "Prowadzone będą działania mające na celu prawidłowe funkcjonowanie osób i rodzin trafiających do zasobu komunalnego w ramach realizacji wyroków eksmisyjnych, polegające na bieżącym monitorowaniu płatności, zaś w przypadku zaległości podejmowaniu działań zmierzających do podniesienia kompetencji najemców, m.in. prowadzenie treningu budżetowego.",
-    "dimension": "social",
-    "evidence": {
-     "page": 18,
-     "quote": "9"
-    }
-   },
-   {
-    "level": "direction",
-    "statement": "Gmina będzie podejmować starania na rzecz szybkiej realizacji wyroków eksmisyjnych skierowanych do osób, wobec których nie orzeczono uprawnienia do wskazania najmu socjalnego lokalu poprzez wskazywanie pomieszczeń tymczasowych zapewnianych na okres do 6 miesięcy.",
-    "dimension": "social",
-    "evidence": {
-     "page": 18,
-     "quote": "10"
-    }
-   },
-   {
-    "level": "direction",
-    "statement": "W przypadku konieczności zabezpieczenia na dłuższy czas schronienia osobom, którym nie przysługuje prawo do lokalu z mieszkaniowego zasobu Gminy za pośrednictwem Miejskiego Ośrodka Pomocy Społecznej realizowane będą programy wsparcia polegające na wynajęciu lokalu na wolnym rynku z długofalowym dofinansowaniem z budżetu miasta. Zasady udziału i współpracy w ramach programów profilaktycznych będą indywidualnie dostosowywane do rozeznanej sytuacji życiowej beneficjentów w oparciu o zapisy Ustawy z dn. 12 marca 2004r. o pomocy społecznej (t.j. Dz.U. 2020 poz. 1876 z późn. zm).",
-    "dimension": "social",
-    "evidence": {
-     "page": 18,
-     "quote": "11"
-    }
+     "page": 20,
+     "quote": "Tworzenie warunków do zaspokajania potrzeb mieszkaniowych mieszkańców Miasta zgodnie z art. 4 ustawy o ochronie praw lokatorów, mieszkaniowym zasobie gminy i zmianie Kodeksu cywilnego, jest podstawowym zadaniem Gminy."
+    },
+    "flags": [
+     "legal_basis",
+     "no_problem_cue"
+    ],
+    "low_confidence": true
    }
   ],
-  "actions": [
-   {
-    "instrument": "I14",
-    "description": "Zakładanie i rozbudowy zasobu lokali gminnych.",
-    "stance": "not_applicable",
-    "status": "planned",
-    "named_instrument": true,
-    "has_target_value": false,
-    "target_text": null,
-    "has_budget_or_source": false,
-    "budget_pln": null,
-    "has_deadline_or_owner": false,
-    "responsible": null,
-    "period": null,
-    "addresses_problems": [],
-    "link_explicit": false,
-    "evidence": {
-     "page": 4,
-     "quote": "Konieczność tworzenia i powiększania zasobu lokali gminnych jest przede wszystkim następstwem regulacji ustawowej, zgodnie z którą sądy powszechne w wyroku nakazującym opróżnienie lokalu orzekają o uprawnieniu do otrzymania oferty najmu socjalnego lokalu."
-    }
-   },
-   {
-    "instrument": "I10",
-    "description": "Systematyczne zwiększanie nakładów na remonty oraz usprawnienia organizacyjne.",
-    "stance": "not_applicable",
-    "status": "planned",
-    "named_instrument": true,
-    "has_target_value": false,
-    "target_text": null,
-    "has_budget_or_source": false,
-    "budget_pln": null,
-    "has_deadline_or_owner": false,
-    "responsible": null,
-    "period": null,
-    "addresses_problems": [],
-    "link_explicit": false,
-    "evidence": {
-     "page": 7,
-     "quote": "Zakładanym przez Gminę celem jest maksymalne skrócenie okresu, w którym lokal zwolniony w wyniku naturalnego ruchu ludności oczekuje na remont oraz czasu trwania remontów, tak by jak najszybciej możliwe było proponowanie lokali nowym najemcom. Cel ten osiągnięty zostanie przez systematyczne zwiększanie nakładów na remonty oraz usprawnienia organizacyjne."
-    }
-   },
-   {
-    "instrument": "I10",
-    "description": "Określić kategorie mieszkań i wysokość czynszu",
-    "stance": "not_applicable",
-    "status": "planned",
-    "named_instrument": true,
-    "has_target_value": false,
-    "target_text": null,
-    "has_budget_or_source": false,
-    "budget_pln": null,
-    "has_deadline_or_owner": false,
-    "responsible": null,
-    "period": null,
-    "addresses_problems": [],
-    "link_explicit": false,
-    "evidence": {
-     "page": 10,
-     "quote": "§ 10. Kategorie mieszkań i wysokość czynszu"
-    }
-   },
-   {
-    "instrument": "I11",
-    "description": "Kategoryzować mieszkań w oparciu o stawkę punktową",
-    "stance": "not_applicable",
-    "status": "planned",
-    "named_instrument": true,
-    "has_target_value": false,
-    "target_text": null,
-    "has_budget_or_source": false,
-    "budget_pln": null,
-    "has_deadline_or_owner": false,
-    "responsible": null,
-    "period": null,
-    "addresses_problems": [],
-    "link_explicit": false,
-    "evidence": {
-     "page": 11,
-     "quote": "§ 11. Kategoryzacja mieszkań"
-    }
-   },
-   {
-    "instrument": "I10",
-    "description": "Obniżenie czynszu dla najemców, którzy spełniają określone kryteria.",
-    "stance": "not_applicable",
-    "status": "planned",
-    "named_instrument": true,
-    "has_target_value": false,
-    "target_text": null,
-    "has_budget_or_source": false,
-    "budget_pln": null,
-    "has_deadline_or_owner": false,
-    "responsible": null,
-    "period": null,
-    "addresses_problems": [],
-    "link_explicit": false,
-    "evidence": {
-     "page": 14,
-     "quote": "5. Obniżka czynszu dla najemców, którzy spełniają określone kryteria, wynika z zasady, że czynsz nie powinien przekraczać 40% średniego dochodu netto najemcy w przeliczeniu na członka gospodarstwa domowego."
-    }
-   },
-   {
-    "instrument": "I11",
-    "description": "Zarządzanie zasobem mieszkaniowym w sposób partycypacyjny i maksymalnie aktywny.",
-    "stance": "not_applicable",
-    "status": "planned",
-    "named_instrument": true,
-    "has_target_value": false,
-    "target_text": null,
-    "has_budget_or_source": false,
-    "budget_pln": null,
-    "has_deadline_or_owner": false,
-    "responsible": null,
-    "period": null,
-    "addresses_problems": [],
-    "link_explicit": false,
-    "evidence": {
-     "page": 16,
-     "quote": "2. Jednostki, o których mowa w §17 reprezentują Gminę Miasta Gdyni we wspólnotach mieszkaniowych."
-    }
-   },
-   {
-    "instrument": "I12",
-    "description": "Finansowanie gospodarki mieszkaniowej z budżetu samorządu gminnego.",
-    "stance": "not_applicable",
-    "status": "planned",
-    "named_instrument": true,
-    "has_target_value": false,
-    "target_text": null,
-    "has_budget_or_source": false,
-    "budget_pln": null,
-    "has_deadline_or_owner": false,
-    "responsible": null,
-    "period": null,
-    "addresses_problems": [],
-    "link_explicit": false,
-    "evidence": {
-     "page": 16,
-     "quote": "2. Gospodarka mieszkaniowym zasobem Gminy Miasta Gdyni finansowana jest bezpośrednio z budżetu samorządu gminnego według określonego harmonogramu potrzeb na środki pieniężne przez jednostki z przeznaczeniem na: 1) pokrycie kosztów utrzymania gminnych lokali mieszkalnych i budynków komunalnych, 2) pokrycie kosztów remontów gminnych lokali mieszkalnych i budynków komunalnych, 3) finansowanie kosztów realizacji inwestycji, 4) pokrycie kosztów dozoru lub zabezpieczenia budynków i lokali mieszkalnych czasowo wolnych oraz budynków mieszkalnych, 5) zagospodarowanie terenów wokół budynków mieszkalnych."
-    }
-   },
-   {
-    "instrument": "I13",
-    "description": "Modernizacja budynków mieszkalnych i lokali mieszkalnych.",
-    "stance": "not_applicable",
-    "status": "planned",
-    "named_instrument": true,
-    "has_target_value": false,
-    "target_text": null,
-    "has_budget_or_source": false,
-    "budget_pln": null,
-    "has_deadline_or_owner": false,
-    "responsible": null,
-    "period": null,
-    "addresses_problems": [],
-    "link_explicit": false,
-    "evidence": {
-     "page": 16,
-     "quote": "4. Dla poprawienia stanu technicznego substancji mieszkanowej w budynkach Wspólnot Mieszkaniowych, Wspólnoty mogą zaciągać kredyty termomodernizacyjne na docieplenie ścian zewnętrznych, docieplenie stropodachu, zmianę systemu grzewczego w budynku, wymianę stolarki budowlanej oraz kredyty inwestycyjne na remonty budynków (przede wszystkim: izolacja ścian zewnętrznych piwnic, remonty klatek schodowych, roboty dekarsko - blacharskie, modernizacja dźwigów osobowych). Gmina Miasta Gdyni będzie partycypować w kosztach kredytu zgodnie z posiadanym udziałem we własności."
-    }
-   },
-   {
-    "instrument": "I14",
-    "description": "Pobranie dodatkowego finansowego wsparcia na pozyskanie nowych lokali komunalnych i modernizację lokali mieszkalnych.",
-    "stance": "not_applicable",
-    "status": "planned",
-    "named_instrument": true,
-    "has_target_value": false,
-    "target_text": null,
-    "has_budget_or_source": false,
-    "budget_pln": null,
-    "has_deadline_or_owner": false,
-    "responsible": null,
-    "period": null,
-    "addresses_problems": [],
-    "link_explicit": false,
-    "evidence": {
-     "page": 16,
-     "quote": "4. Gmina Miasta Gdyni podejmie działania w kierunku uzyskania dodatkowego finansowego wsparcia na pozyskanie nowych lokali komunalnych, jak również na modernizację lokali mieszkalnych, termomodernizację budynków mieszkalnych i likwidację niskich emisji."
-    }
-   },
-   {
-    "instrument": "I24",
-    "description": "Wskazuje się potrzebę podjęcia działań w zakresie przekazywania wspólnotom mieszkaniowym terenów przyległych, bez możliwości ich grodzenia, w celu porządkowania stanu formalno-prawnego w zakresie korzystania przez właścicieli nieruchomości z terenów Gminy Miasta Gdyni, a w szczególności podziału kompetencji i obowiązków dotyczących zagospodarowania tych terenów, utrzymania ich stanu technicznego i estetycznego oraz sanitarnego.",
-    "stance": "not_applicable",
-    "status": "planned",
-    "named_instrument": true,
-    "has_target_value": false,
-    "target_text": null,
-    "has_budget_or_source": false,
-    "budget_pln": null,
-    "has_deadline_or_owner": false,
-    "responsible": null,
-    "period": null,
-    "addresses_problems": [],
-    "link_explicit": false,
-    "evidence": {
-     "page": 19,
-     "quote": "1"
-    }
-   }
-  ]
+  "goals": [],
+  "actions": []
  },
  "audit": {
-  "n_evidence": 37,
-  "share_verified": 0.9459459459459459,
-  "share_exact_on_cited_page": 0.8378378378378378,
-  "unverified": [
+  "n_evidence": 15,
+  "share_verified": 1.0,
+  "share_exact_on_cited_page": 0.6666666666666666,
+  "unverified": [],
+  "items_low_confidence": 9,
+  "items_rejected": [
    {
-    "path": "items.goals[7].evidence",
-    "page": 14,
-    "exact_on_page": false,
-    "exact_in_doc": false,
-    "fuzzy": 61.3,
-    "verified": false
+    "kind": "problems",
+    "quote": "Zgony i inne przyczyny 35 26 36 37 40",
+    "reason": "wiersz tabeli/kwoty: to wskaźnik (blok faktów), nie problem ani cel"
    },
    {
-    "path": "items.actions[4].evidence",
-    "page": 14,
-    "exact_on_page": false,
-    "exact_in_doc": false,
-    "fuzzy": 61.3,
-    "verified": false
+    "kind": "problems",
+    "quote": "liczba wyroków do realizacji narastająco 550 570 590 610 630",
+    "reason": "wiersz tabeli/kwoty: to wskaźnik (blok faktów), nie problem ani cel"
+   },
+   {
+    "kind": "problems",
+    "quote": "liczba rodzin oczekujących na najem socjalny lokalu umieszczonych na listach (narastająco) 80 180 180 180 280",
+    "reason": "wiersz tabeli/kwoty: to wskaźnik (blok faktów), nie problem ani cel"
+   },
+   {
+    "kind": "problems",
+    "quote": "liczba rodzin oczekujących na najem na czas nieoznaczony umieszczonych na listach 60 140 140 140 220",
+    "reason": "wiersz tabeli/kwoty: to wskaźnik (blok faktów), nie problem ani cel"
+   },
+   {
+    "kind": "problems",
+    "quote": "liczba wyroków do realizacji narastająco 630 750 770 790 910",
+    "reason": "cytat nie występuje w dokumencie"
+   },
+   {
+    "kind": "problems",
+    "quote": "liczba lokali planowanych do wybudowania 0 21 0 30 0",
+    "reason": "wiersz tabeli/kwoty: to wskaźnik (blok faktów), nie problem ani cel"
+   },
+   {
+    "kind": "problems",
+    "quote": "liczba lokali planowanych do zakupu 5 5 5 5 5",
+    "reason": "wiersz tabeli/kwoty: to wskaźnik (blok faktów), nie problem ani cel"
+   },
+   {
+    "kind": "problems",
+    "quote": "liczba lokali w budynkach zaplanowanych do wyburzenia -24 -24 0 0 0",
+    "reason": "wiersz tabeli/kwoty: to wskaźnik (blok faktów), nie problem ani cel"
+   },
+   {
+    "kind": "problems",
+    "quote": "remonty dachów wraz z obróbkami blacharskimi i remontem kominów 2 500 000",
+    "reason": "wiersz tabeli/kwoty: to wskaźnik (blok faktów), nie problem ani cel"
+   },
+   {
+    "kind": "problems",
+    "quote": "likwidacja pieców na opał stały 5 000 000",
+    "reason": "wiersz tabeli/kwoty: to wskaźnik (blok faktów), nie problem ani cel"
+   },
+   {
+    "kind": "problems",
+    "quote": "remonty lokali mieszkalnych - pustostany 7 500 000",
+    "reason": "wiersz tabeli/kwoty: to wskaźnik (blok faktów), nie problem ani cel"
+   },
+   {
+    "kind": "problems",
+    "quote": "remonty instalacji grzewczej, elektrycznej, sanitarnej 1 000 000",
+    "reason": "wiersz tabeli/kwoty: to wskaźnik (blok faktów), nie problem ani cel"
+   },
+   {
+    "kind": "problems",
+    "quote": "likwidacja pieców na opał stały 9 000 000",
+    "reason": "wiersz tabeli/kwoty: to wskaźnik (blok faktów), nie problem ani cel"
+   },
+   {
+    "kind": "problems",
+    "quote": "Konieczność tworzenia i powiększania zasobu lokali gminnych jest przede wszystkim następstwem regulacji ustawowej. Oznac",
+    "reason": "cytat nie występuje w dokumencie"
+   },
+   {
+    "kind": "problems",
+    "quote": "6 000 000 5 000 000 3 000 000 2 800 000 2 800 000",
+    "reason": "wiersz tabeli/kwoty: to wskaźnik (blok faktów), nie problem ani cel"
+   },
+   {
+    "kind": "problems",
+    "quote": "4 334 000 4 550 000 4 780 000 5 020 000 5 270 000",
+    "reason": "wiersz tabeli/kwoty: to wskaźnik (blok faktów), nie problem ani cel"
+   },
+   {
+    "kind": "problems",
+    "quote": "5 260 000 5 520 000 5 800 000 6 090 000 6 400 000",
+    "reason": "wiersz tabeli/kwoty: to wskaźnik (blok faktów), nie problem ani cel"
    }
-  ]
+  ],
+  "possible_misses": [
+   {
+    "pages": "2–3",
+    "categories": [
+     "P05",
+     "P06"
+    ]
+   },
+   {
+    "pages": "3–4",
+    "categories": [
+     "P04"
+    ]
+   },
+   {
+    "pages": "4–5",
+    "categories": [
+     "P02"
+    ]
+   },
+   {
+    "pages": "12–13",
+    "categories": [
+     "P03"
+    ]
+   },
+   {
+    "pages": "13–14",
+    "categories": [
+     "P03"
+    ]
+   },
+   {
+    "pages": "14–15",
+    "categories": [
+     "P07"
+    ]
+   },
+   {
+    "pages": "17–18",
+    "categories": [
+     "P03",
+     "P05"
+    ]
+   }
+  ],
+  "numbers_unsupported": [],
+  "llm_errors": []
  },
  "versions": {
-  "prompt_version": "v0.1",
+  "prompt_version": "v0.2-ollama",
   "model": "qwen2.5:7b",
-  "run_date": "2026-10-22",
+  "model_digest": "845dbda0ea48ed749caafd9e6037047aa19acfcfd82e704d7ca97d631a0b697e",
+  "num_ctx": 8192,
+  "seed": 7,
+  "chunk_chars": 3000,
+  "run_date": "2026-10-29",
   "segmentation_fallback": false
  }
 }

@@ -1,0 +1,18 @@
+{
+ "problems": [
+  {
+   "quote": "zabezpieczenia przeciwpożarowego",
+   "page": 7,
+   "category": "P02",
+   "severity": "notable",
+   "statement": "Gmina koncentruje się na zabezpieczeniu przeciwpożarowym, co sugeruje zły stan techniczny budynków."
+  },
+  {
+   "quote": "pieców na opał stały i przyłączenie do miejskiej sieci ciepłowniczej lub zastosowanie pomp ciepła, a także montaż kotłów gazowych dwufunkcyjnych lub ogrzewanie elektryczne",
+   "page": 7,
+   "category": "P04",
+   "severity": "notable",
+   "statement": "Gmina planuje modernizację instalacji ciepłowniczych, co sugeruje niską efektywność energetyczną."
+  }
+ ]
+}

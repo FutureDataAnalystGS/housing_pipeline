@@ -69,3 +69,23 @@ _INSTR = {k: re.compile(v, re.I) for k, v in INSTRUMENT_PATTERNS.items()}
 
 def baseline_instruments(text: str) -> dict[str, int]:
     return {k: len(rx.findall(text)) for k, rx in _INSTR.items() if rx.search(text)}
+
+
+# --- bazowe kodowanie słownikowe PROBLEMÓW (siatka bezpieczeństwa: jeśli słownik widzi problem, a model nic nie zwrócił
+#     dla danego fragmentu, fragment trafia do kolejki przeglądu jako „possible_miss”)
+PROBLEM_PATTERNS: dict[str, str] = {
+    "P01": r"deficyt\w*\s+mieszka|niedobór\s+mieszka|brak\w*\s+(?:dostępn\w+\s+)?mieszka|dostępność\s+(?:cenow\w+\s+)?mieszka|ceny\s+mieszka",
+    "P02": r"zły\s+stan\s+techniczn|stan\s+techniczn\w+[^.]{0,60}(?:niezadowalając|niedostateczn|zły|zły)|zużyci\w+\s+(?:techniczn|budynk)|wiek\w*\s+budynk|przed\s+1945|katastrof\w+\s+budowlan|nieopłacaln\w+\s+remont",
+    "P03": r"WC\s+(?:usytuowane\s+)?poza\s+lokalem|wspóln\w+\s+użytkowani\w+\s+pomieszcze|obniżon\w+\s+standard|niesamodzieln\w+\s+lokal|sutere\w+",
+    "P04": r"niska\s+emisj|piec\w+\s+(?:węglow|na\s+paliwo\s+stałe|grzewcz)|ubóstw\w+\s+energetyczn|smog",
+    "P05": r"wyrok\w*\s+(?:o\s+|orzekając\w+\s+)?eksmisj|oczekując\w+\s+na\s+(?:najem|lokal)|zobowiązani\w+\s+gminy|brak\w*\s+lokali\s+socjaln|pomieszcze\w+\s+tymczasow",
+    "P06": r"bezdomn|wykluczeni\w+\s+mieszkaniow|opuszczając\w+\s+(?:pieczę|placówk)",
+    "P07": r"zaległo\w+\s+(?:czynszow|najemc|w\s+opłat)|zadłużeni\w+\s+najemc|ściągalno|nie\s+pokrywa\w*\s+kosztów",
+    "P11": r"pustostan\w+|długi\s+czas\s+remont\w+|niewykorzystan\w+\s+(?:lokal|zasób)",
+    "P13": r"brak\w*\s+(?:danych|monitoringu|polityki\s+mieszkaniow)|ograniczon\w+\s+środk\w+\s+finansow",
+}
+_PROB = {k: re.compile(v, re.I) for k, v in PROBLEM_PATTERNS.items()}
+
+
+def baseline_problems(text: str) -> set[str]:
+    return {k for k, rx in _PROB.items() if rx.search(text)}

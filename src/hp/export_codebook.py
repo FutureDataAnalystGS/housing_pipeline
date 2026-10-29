@@ -34,11 +34,11 @@ def _rows_from_models():
             sm = f.annotation
             for var, vf in sm.model_fields.items():
                 ex = vf.json_schema_extra or {}
-                rows.append(("WPGMZ", sm.__name__, f"{sub}.{var}", ex.get("type") or ("lista" if "list" in str(vf.annotation) else "—"),
+                rows.append(("WPGMZ", sm.__name__, f"{sub}.{var}", ex.get("kind") or ("lista" if "list" in str(vf.annotation) else "—"),
                              vf.description or "", ex.get("rq", ""), ", ".join(elems) or "cały dokument"))
     for var, vf in S.StrategyFrame.model_fields.items():
         ex = vf.json_schema_extra or {}
-        rows.append(("SR", "StrategyFrame", f"frame.{var}", ex.get("type") or "lista", vf.description or "", ex.get("rq", ""), "pasaże o mieszkalnictwie"))
+        rows.append(("SR", "StrategyFrame", f"frame.{var}", ex.get("kind") or "lista", vf.description or "", ex.get("rq", ""), "pasaże o mieszkalnictwie"))
     return rows
 
 

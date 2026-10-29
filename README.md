@@ -7,7 +7,8 @@ Kodowanie wspomagane LLM z pełnym śladem dowodowym (strona + cytat), walidacj�
 ```bash
 pip install -r requirements.txt
 sudo apt install tesseract-ocr tesseract-ocr-pol          # OCR skanów (lub ocrmypdf)
-export ANTHROPIC_API_KEY=...                              # tylko etap `extract` i streszczenia LLM
+ollama pull qwen2.5:7b && ollama serve                    # lokalny model (bez płatnego API); patrz ZMIANY.md
+PYTHONPATH=src python -m hp.check_ollama                  # diagnostyka: serwer, okno kontekstu, test na fragmencie Gdyni
 # 1. PDF-y do data/raw/ ; nazwy: WPGMZ_<miasto>_<okres>.pdf, SR_<miasto>_<okres>.pdf
 PYTHONPATH=src python -m hp.cli inventory                 # tworzy data/registry.csv -> uzupełnij city_id (TERYT), miasto, województwo, URL
 PYTHONPATH=src python -m hp.cli ingest                    # tekst per strona + diagnostyka + OCR awaryjny
@@ -51,4 +52,4 @@ Dane zewnętrzne: `data/external/bdl.csv` (`city_id, population, …` z BDL GUS)
 * Skany/wektorowe PDF-y (Biała Podlaska: 27 z 28 stron) wymagają OCR; OCR psuje `§`, cyfry i tabele — liczby z tabel w skanach weryfikuj z obrazem strony.
 * Definicje „zasobu” różnią się między miastami (czy wliczone lokale we wspólnotach, TBS, spółdzielnie) → zmienne W1 kodowane jak w dokumencie, porównania po normalizacji i z uwzględnieniem struktury własności.
 * Daty odniesienia danych różnią się (31.12.2020 vs 30.09.2021) i zdarzają się błędy w dokumentach (np. „31.09.2021”).
-* LLM-owa ekstrakcja NIE była uruchomiona na żywo w pilotażu (brak klucza API w środowisku); łańcuch przetestowano na ręcznie zakodowanych rekordach (`tests/fixtures.py`).
+* Ekstrakcja z prawdziwym modelem lokalnym NIE była uruchomiona w moim środowisku (brak Ollamy); mechanikę przetestowano na atrapie serwera, a jakość mierz przez `python -m hp.evaluate` na wzorcu z `tests/fixtures.py`.

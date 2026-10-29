@@ -69,6 +69,14 @@ def validate_record(rec: dict, tol: float = 0.02) -> list[dict]:
     au = rec.get("audit") or {}
     if au.get("share_verified") is not None and au["share_verified"] < 0.9:
         flag("evidence_unverified", f"tylko {au['share_verified']:.0%} cytatów zweryfikowanych w tekście", "error")
+    for n in au.get("numbers_unsupported", []):
+        flag("number_not_in_quote", f"{n['path']}={n['value']}: cyfry wartości nie występują w cytacie (status zmieniono na unclear)", "error")
+    if au.get("items_rejected"):
+        flag("items_rejected", f"{len(au['items_rejected'])} pozycji odrzuconych (cytat nie występuje w dokumencie)", "warn")
+    if au.get("possible_misses"):
+        flag("possible_misses", f"{len(au['possible_misses'])} fragmentów, gdzie słownik widzi problem, a model nic nie zwrócił — przejrzyj", "warn")
+    if au.get("llm_errors"):
+        flag("llm_errors", f"{len(au['llm_errors'])} wywołań modelu nie powiodło się (ucięta odpowiedź/za długi prompt)", "error")
     if rec.get("versions", {}).get("segmentation_fallback"):
         flag("segmentation_fallback", "nie rozpoznano ≥5 elementów ustawowych — kodowano z całego dokumentu", "info")
     return flags

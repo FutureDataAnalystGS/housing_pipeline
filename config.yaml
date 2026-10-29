@@ -12,12 +12,19 @@ ocr:
   min_usable_chars: 120         # strona z mniejszą liczbą znaków po usunięciu nagłówków -> kandydat do OCR
   tessdata_prefix: null         # np. /usr/share/tesseract-ocr/5/tessdata
 llm:
-  model_extract: qwen2.5:7b   # ekstrakcja strukturalna
-  model_adjudicate: claude-opus-5-5  # rozstrzyganie niezgodności / trudne przypadki
-  model_summary: claude-sonnet-5-5
+  provider: ollama
+  model_extract: qwen2.5:7b      # do porównania na wzorcu: qwen2.5:14b, gemma3:12b, Bielik-11B (GGUF) — patrz hp.evaluate
+  model_summary: qwen2.5:7b
+  num_ctx: 8192          #12288                 # okno kontekstu; prompt (~3–4 tys. tokenów definicji) + fragment + odpowiedź musi się zmieścić
+  num_predict: 1500       #3000              # maks. długość odpowiedzi (tokeny)
+  chunk_chars: 3000      #4500              # wielkość fragmentu do kodowania pozycji (problemy/cele/działania)
+  facts_chunk_chars: 9000        # wielkość fragmentu do bloków faktów (liczby zasobu itd.)
+  facts: false
+  tasks: [problems]         #, actions, goals]
   temperature: 0
-  max_tokens: 8000
-  prompt_version: "v0.1"
+  seed: 7
+  timeout: 600             #900
+  prompt_version: "v0.2-ollama"
 retrieval:
   min_score: 1.0                # próg trafności akapitu strategii (patrz lexicon.py)
   context_blocks: 1             # ile sąsiednich akapitów dołączać

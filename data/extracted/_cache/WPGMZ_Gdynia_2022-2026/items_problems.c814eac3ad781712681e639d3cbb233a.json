@@ -1,0 +1,25 @@
+{
+ "problems": [
+  {
+   "quote": "6 000 000 5 000 000 3 000 000 2 800 000 2 800 000",
+   "page": 17,
+   "category": "P02",
+   "severity": "notable",
+   "statement": "Gmina Gdynia ma znaczące koszty remontów budynków i lokali mieszkalnych, co sugeruje zły stan techniczny zasobu."
+  },
+  {
+   "quote": "4 334 000 4 550 000 4 780 000 5 020 000 5 270 000",
+   "page": 17,
+   "category": "P02",
+   "severity": "notable",
+   "statement": "Gmina Gdynia ma również znaczące koszty zarządu nieruchomościami wspólnymi, co sugeruje zły stan techniczny zasobu."
+  },
+  {
+   "quote": "5 260 000 5 520 000 5 800 000 6 090 000 6 400 000",
+   "page": 17,
+   "category": "P07",
+   "severity": "notable",
+   "statement": "Gmina Gdynia ma znaczące koszty eksploatacji i wynagrodzenia zarządcy, co sugeruje problemy finansowe zasobu."
+  }
+ ]
+}

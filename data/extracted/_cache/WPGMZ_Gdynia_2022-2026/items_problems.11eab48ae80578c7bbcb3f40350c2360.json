@@ -1,0 +1,11 @@
+{
+ "problems": [
+  {
+   "quote": "Gospodarka mieszkaniowym zasobem Gminy Miasta Gdyni finansowana jest bezpośrednio z budżetu samorządu gminnego według określonego harmonogramu potrzeb na środki pieniężne przez jednostki z przeznaczeniem na: pokrycie kosztów utrzymania gminnych lokali mieszkalnych i budynków komunalnych, pokrycie kosztów remontów gminnych lokali mieszkalnych i budynków komunalnych, finansowanie kosztów realizacji inwestycji, pokrycie kosztów dozoru lub zabezpieczenia budynków i lokali mieszkalnych czasowo wolnych oraz budynków mieszkalnych, zagospodarowanie terenów wokół budynków mieszkalnych.",
+   "page": 16,
+   "category": "P07",
+   "severity": "notable",
+   "statement": "Gmina musi finansować różne koszty związani z utrzymaniem i remontem zasobu mieszkalnego, co może prowadzić do zaległości finansowych."
+  }
+ ]
+}

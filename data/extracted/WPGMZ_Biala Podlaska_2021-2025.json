@@ -1,0 +1,411 @@
+{
+ "doc_id": "WPGMZ_Biala Podlaska_2021-2025",
+ "doc_type": "WPGMZ",
+ "metadata": {
+  "doc_type": "WPGMZ",
+  "resolution_number": "XXXVI/43/22",
+  "adoption_date": "2022-04-29",
+  "council": "Biała Podlaska",
+  "publication_journal": "Dz. Urz. Woj. Lubelskiego",
+  "publication_date": "2022-05-10",
+  "publication_pos": 2599,
+  "period_start": 2021,
+  "period_end": 2025,
+  "is_amendment": true,
+  "amends_number": "XXVI/62/21",
+  "amends_date": "2021-08-03",
+  "replaces_number": null,
+  "needs_review": []
+ },
+ "blocks": {},
+ "items": {
+  "relevant": true,
+  "problems": [
+   {
+    "category": "P02",
+    "statement": "Tabela zawiera informacje o budynkach, które wymagają remontów.",
+    "severity": "notable",
+    "quantified": true,
+    "quant_text": null,
+    "affected_groups": [],
+    "section": null,
+    "evidence": {
+     "page": 11,
+     "quote": "Tabela 10 Budynki, w których Gmina posiada odrębną własność lokali lub udział we"
+    }
+   },
+   {
+    "category": "P02",
+    "statement": "Tabela zawiera informacje o potrzebach remontowych budynków.",
+    "severity": "notable",
+    "quantified": true,
+    "quant_text": null,
+    "affected_groups": [],
+    "section": null,
+    "evidence": {
+     "page": 15,
+     "quote": "Tabela 15 Potrzeby dotyczące remontów budynków stanowiących Zasób"
+    }
+   },
+   {
+    "category": "P05",
+    "statement": "Gmina straciła 20% zasobu komunalnego w wyniku sprzedaży lokali najemcom.",
+    "severity": "notable",
+    "quantified": true,
+    "quant_text": null,
+    "affected_groups": [],
+    "section": null,
+    "evidence": {
+     "page": 7,
+     "quote": "Zasób zmniejszył się o 206 lokali, tj. ok. 20%, głównie w wyniku sprzedaży zamieszkującym je najemcom."
+    }
+   },
+   {
+    "category": "P01",
+    "statement": "Deficyt mieszkań w stosunku do potrzeb mieszkańców wymagających wsparcia Gminy utrzymuje się.",
+    "severity": "key",
+    "quantified": false,
+    "quant_text": null,
+    "affected_groups": [],
+    "section": null,
+    "evidence": {
+     "page": 9,
+     "quote": "utrzymujący się deficyt mieszkań w stosunku do ilości mieszkańców wymagających wsparcia Gminy"
+    }
+   },
+   {
+    "category": "P01",
+    "statement": "Prognozowana liczba wolnych lokali w latach 2021-2025 wynosi 20-60, co sugeruje potencjalny niedobór mieszkań.",
+    "severity": "notable",
+    "quantified": true,
+    "quant_text": null,
+    "affected_groups": [],
+    "section": null,
+    "evidence": {
+     "page": 9,
+     "quote": "Ilość wolnych lokali 20 29 20 20 60"
+    }
+   },
+   {
+    "category": "P02",
+    "statement": "Budynki gminy mają znaczne uszkodzenia, co stanowi kluczowy problem techniczny.",
+    "severity": "key",
+    "quantified": true,
+    "quant_text": null,
+    "affected_groups": [],
+    "section": null,
+    "evidence": {
+     "page": 10,
+     "quote": "w elementach budynku występują znaczne uszkodzenia, powodujące 76 -% Nieodpowiedni zagrożenie bezpieczeństwa ludzi lub mienia"
+    }
+   },
+   {
+    "category": "P02",
+    "statement": "Wskazuje na konieczność remontów zasobu zasobu zasobu, co sugeruje zły stan techniczny i wiek budynków.",
+    "severity": "notable",
+    "quantified": false,
+    "quant_text": null,
+    "affected_groups": [],
+    "section": null,
+    "evidence": {
+     "page": 14,
+     "quote": "z konieczności:"
+    }
+   },
+   {
+    "category": "P11",
+    "statement": "Niedobór zminimalizowania czasu przekazania pustych lokali nowym najemcom prowadzi do zwiększonych kosztów utrzymania.",
+    "severity": "notable",
+    "quantified": false,
+    "quant_text": null,
+    "affected_groups": [],
+    "section": null,
+    "evidence": {
+     "page": 14,
+     "quote": "Aby zmniejszyć koszty utrzymania takich lokali, należy dążyć do tego, aby zminimalizować czas przekazania lokali nowym najemcom."
+    }
+   },
+   {
+    "category": "P07",
+    "statement": "Niedobór zminimalizowania czasu przekazania pustych lokali nowym najemcom prowadzi do zwiększonych kosztów utrzymania.",
+    "severity": "notable",
+    "quantified": false,
+    "quant_text": null,
+    "affected_groups": [],
+    "section": null,
+    "evidence": {
+     "page": 14,
+     "quote": "W celu wypełnienia powyższego postulatu dopuszcza się możliwość zawierania umów najmu z najemcą, który przeprowadzi remont lokalu we własnym zakresie i na swój koszt, w zakresie robót i sposobie rozliczeń uzgodnionym z Właścicielem lokalu."
+    }
+   },
+   {
+    "category": "P02",
+    "statement": "Gminie obowiązują zadania utrzymania stanu technicznego budynków, modernizacji standardu lokali i utrzymania estetycznego, co może być trudne do realizacji.",
+    "severity": "key",
+    "quantified": true,
+    "quant_text": null,
+    "affected_groups": [],
+    "section": null,
+    "evidence": {
+     "page": 14,
+     "quote": "1) utrzymania stanu technicznego na poziomie zapewniającym bezpieczeństwo ludzi i mienia, 2) dostosowania do obowiązujących norm i przepisów, 3) modernizacji i unowocześniania standardu lokali mieszkalnych, 4) utrzymania wymaganego stanu estetycznego budynku i otoczenia, 5) w przypadku budynków objętych ochroną konserwatorską — zachowania jego wartości historycznych i kulturowych."
+    }
+   },
+   {
+    "category": "P04",
+    "statement": "Wymiana instalacji elektrycznych wymaga dodatkowych kosztów i może wskazywać na niską efektywność energetyczną.",
+    "severity": "notable",
+    "quantified": true,
+    "quant_text": null,
+    "affected_groups": [],
+    "section": null,
+    "evidence": {
+     "page": 15,
+     "quote": "8 Roboty instalacyjne elektryczne 0 2 0 (wymiana)"
+    }
+   },
+   {
+    "category": "P02",
+    "statement": "Wymiana tynków i odgrzybianie w 20 lokalach wskazuje na zły stan techniczny budynków.",
+    "severity": "notable",
+    "quantified": true,
+    "quant_text": null,
+    "affected_groups": [],
+    "section": null,
+    "evidence": {
+     "page": 15,
+     "quote": "5 Wymiana tynkow,. odgrzybianie 10 60 20"
+    }
+   },
+   {
+    "category": "P04",
+    "statement": "Wymiana instalacji wewnętrznych w 5 lokalach może wskazywać na niską efektywność energetyczną.",
+    "severity": "notable",
+    "quantified": true,
+    "quant_text": null,
+    "affected_groups": [],
+    "section": null,
+    "evidence": {
+     "page": 15,
+     "quote": "6 Wymiana instalacji wewnętrznych 5 30 5"
+    }
+   },
+   {
+    "category": "P02",
+    "statement": "Gmina musi zajmować się eliminacją zagrożeń bezpieczeństwa, co wskazuje na zły stan techniczny budynków.",
+    "severity": "key",
+    "quantified": true,
+    "quant_text": null,
+    "affected_groups": [],
+    "section": null,
+    "evidence": {
+     "page": 16,
+     "quote": "1) eliminacja zagrożenia bezpieczeństwa użytkowników lokali i osób trzecich;"
+    }
+   },
+   {
+    "category": "P02",
+    "statement": "Gmina musi zajmować się zabezpieczeniem przeciwpożarowym, co wskazuje na zły stan techniczny budynków.",
+    "severity": "key",
+    "quantified": true,
+    "quant_text": null,
+    "affected_groups": [],
+    "section": null,
+    "evidence": {
+     "page": 16,
+     "quote": "2) zabezpieczenie przeciwpożarowe i zapewnienie bezpieczeństwa użytkowania instalacji w budynkach i lokalach;"
+    }
+   },
+   {
+    "category": "P02",
+    "statement": "Gmina musi zajmować się remontami lokali zwolnionych, co wskazuje na zły stan techniczny budynków.",
+    "severity": "key",
+    "quantified": true,
+    "quant_text": null,
+    "affected_groups": [],
+    "section": null,
+    "evidence": {
+     "page": 16,
+     "quote": "3) remonty lokali zwolnionych oraz wyposażenie w niezbędne urządzenia;"
+    }
+   },
+   {
+    "category": "P02",
+    "statement": "Gmina musi zajmować się wymianą lub naprawą zużytych elementów konstrukcyjnych, co wskazuje na zły stan techniczny budynków.",
+    "severity": "key",
+    "quantified": true,
+    "quant_text": null,
+    "affected_groups": [],
+    "section": null,
+    "evidence": {
+     "page": 16,
+     "quote": "4) wymiana lub naprawa zużytych elementów konstrukcyjnych (nie dotyczy stanów awaryjnych, które są usuwane niezwłocznie);"
+    }
+   },
+   {
+    "category": "P02",
+    "statement": "Gmina musi zajmować się remontami mającymi na celu zapobieganie utracie wartości użytkowej budynków, co wskazuje na zły stan techniczny budynków.",
+    "severity": "key",
+    "quantified": true,
+    "quant_text": null,
+    "affected_groups": [],
+    "section": null,
+    "evidence": {
+     "page": 16,
+     "quote": "7) remonty mające na celu zapobieganie utracie wartości użytkowej budynków oraz zmniejszenie kosztów eksploatacji, w tym termomodernizacja i zabezpieczenie przeciwwilgociowe budynków;"
+    }
+   },
+   {
+    "category": "P05",
+    "statement": "Gmina musi sprzedawać lokale komunalne tylko w przypadku gospodarczej i ekonomicznej potrzeby.",
+    "severity": "notable",
+    "quantified": true,
+    "quant_text": null,
+    "affected_groups": [],
+    "section": null,
+    "evidence": {
+     "page": 18,
+     "quote": "7. Przedmiotem sprzedaży na warunkach i za cenę ustaloną w trybie przetargowym mogą być lokale mieszkalne wolne w sensie prawnym, Jeżeli Jest to gospodarczo i ekonomicznie uzasadnione."
+    }
+   },
+   {
+    "category": "P07",
+    "statement": "Kalkulacja stawki bazowej czynszu uwzględnia potrzebę zapewnienia finansowej samowystarczalności zasobu mieszkaniowego, co sugeruje potencjalne problemy z zaległościami czynszowymi.",
+    "severity": "notable",
+    "quantified": false,
+    "quant_text": null,
+    "affected_groups": [],
+    "section": null,
+    "evidence": {
+     "page": 20,
+     "quote": "Kalkulacja stawki bazowej czynszu winna opierać się na założeniu, iż wpływy z czynszów powinny pokrywać zarówno koszty bieżącego utrzymania budynków, Jak i zapewnić dostateczne środki na zaplanowane remonty i modernizacje, a w perspektywie długookresowej stworzyć możliwość inwestowania W Frozwój zasobu mieszkaniowego Gminy zgodnie z potrzebami jej mieszkańców."
+    }
+   },
+   {
+    "category": "P07",
+    "statement": "Gmina stara się zarządzać zaległościami czynszowymi.",
+    "severity": "notable",
+    "quantified": false,
+    "quant_text": null,
+    "affected_groups": [],
+    "section": null,
+    "evidence": {
+     "page": 21,
+     "quote": "zaległości lokatorów w opłacie czynszu"
+    }
+   },
+   {
+    "category": "P13",
+    "statement": "Zarządzanie prywatnym zasobem jest utrudnione prawem i brakiem rentowności.",
+    "severity": "notable",
+    "quantified": false,
+    "quant_text": null,
+    "affected_groups": [],
+    "section": null,
+    "evidence": {
+     "page": 24,
+     "quote": "zarządzanie prywatnym zasobem jest utrudnione ze względu na prawne ograniczenia możliwości podejmowania decyzji oraz ze względu na brak rentowności przeważającej części budynków."
+    }
+   },
+   {
+    "category": "P07",
+    "statement": "Koszty związane z zarządem nieruchomościami i remontami mogą prowadzić do zaległości finansowych.",
+    "severity": "notable",
+    "quantified": false,
+    "quant_text": null,
+    "affected_groups": [],
+    "section": null,
+    "evidence": {
+     "page": 26,
+     "quote": "Koszty zarządu nieruchomościami wspólnymi obejmują koszty administrowania, konserwacji i utrzymania czystości oraz koszty wynagrodzenia zarządu. Koszty funduszu remontowego obejmują również wydatki na cele remontowe w częściach wspólnych budynków, w których nie zostały ustanowione wspólnoty mieszkaniowe."
+    }
+   }
+  ],
+  "goals": [],
+  "actions": []
+ },
+ "audit": {
+  "n_evidence": 23,
+  "share_verified": 1.0,
+  "share_exact_on_cited_page": 1.0,
+  "unverified": [],
+  "items_rejected": [
+   {
+    "kind": "problems",
+    "quote": "Każda eksmisja obciąża gminę obowiązkiem dostarczenia lokalu",
+    "reason": "cytat nie występuje w dokumencie"
+   },
+   {
+    "kind": "problems",
+    "quote": "Lokale wyłączone z użytkowania ze względu na ich stan techniczny",
+    "reason": "cytat nie występuje w dokumencie"
+   },
+   {
+    "kind": "problems",
+    "quote": "1 Remont lokali Wo]nych tzw. pustostanów 5 60 5",
+    "reason": "cytat nie występuje w dokumencie"
+   },
+   {
+    "kind": "problems",
+    "quote": "Nakłady na remonty w latach 2021 — 2025, w budynkach, w których Gmina lub ZGL posiada odrębną własność lokali lub udział",
+    "reason": "cytat nie występuje w dokumencie"
+   },
+   {
+    "kind": "problems",
+    "quote": "w sytuacji, w której ustalone stawki czynszu nie pokrywają kosztów utrzymania lokalu. W takiej sytuacji ZGL może wystąpi",
+    "reason": "cytat nie występuje w dokumencie"
+   }
+  ],
+  "possible_misses": [
+   {
+    "pages": "9–10",
+    "categories": [
+     "P05"
+    ]
+   },
+   {
+    "pages": "12–14",
+    "categories": [
+     "P01"
+    ]
+   },
+   {
+    "pages": "18–19",
+    "categories": [
+     "P03",
+     "P07"
+    ]
+   },
+   {
+    "pages": "19–21",
+    "categories": [
+     "P05"
+    ]
+   },
+   {
+    "pages": "21–22",
+    "categories": [
+     "P03"
+    ]
+   },
+   {
+    "pages": "25–26",
+    "categories": [
+     "P05"
+    ]
+   }
+  ],
+  "numbers_unsupported": [],
+  "llm_errors": []
+ },
+ "versions": {
+  "prompt_version": "v0.2-ollama",
+  "model": "qwen2.5:7b",
+  "model_digest": "845dbda0ea48ed749caafd9e6037047aa19acfcfd82e704d7ca97d631a0b697e",
+  "num_ctx": 8192,
+  "seed": 7,
+  "chunk_chars": 3000,
+  "run_date": "2026-10-29",
+  "segmentation_fallback": false
+ }
+}

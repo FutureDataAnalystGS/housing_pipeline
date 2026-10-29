@@ -1,0 +1,25 @@
+{
+ "problems": [
+  {
+   "quote": "Aby zmniejszyć koszty utrzymania takich lokali, należy dążyć do tego, aby zminimalizować czas przekazania lokali nowym najemcom.",
+   "page": 14,
+   "category": "P11",
+   "severity": "notable",
+   "statement": "Niedobór zminimalizowania czasu przekazania pustych lokali nowym najemcom prowadzi do zwiększonych kosztów utrzymania."
+  },
+  {
+   "quote": "W celu wypełnienia powyższego postulatu dopuszcza się możliwość zawierania umów najmu z najemcą, który przeprowadzi remont lokalu we własnym zakresie i na swój koszt, w zakresie robót i sposobie rozliczeń uzgodnionym z Właścicielem lokalu.",
+   "page": 14,
+   "category": "P07",
+   "severity": "notable",
+   "statement": "Niedobór zminimalizowania czasu przekazania pustych lokali nowym najemcom prowadzi do zwiększonych kosztów utrzymania."
+  },
+  {
+   "quote": "1) utrzymania stanu technicznego na poziomie zapewniającym bezpieczeństwo ludzi i mienia, 2) dostosowania do obowiązujących norm i przepisów, 3) modernizacji i unowocześniania standardu lokali mieszkalnych, 4) utrzymania wymaganego stanu estetycznego budynku i otoczenia, 5) w przypadku budynków objętych ochroną konserwatorską — zachowania jego wartości historycznych i kulturowych.",
+   "page": 14,
+   "category": "P02",
+   "severity": "key",
+   "statement": "Gminie obowiązują zadania utrzymania stanu technicznego budynków, modernizacji standardu lokali i utrzymania estetycznego, co może być trudne do realizacji."
+  }
+ ]
+}

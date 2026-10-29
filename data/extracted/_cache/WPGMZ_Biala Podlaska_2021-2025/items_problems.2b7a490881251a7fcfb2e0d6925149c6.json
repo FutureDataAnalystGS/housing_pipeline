@@ -1,0 +1,18 @@
+{
+ "problems": [
+  {
+   "quote": "Tabela 10 Budynki, w których Gmina posiada odrębną własność lokali lub udział we",
+   "page": 10,
+   "category": "P02",
+   "severity": "notable",
+   "statement": "Tabela zawiera informacje o budynkach, które wymagają remontów."
+  },
+  {
+   "quote": "Tabela 15 Potrzeby dotyczące remontów budynków stanowiących Zasób",
+   "page": 14,
+   "category": "P02",
+   "severity": "notable",
+   "statement": "Tabela zawiera informacje o potrzebach remontowych budynków."
+  }
+ ]
+}

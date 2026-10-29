@@ -43,7 +43,11 @@ def card_markdown(rec: dict) -> str:
 def llm_summary(client, cfg: dict, rec: dict) -> str:
     from .extract_llm import call_model
     schema = {"type": "object", "properties": {"streszczenie": {"type": "string"}}, "required": ["streszczenie"]}
-    payload = json.dumps({k: rec[k] for k in ("metadata", "blocks", "items")}, ensure_ascii=False)[:60000]
+    it = rec.get("items") or {}
+    payload = card_markdown(rec) + "\n\nProblemy: " + "; ".join(p["statement"] for p in it.get("problems", [])[:12]) + \
+        "\nCele: " + "; ".join(g["statement"] for g in it.get("goals", [])[:10]) + \
+        "\nDziałania: " + "; ".join(a["description"] for a in it.get("actions", [])[:14])
+    payload = payload[:9000]
     user = ("Na podstawie WYŁĄCZNIE poniższych zakodowanych danych napisz streszczenie dokumentu (120–180 słów, po polsku, styl naukowy, "
             "bez ocen własnych): typ i okres dokumentu, skala i stan zasobu, główne problemy, cele i instrumenty, konkretność i finansowanie. "
             "Nie dodawaj informacji spoza danych.\n\n" + payload)

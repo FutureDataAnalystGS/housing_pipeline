@@ -1,0 +1,18 @@
+{
+ "problems": [
+  {
+   "quote": "Gmina Miasta Gdyni tworzy zasób pomieszczeń tymczasowych, które przeznacza na wynajem z tytułu realizacji wyroków sądowych orzekających eksmisję bez prawa do lokalu o najmie socjalnym lub zamiennego",
+   "page": 13,
+   "category": "P05",
+   "severity": "notable",
+   "statement": "Gmina tworzy zasób pomieszczeń tymczasowych, ale nie jest to główny problem."
+  },
+  {
+   "quote": "Gmina Miasta Gdyni nie pobiera opłat czynszowych za najem lokali kryzysowych",
+   "page": 15,
+   "category": "P07",
+   "severity": "notable",
+   "statement": "Gmina nie pobiera opłat czynszowych za najem lokali kryzysowych, co może prowadzić do zaległości finansowych."
+  }
+ ]
+}

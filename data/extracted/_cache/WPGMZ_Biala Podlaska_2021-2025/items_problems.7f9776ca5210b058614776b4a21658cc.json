@@ -1,0 +1,67 @@
+{
+ "problems": [
+  {
+   "quote": "8 Roboty instalacyjne elektryczne 0 2 0 (wymiana)",
+   "page": 15,
+   "category": "P04",
+   "severity": "notable",
+   "statement": "Wymiana instalacji elektrycznych wymaga dodatkowych kosztów i może wskazywać na niską efektywność energetyczną."
+  },
+  {
+   "quote": "5 Wymiana tynkow,. odgrzybianie 10 60 20",
+   "page": 15,
+   "category": "P02",
+   "severity": "notable",
+   "statement": "Wymiana tynków i odgrzybianie w 20 lokalach wskazuje na zły stan techniczny budynków."
+  },
+  {
+   "quote": "6 Wymiana instalacji wewnętrznych 5 30 5",
+   "page": 15,
+   "category": "P04",
+   "severity": "notable",
+   "statement": "Wymiana instalacji wewnętrznych w 5 lokalach może wskazywać na niską efektywność energetyczną."
+  },
+  {
+   "quote": "1 Remont lokali Wo]nych tzw. pustostanów 5 60 5",
+   "page": 15,
+   "category": "P11",
+   "severity": "notable",
+   "statement": "Remont 5 pustych lokali wskazuje na niedobór zasobu mieszkalnego."
+  },
+  {
+   "quote": "1) eliminacja zagrożenia bezpieczeństwa użytkowników lokali i osób trzecich;",
+   "page": 16,
+   "category": "P02",
+   "severity": "key",
+   "statement": "Gmina musi zajmować się eliminacją zagrożeń bezpieczeństwa, co wskazuje na zły stan techniczny budynków."
+  },
+  {
+   "quote": "2) zabezpieczenie przeciwpożarowe i zapewnienie bezpieczeństwa użytkowania instalacji w budynkach i lokalach;",
+   "page": 16,
+   "category": "P02",
+   "severity": "key",
+   "statement": "Gmina musi zajmować się zabezpieczeniem przeciwpożarowym, co wskazuje na zły stan techniczny budynków."
+  },
+  {
+   "quote": "3) remonty lokali zwolnionych oraz wyposażenie w niezbędne urządzenia;",
+   "page": 16,
+   "category": "P02",
+   "severity": "key",
+   "statement": "Gmina musi zajmować się remontami lokali zwolnionych, co wskazuje na zły stan techniczny budynków."
+  },
+  {
+   "quote": "4) wymiana lub naprawa zużytych elementów konstrukcyjnych (nie dotyczy stanów awaryjnych, które są usuwane niezwłocznie);",
+   "page": 16,
+   "category": "P02",
+   "severity": "key",
+   "statement": "Gmina musi zajmować się wymianą lub naprawą zużytych elementów konstrukcyjnych, co wskazuje na zły stan techniczny budynków."
+  },
+  {
+   "quote": "7) remonty mające na celu zapobieganie utracie wartości użytkowej budynków oraz zmniejszenie kosztów eksploatacji, w tym termomodernizacja i zabezpieczenie przeciwwilgociowe budynków;",
+   "page": 16,
+   "category": "P02",
+   "severity": "key",
+   "statement": "Gmina musi zajmować się remontami mającymi na celu zapobieganie utracie wartości użytkowej budynków, co wskazuje na zły stan techniczny budynków."
+  }
+ ]
+}

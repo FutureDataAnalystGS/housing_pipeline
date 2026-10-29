@@ -1,0 +1,39 @@
+{
+ "problems": [
+  {
+   "quote": "remonty dachów wraz z obróbkami blacharskimi i remontem kominów 2 500 000",
+   "page": 6,
+   "category": "P02",
+   "severity": "notable",
+   "statement": "W budynkach mieszkalnych wymagane są remonty dachów i kominów, co kosztuje 2,5 mln zł."
+  },
+  {
+   "quote": "likwidacja pieców na opał stały 5 000 000",
+   "page": 6,
+   "category": "P04",
+   "severity": "notable",
+   "statement": "W budynkach mieszkalnych planowane jest zlikwidowanie pieców na opał stały, co kosztuje 5 mln zł."
+  },
+  {
+   "quote": "remonty lokali mieszkalnych - pustostany 7 500 000",
+   "page": 6,
+   "category": "P11",
+   "severity": "notable",
+   "statement": "W budynkach mieszkalnych wymagane są remonty i wykorzystanie pustych lokali, co kosztuje 7,5 mln zł."
+  },
+  {
+   "quote": "remonty instalacji grzewczej, elektrycznej, sanitarnej 1 000 000",
+   "page": 7,
+   "category": "P04",
+   "severity": "notable",
+   "statement": "W budynkach wspólnotowych wymagane są remonty instalacji grzewczej, elektrycznej i sanitarnej, co kosztuje 1 mln zł."
+  },
+  {
+   "quote": "likwidacja pieców na opał stały 9 000 000",
+   "page": 7,
+   "category": "P04",
+   "severity": "notable",
+   "statement": "W budynkach wspólnotowych planowane jest zlikwidowanie pieców na opał stały, co kosztuje 9 mln zł."
+  }
+ ]
+}

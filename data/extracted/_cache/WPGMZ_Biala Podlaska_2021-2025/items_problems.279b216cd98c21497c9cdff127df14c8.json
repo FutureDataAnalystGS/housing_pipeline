@@ -1,0 +1,11 @@
+{
+ "problems": [
+  {
+   "quote": "Koszty zarządu nieruchomościami wspólnymi obejmują koszty administrowania, konserwacji i utrzymania czystości oraz koszty wynagrodzenia zarządu. Koszty funduszu remontowego obejmują również wydatki na cele remontowe w częściach wspólnych budynków, w których nie zostały ustanowione wspólnoty mieszkaniowe.",
+   "page": 26,
+   "category": "P07",
+   "severity": "notable",
+   "statement": "Koszty związane z zarządem nieruchomościami i remontami mogą prowadzić do zaległości finansowych."
+  }
+ ]
+}

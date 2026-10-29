@@ -1,0 +1,18 @@
+{
+ "problems": [
+  {
+   "quote": "Gmina Miasta Gdyni posiada 5 budynków niepodłączonych do kanalizacji sanitarnej",
+   "page": 4,
+   "category": "P02",
+   "severity": "notable",
+   "statement": "Znaleziono 5 budynków niepodłączonych do kanalizacji, co może stanowić zagrożenie dla hygieny i środowiska."
+  },
+  {
+   "quote": "Gmina Miasta Gdyni jest właścicielem 150 budynków mieszkalnych, w tym: 103 budynki wybudowane przed 1945 rokiem",
+   "page": 3,
+   "category": "P02",
+   "severity": "key",
+   "statement": "Gmina posiada 103 budynki wybudowane przed 1945 rokiem, co sugeruje starość budynków i potencjalne problemy techniczne."
+  }
+ ]
+}

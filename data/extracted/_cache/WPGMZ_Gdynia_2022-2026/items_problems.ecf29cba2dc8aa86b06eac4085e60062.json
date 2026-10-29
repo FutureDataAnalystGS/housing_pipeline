@@ -1,0 +1,11 @@
+{
+ "problems": [
+  {
+   "quote": "budynek wymagający remontu bieżącego — budynek wymagający wykonania robót polegających na stałej konserwacji urządzeń, elementów, detali wyposażenia niezbędnych do utrzymania budynku oraz jego otoczenia",
+   "page": 12,
+   "category": "P02",
+   "severity": "notable",
+   "statement": "Budynki wymagają regularnych remontów, co może być kosztowne i nieefektywne."
+  }
+ ]
+}

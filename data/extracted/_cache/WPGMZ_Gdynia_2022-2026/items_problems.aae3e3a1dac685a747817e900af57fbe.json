@@ -1,0 +1,18 @@
+{
+ "problems": [
+  {
+   "quote": "każda wykonywana w mieście eksmisja wiąże się z obowiązkiem zapewnienia lokalu przez gminę",
+   "page": 4,
+   "category": "P05",
+   "severity": "key",
+   "statement": "Każda eksmisja obciąża gminę obowiązkiem dostarczenia lokalu."
+  },
+  {
+   "quote": "Zgony i inne przyczyny 35 26 36 37 40",
+   "page": 4,
+   "category": "P05",
+   "severity": "notable",
+   "statement": "Liczba zgonów i innych przyczyn spowodowało zrezygnowanie z 175 lokali komunalnych/socjalnych w latach 2017-2021."
+  }
+ ]
+}

@@ -14,7 +14,11 @@ def _flat_block(prefix: str, block: dict | None, row: dict) -> None:
     for field, val in (block or {}).items():
         key = f"{prefix}__{field}"
         if isinstance(val, dict) and "status" in val:
-            row[key] = val.get("value")
+            v = val.get("value")
+            if v is not None and field.endswith("_pln"):               # tabele bywają w tys. zł / mln zł
+                u = (val.get("unit") or "").lower()
+                v = v * 1_000_000 if "mln" in u else v * 1_000 if "tys" in u else v
+            row[key] = v
             row[key + "__status"] = val.get("status")
             ev = val.get("evidence") or []
             row[key + "__page"] = ev[0].get("page") if ev else None
@@ -38,6 +42,15 @@ def load_records(extracted_dir: str | Path) -> list[dict]:
     return [json.loads(p.read_text(encoding="utf-8")) for p in sorted(Path(extracted_dir).glob("*.json"))]
 
 
+_FOLD = str.maketrans("ąćęłńóśźżĄĆĘŁŃÓŚŹŻ", "acelnoszzACELNOSZZ")
+
+
+def city_key_from_doc_id(doc_id: str) -> str:
+    """WPGMZ_Biala_Podlaska_2021-2025 / SR_Biała_Podlaska_2030 -> biala_podlaska (zastępczy klucz, dopóki rejestr nie ma TERYT)."""
+    core = __import__("re").sub(r"^(?:WPGMZ|SR)_|_\d{4}.*$", "", doc_id)
+    return core.translate(_FOLD).lower()
+
+
 def build_tables(records: list[dict], registry: pd.DataFrame, external: pd.DataFrame | None = None) -> dict[str, pd.DataFrame]:
     wide, prob, goal, act = [], [], [], []
     for rec in records:
@@ -50,38 +63,28 @@ def build_tables(records: list[dict], registry: pd.DataFrame, external: pd.DataF
         row["items__relevant"] = it.get("relevant")
         for p in it.get("problems", []):
             prob.append(dict(doc_id=rec["doc_id"], doc_type=rec["doc_type"], category=p["category"], severity=p["severity"],
-                             quantified=p.get("quantified"), statement=p["statement"], page=(p.get("evidence") or {}).get("page")))
+                             quantified=p.get("quantified"), statement=p["statement"], page=(p.get("evidence") or {}).get("page"),
+                             low_confidence=p.get("low_confidence", False), flags=";".join(p.get("flags", []))))
         for g in it.get("goals", []):
             goal.append(dict(doc_id=rec["doc_id"], doc_type=rec["doc_type"], level=g["level"], dimension=g["dimension"],
-                             statement=g["statement"], page=(g.get("evidence") or {}).get("page")))
+                             statement=g["statement"], page=(g.get("evidence") or {}).get("page"),
+                             low_confidence=g.get("low_confidence", False), flags=";".join(g.get("flags", []))))
         for a in it.get("actions", []):
             act.append(dict(doc_id=rec["doc_id"], doc_type=rec["doc_type"], instrument=a["instrument"],
                             family=INSTRUMENTS.get(a["instrument"], {}).get("family"), stance=a.get("stance"), status=a["status"],
                             specificity=specificity(a), link_explicit=a.get("link_explicit"),
                             addresses=";".join(a.get("addresses_problems", [])), description=a["description"],
-                            page=(a.get("evidence") or {}).get("page")))
+                            page=(a.get("evidence") or {}).get("page"), low_confidence=a.get("low_confidence", False), flags=";".join(a.get("flags", []))))
         au = rec.get("audit") or {}
         row["audit__share_verified"] = au.get("share_verified")
         wide.append(row)
     docs = pd.DataFrame(wide).merge(registry, on=["doc_id"], how="left", suffixes=("", "_reg"))
-
-    problems = pd.DataFrame(prob, columns=[
-        "doc_id", "doc_type", "category", "severity",
-        "quantified", "statement", "page"
-    ])
-    goals = pd.DataFrame(goal, columns=[
-        "doc_id", "doc_type", "level", "dimension", "statement", "page"
-    ])
-    actions = pd.DataFrame(act, columns=[
-        "doc_id", "doc_type", "instrument", "family", "stance",
-        "status", "specificity", "link_explicit", "addresses",
-        "description", "page"
-    ])
-
-    doc_city = docs.drop_duplicates("doc_id").set_index("doc_id")["city_id"]
+    if "city_id" not in docs or docs["city_id"].isna().all() or (docs["city_id"].astype(str).str.strip() == "").all():
+        docs["city_id"] = docs["doc_id"].map(city_key_from_doc_id)           # wypełnij TERYT w registry.csv, żeby to nadpisać
+    problems, goals, actions = pd.DataFrame(prob), pd.DataFrame(goal), pd.DataFrame(act)
     for df in (problems, goals, actions):
-        df.insert(1, "city_id", df["doc_id"].map(doc_city))
-
+        if len(df):
+            df.insert(1, "city_id", df["doc_id"].map(docs.set_index("doc_id")["city_id"]))
     docs = add_indices(docs, external)
     return dict(docs=docs, problems=problems, goals=goals, actions=actions)
 

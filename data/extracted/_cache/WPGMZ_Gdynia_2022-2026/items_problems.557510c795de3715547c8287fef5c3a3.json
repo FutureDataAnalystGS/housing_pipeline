@@ -1,0 +1,67 @@
+{
+ "problems": [
+  {
+   "quote": "liczba wyroków do realizacji narastająco 550 570 590 610 630",
+   "page": 5,
+   "category": "P05",
+   "severity": "key",
+   "statement": "Gmina ma obowiązek zapewnienia lokali mieszkalnych w wyniku wyroków sądowych o eksmisje, co stanowi główny problem."
+  },
+  {
+   "quote": "liczba rodzin oczekujących na najem socjalny lokalu umieszczonych na listach (narastająco) 80 180 180 180 280",
+   "page": 5,
+   "category": "P01",
+   "severity": "key",
+   "statement": "Znaczny deficyt miejsc w najem socjalnym, co prowadzi do długich kolejek."
+  },
+  {
+   "quote": "liczba rodzin oczekujących na najem na czas nieoznaczony umieszczonych na listach 60 140 140 140 220",
+   "page": 5,
+   "category": "P01",
+   "severity": "key",
+   "statement": "Wysoka liczba rodzin oczekujących na miejsca w najemie na czas nieoznaczony."
+  },
+  {
+   "quote": "liczba wyroków do realizacji narastająco 630 750 770 790 910",
+   "page": 5,
+   "category": "P05",
+   "severity": "key",
+   "statement": "Znaczny deficyt miejsc w najemie socjalnym, co prowadzi do długich kolejek."
+  },
+  {
+   "quote": "liczba lokali planowanych do wybudowania 0 21 0 30 0",
+   "page": 6,
+   "category": "P01",
+   "severity": "notable",
+   "statement": "Brak planowanych nowych budynków mieszkalnych, co może prowadzić do dalszego deficytu."
+  },
+  {
+   "quote": "liczba lokali planowanych do zakupu 5 5 5 5 5",
+   "page": 6,
+   "category": "P05",
+   "severity": "notable",
+   "statement": "Brak planowanych zakupów lokali mieszkalnych, co może prowadzić do dalszego deficytu."
+  },
+  {
+   "quote": "liczba lokali w budynkach zaplanowanych do wyburzenia -24 -24 0 0 0",
+   "page": 6,
+   "category": "P02",
+   "severity": "notable",
+   "statement": "Zaplanowane wyburzenia budynków z substandardowym stanem technicznym, co może prowadzić do utraty zasobu."
+  },
+  {
+   "quote": "Likwidacja lokali mieszkalnych w placówkach oświatowych będzie następiała stopniowo",
+   "page": 7,
+   "category": "P01",
+   "severity": "notable",
+   "statement": "Likwidacja placówek oświatowych prowadzi do utraty zasobu mieszkalnego, co może prowadzić do dalszego deficytu."
+  },
+  {
+   "quote": "nie jest przewidywany ubytek w mieszkaniowym zasobie Gminy Miasta Gdyni związany ze sprzedaży, gdyż wstrzymana została sprzedaż lokali na rzecz najemców, zarówno w budynkach należących",
+   "page": 7,
+   "category": "P07",
+   "severity": "notable",
+   "statement": "Wstrzymana sprzedaż lokali na rzecz najemców może prowadzić do zwiększenia zaległości czynszowych."
+  }
+ ]
+}

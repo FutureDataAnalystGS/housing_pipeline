@@ -58,21 +58,21 @@ def CatFact(enum_cls):
 
 
 def N(desc, rq="RQ3"):
-    return Field(default_factory=NumFact, description=desc, json_schema_extra={"rq": rq, "type": "liczba"})
+    return Field(default_factory=NumFact, description=desc, json_schema_extra={"rq": rq, "kind": "liczba"})
 
 
 def B(desc, rq="RQ2"):
-    return Field(default_factory=BoolFact, description=desc, json_schema_extra={"rq": rq, "type": "tak/nie"})
+    return Field(default_factory=BoolFact, description=desc, json_schema_extra={"rq": rq, "kind": "tak/nie"})
 
 
 def T(desc, rq="RQ3"):
-    return Field(default_factory=TextFact, description=desc, json_schema_extra={"rq": rq, "type": "tekst"})
+    return Field(default_factory=TextFact, description=desc, json_schema_extra={"rq": rq, "kind": "tekst"})
 
 
 def C(enum_cls, desc, rq="RQ2"):
     cls = CatFact(enum_cls)
     return Field(default_factory=cls, description=desc + " Dozwolone: " + ", ".join(e.value for e in enum_cls),
-                 json_schema_extra={"rq": rq, "type": "kategoria"})
+                 json_schema_extra={"rq": rq, "kind": "kategoria"})
 
 
 SalesPolicy = _enum("SalesPolicy", "halted", "selective", "continuing", "not_addressed")
@@ -273,61 +273,151 @@ WPGMZ_BLOCKS: list[tuple[str, type[BaseModel], list[str]]] = [
 STRATEGY_FRAME_BLOCK = ("strategy_frame", StrategyFrame, [])
 
 
-# =============================================================== schemat JSON dla narzędzia LLM (bez $ref)
+# =============================================================== schemat JSON dla LLM (bez $ref, pola WYMAGANE)
+_META_KEYS = {"title", "rq", "kind", "default"}          # metadane księgi kodowej — nie trafiają do schematu modelu
+P_LABELS = [f"{k} {v['name']}" for k, v in PROBLEMS.items()]
+I_LABELS = [f"{k} {v['name']}" for k, v in INSTRUMENTS.items()]
 
-def inline_schema(model: type[BaseModel]) -> dict:
+
+def _resolve(node, defs):
+    if isinstance(node, list):
+        return [_resolve(v, defs) for v in node]
+    if not isinstance(node, dict):
+        return node
+    if "$ref" in node:
+        target = _resolve(defs[node["$ref"].split("/")[-1]], defs)
+        extra = {k: _resolve(v, defs) for k, v in node.items() if k != "$ref" and k not in _META_KEYS}
+        return {**target, **extra}
+    if "allOf" in node and len(node["allOf"]) == 1:
+        rest = {k: v for k, v in node.items() if k != "allOf"}
+        return _resolve({**node["allOf"][0], **rest}, defs)
+    out = {}
+    for k, v in node.items():
+        if k == "properties":                              # klucze = nazwy pól (np. pole o nazwie "type")
+            out[k] = {pk: _resolve(pv, defs) for pk, pv in v.items()}
+        elif k in _META_KEYS:
+            continue
+        else:
+            out[k] = _resolve(v, defs)
+    return out
+
+
+def _strictify(node):
+    """Każde pole obiektu jest wymagane (inaczej mały model „oszczędza” i zwraca prawie pusty JSON)."""
+    if isinstance(node, dict):
+        if "properties" in node:
+            node["required"] = list(node["properties"].keys())
+            node["additionalProperties"] = False
+        for v in node.values():
+            _strictify(v)
+    elif isinstance(node, list):
+        for v in node:
+            _strictify(v)
+    return node
+
+
+def _relabel(node):
+    """Kody P01/I01 -> etykiety „P05 Niedobór zasobu…”: model widzi znaczenie kodu w samej gramatyce wyjścia."""
+    if isinstance(node, dict):
+        if "enum" in node and set(node["enum"]) == set(PROBLEMS):
+            node["enum"] = P_LABELS
+        elif "enum" in node and set(node["enum"]) == set(INSTRUMENTS):
+            node["enum"] = I_LABELS
+        for v in node.values():
+            _relabel(v)
+    elif isinstance(node, list):
+        for v in node:
+            _relabel(v)
+    return node
+
+
+def inline_schema(model: type[BaseModel], strict: bool = True, relabel: bool = True) -> dict:
     schema = model.model_json_schema()
     defs = schema.pop("$defs", {})
+    out = _resolve(schema, defs)
+    if relabel:
+        _relabel(out)
+    return _strictify(out) if strict else out
 
-    def resolve(node):
-        if isinstance(node, dict):
-            if "$ref" in node:
-                target = resolve(defs[node["$ref"].split("/")[-1]])
-                extra = {
-                    k: resolve(v)
-                    for k, v in node.items()
-                    if k != "$ref"
-                }
-                merged = {**target, **extra}
 
-                valid_types = {
-                    "object", "array", "string", "integer",
-                    "number", "boolean", "null"
-                }
+_CODE = __import__("re").compile(r"^([PI]\d{2})(?:\s|$)")
 
-                if merged.get("type") not in valid_types:
-                    merged.pop("type", None)
 
-                return merged
+def decode_labels(obj):
+    """Odwrotność _relabel: „P05 Niedobór…” -> „P05” (rekurencyjnie, w polach category/instrument/addresses_problems)."""
+    if isinstance(obj, dict):
+        return {k: (_decode_one(v) if k in ("category", "instrument") else
+                    [_decode_one(x) for x in v] if k == "addresses_problems" and isinstance(v, list) else decode_labels(v))
+                for k, v in obj.items()}
+    if isinstance(obj, list):
+        return [decode_labels(v) for v in obj]
+    return obj
 
-            if "allOf" in node and len(node["allOf"]) == 1:
-                rest = {
-                    k: v for k, v in node.items()
-                    if k != "allOf"
-                }
-                return resolve({**node["allOf"][0], **rest})
 
-            result = {
-                k: resolve(v)
-                for k, v in node.items()
-                if k != "title"
-            }
+def _decode_one(v):
+    if isinstance(v, str):
+        m = _CODE.match(v.strip())
+        return m.group(1) if m else v
+    return v
 
-            #
-            valid_types = {
-                "object", "array", "string", "integer",
-                "number", "boolean", "null"
-            }
 
-            if not isinstance(result.get("type"), str) or result.get("type") not in valid_types:
-                result.pop("type", None)
+# =============================================================== „Odchudzone” modele dla małych modeli lokalnych
+# Mniej pól = mniej błędów. Kolejność pól = kolejność „myślenia”: najpierw cytat, potem klasyfikacja.
+class LlmProblem(BaseModel):
+    quote: str = Field(..., description="Dosłowny cytat z tekstu (do 30 słów), z którego wynika problem.")
+    page: int = Field(..., description="Numer strony z markera [[strona N]].")
+    category: ProblemCode = Field(..., description="Kategoria problemu.")
+    severity: Severity = Field(..., description="mention / notable / key")
+    statement: str = Field(..., description="Problem własnymi słowami, maks. 25 słów.")
 
-            return result
 
-        if isinstance(node, list):
-            return [resolve(v) for v in node]
+class LlmGoal(BaseModel):
+    quote: str = Field(..., description="Dosłowny cytat z tekstu (do 30 słów).")
+    page: int
+    level: GoalLevel
+    dimension: Dimension
+    statement: str = Field(..., description="Cel własnymi słowami, maks. 25 słów.")
 
-        return node
 
-    return resolve(schema)
+class LlmAction(BaseModel):
+    quote: str = Field(..., description="Dosłowny cytat z tekstu (do 30 słów), z którego wynika działanie.")
+    page: int
+    instrument: InstrumentCode
+    status: ActStatus
+    stance: Stance
+    description: str = Field(..., description="Działanie własnymi słowami, maks. 25 słów.")
+    target_text: Optional[str] = Field(..., description="Wartość docelowa/skala (np. „23 budynki”) albo null.")
+    budget_pln: Optional[float] = Field(..., description="Kwota w zł albo null.")
+    period: Optional[str] = Field(..., description="Termin/okres (np. „2022-2026”) albo null.")
+    responsible: Optional[str] = Field(..., description="Podmiot odpowiedzialny albo null.")
 
+
+class LlmProblems(BaseModel):
+    problems: list[LlmProblem]
+
+
+class LlmGoals(BaseModel):
+    goals: list[LlmGoal]
+
+
+class LlmActions(BaseModel):
+    actions: list[LlmAction]
+
+
+def to_problem_item(p: dict) -> dict:
+    q = p["quote"]
+    return dict(category=p["category"], statement=p["statement"], severity=p["severity"],
+                quantified=bool(__import__("re").search(r"\d", q)), quant_text=None, affected_groups=[], section=None,
+                evidence=dict(page=p["page"], quote=q))
+
+
+def to_goal_item(g: dict) -> dict:
+    return dict(level=g["level"], statement=g["statement"], dimension=g["dimension"], evidence=dict(page=g["page"], quote=g["quote"]))
+
+
+def to_action_item(a: dict) -> dict:
+    return dict(instrument=a["instrument"], description=a["description"], stance=a["stance"], status=a["status"], named_instrument=True,
+                has_target_value=bool(a.get("target_text")), target_text=a.get("target_text"),
+                has_budget_or_source=a.get("budget_pln") is not None, budget_pln=a.get("budget_pln"),
+                has_deadline_or_owner=bool(a.get("period") or a.get("responsible")), responsible=a.get("responsible"), period=a.get("period"),
+                addresses_problems=[], link_explicit=False, evidence=dict(page=a["page"], quote=a["quote"]))

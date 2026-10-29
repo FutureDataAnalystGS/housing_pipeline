@@ -1,0 +1,11 @@
+{
+ "problems": [
+  {
+   "quote": "Konieczność tworzenia i powiększania zasobu lokali gminnych jest przede wszystkim następstwem regulacji ustawowej. Oznacza to, że obecnie każda wykonywana w mieście eksmisja wiąże się z obowiązkiem zapewnienia lokalu przez gminę. Sprzedaż gminnych lokali mieszkalnych na rzecz najemców nie będzie prowadzona.",
+   "page": 3,
+   "category": "P05",
+   "severity": "key",
+   "statement": "Każda eksmisja obciąża gminę obowiązkiem dostarczenia lokalu."
+  }
+ ]
+}
