@@ -23,6 +23,7 @@ from . import ollama_client as OC
 from . import prompts as P
 from . import schema as S
 from .ingest import Page
+from . import candidates as CAND
 from .lexicon import baseline_problems
 from .segment import Section, element_texts
 
@@ -130,6 +131,64 @@ def run_items_chunk(host, cfg, kind, chunk, header, cache_dir, force, errors, de
     return [conv(x) for x in data.get(key, [])]
 
 
+# ------------------------------------------------------------------ tryb „kandydaci”
+def _batches(units: list, max_chars: int, max_n: int) -> list[list]:
+    out, cur, size = [], [], 0
+    for u in units:
+        if cur and (size + len(u.text) > max_chars or len(cur) >= max_n):
+            out.append(cur)
+            cur, size = [], 0
+        cur.append(u)
+        size += len(u.text)
+    if cur:
+        out.append(cur)
+    return out
+
+
+def _item_from_unit(kind: str, label: str, u) -> dict:
+    t = u.text
+    ev = dict(page=u.page, quote=t)
+    if kind == "problems":
+        return dict(category=label, statement=t[:200], severity=CAND.severity(t), quantified=bool(re.search(r"\d", t)), quant_text=None,
+                    affected_groups=[], section=None, evidence=ev)
+    b = CAND.budget_pln(t)
+    return dict(instrument=label, description=t[:200], stance=CAND.act_stance(t), status=CAND.act_status(t), named_instrument=True,
+                has_target_value=bool(re.search(r"\d", t)), target_text=None, has_budget_or_source=b is not None, budget_pln=b,
+                has_deadline_or_owner=bool(re.search(r"20[2-3]\d|Prezydent|ZLiBK|ZBM|zarząd", t)), responsible=None, period=None,
+                addresses_problems=[], link_explicit=False, evidence=ev)
+
+
+def run_candidates(host, cfg, kind, units, cache_dir, force, errors, depth=0) -> tuple[list[dict], dict]:
+    """Klasyfikuje zdania-kandydatów partiami (kilka zdań na wywołanie, krótka odpowiedź)."""
+    cls = S.ClassifyProblems if kind == "problems" else S.ClassifyActions
+    items: list[dict] = []
+    stats = dict(candidates=len(units), accepted=0, batches=0)
+    lcfg = {**cfg, "num_predict": cfg.get("cand_num_predict", 700)}
+
+    def run(batch, depth=0):
+        stats["batches"] += 1
+        try:
+            data = _call(host, lcfg, P.classify_messages(kind, batch), cls, cache_dir, f"cand_{kind}", False if not force else True)
+        except (OC.TruncatedOutput, OC.PromptTooLong) as e:
+            if len(batch) > 1 and depth < 3:
+                mid = len(batch) // 2
+                return run(batch[:mid], depth + 1) + run(batch[mid:], depth + 1)
+            errors.append(dict(kind=f"cand_{kind}", error=str(e), chars=sum(len(u.text) for u in batch)))
+            return []
+        out = []
+        for r in data.get("results", []):
+            i, lab = r.get("id"), r.get("label")
+            if isinstance(i, int) and 1 <= i <= len(batch) and lab and lab != "NONE":
+                out.append(_item_from_unit(kind, lab, batch[i - 1]))
+        return out
+
+    for k, batch in enumerate(_batches(units, cfg.get("cand_batch_chars", 3200), cfg.get("cand_batch_max", 10)), 1):
+        items += run(batch)
+        print(f"[LLM] {kind}: partia {k} ({len(batch)} zdań) -> {len(items)} pozycji dotąd", flush=True)
+    stats["accepted"] = len(items)
+    return items, stats
+
+
 # ------------------------------------------------------------------ bloki faktów (WPGMZ, ramka strategii)
 _RANK = {"found": 2, "unclear": 1, "not_present": 0}
 
@@ -234,26 +293,22 @@ def resolve_page(quote: str, claimed: int | None, by_page: dict[int, str]) -> tu
     return None, False
 
 
-_CUES = re.compile(r"brak|niedobór|niedostat|niewystarcz|zły|zła|złe|zaległ|zadłuż|zagroż|konieczn|obowiązek|obowiązk|problem|deficyt|nieopłacaln|"
-                   r"zużyt|eksmisj|bezdomn|kolejk|oczekując|wymaga|niepodłączon|niesamodziel|piec|sutere|wyburz|katastrof|obniżon\w+\s+standard", re.I)
+_CUES = CAND._P_CUES
 
 
-def quality_flags(kind: str, quote: str) -> list[str]:
+def quality_flags(kind: str, quote: str, check_cue: bool = True) -> list[str]:
     """Reguły jakości dla cytatu pozycji. `table_row` = wiersz tabeli/kwoty (to wskaźnik do bloków faktów, nie problem ani cel)."""
     q = " ".join(quote.split())
     flags = []
-    compact = q.replace(" ", "")
-    digit_share = sum(c.isdigit() for c in compact) / max(len(compact), 1)
-    n_numbers = len(re.findall(r"\d+", q))
-    if digit_share > 0.35 or (re.search(r"\d[\d\s.,%-]*$", q) and n_numbers >= 2 and ". " not in q):
+    if CAND.is_table_like(q):
         flags.append("table_row")
     if len(re.findall(r"[^\W\d_]{4,}", q)) < 4:
         flags.append("fragment")
-    if re.match(r"^[^.]{3,80}\s[—–]\s", q):
+    if re.match(r"^[^.]{3,80}\s[—–-]\s", q):
         flags.append("definition_like")
     if re.search(r"\bart\.\s*\d+|Stosownie do|Dz\.\s*U\.", q):
         flags.append("legal_basis")
-    if kind == "problems" and not _CUES.search(q):
+    if kind == "problems" and check_cue and not _CUES.search(q):
         flags.append("no_problem_cue")
     return flags
 
@@ -329,17 +384,26 @@ def run_document(client, cfg: dict, doc_id: str, doc_type: str, pages: list[Page
         items_text = "\n\n".join(p.text for p in (passages or []))
 
     tasks = cfg.get("tasks", ["problems", "actions", "goals"])
+    mode = cfg.get("mode", "candidates")                  # candidates = klasyfikacja zdań wybranych słownikiem; chunks = otwarte wyszukiwanie we fragmentach
+    cand_kinds = [k for k in tasks if mode == "candidates" and k in ("problems", "actions")]
+    chunk_kinds = [k for k in tasks if k not in cand_kinds]
     by_kind: dict[str, list[dict]] = {k: [] for k in ("problems", "goals", "actions")}
     misses: list[dict] = []
-    chunks = chunk_text(items_text, cfg.get("chunk_chars", 4500)) if items_text.strip() else []
+    cand_stats: dict[str, dict] = {}
+    if cand_kinds:
+        units = CAND.build_units(pages)
+        for kind in cand_kinds:
+            cands = CAND.select(units, kind, require_housing=(doc_type == "SR"))
+            by_kind[kind], cand_stats[kind] = run_candidates(host, cfg, kind, cands, cache_dir, force, errors)
+    chunks = chunk_text(items_text, cfg.get("chunk_chars", 4500)) if (items_text.strip() and chunk_kinds) else []
     for i, ch in enumerate(chunks, 1):
         found_p: list[dict] = []
-        for kind in tasks:
+        for kind in chunk_kinds:
             items = run_items_chunk(host, cfg, kind, ch, header, cache_dir, force, errors)
             by_kind[kind] += items
             if kind == "problems":
                 found_p = items
-        if "problems" in tasks:
+        if "problems" in chunk_kinds:
             gap = baseline_problems(ch) - {p["category"] for p in found_p}
             if gap:
                 pg = _MARK.findall(ch)
@@ -353,7 +417,7 @@ def run_document(client, cfg: dict, doc_id: str, doc_type: str, pages: list[Page
         for it in _dedupe(by_kind[kind], field):
             q = it["evidence"]["quote"]
             pg, fuzzy = resolve_page(q, it["evidence"].get("page"), by_page)
-            flags = quality_flags(kind, q)
+            flags = quality_flags(kind, q, check_cue=not (kind == "problems" and mode == "candidates"))
             if pg is None:
                 rejected.append(dict(kind=kind, quote=q[:120], reason="cytat nie występuje w dokumencie"))
             elif "table_row" in flags and kind in ("problems", "goals"):
@@ -371,9 +435,9 @@ def run_document(client, cfg: dict, doc_id: str, doc_type: str, pages: list[Page
     out["items"] = dict(relevant=any(by_kind.values()), **by_kind)
     unsupported = check_numbers(out["blocks"])
     out["audit"] = verify_evidence(out, pages)
-    out["audit"].update(items_low_confidence=sum(1 for k in by_kind.values() for x in k if x.get("low_confidence")), items_rejected=rejected, possible_misses=misses, numbers_unsupported=unsupported, llm_errors=errors)
+    out["audit"].update(candidate_stats=cand_stats, items_low_confidence=sum(1 for k in by_kind.values() for x in k if x.get("low_confidence")), items_rejected=rejected, possible_misses=misses, numbers_unsupported=unsupported, llm_errors=errors)
     out["versions"] = dict(prompt_version=cfg["prompt_version"], model=cfg["model_extract"], model_digest=OC.model_digest(cfg["model_extract"], host),
-                           num_ctx=cfg.get("num_ctx", 12288), seed=cfg.get("seed", 7), chunk_chars=cfg.get("chunk_chars", 4500),
+                           num_ctx=cfg.get("num_ctx", 12288), seed=cfg.get("seed", 7), chunk_chars=cfg.get("chunk_chars", 4500), mode=mode,
                            run_date=date.today().isoformat(),
                            segmentation_fallback=(doc_type == "WPGMZ" and len(element_texts(sections or [])) < 5))
     (extracted_dir / f"{doc_id}.json").write_text(json.dumps(out, ensure_ascii=False, indent=1), encoding="utf-8")

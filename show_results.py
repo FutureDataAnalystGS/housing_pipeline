@@ -24,3 +24,5 @@ print(f"  fragmenty, gdzie słownik widzi problem, a model nic nie zwrócił: {l
 for x in au.get("possible_misses", [])[:8]:
     print("     - strony", x["pages"], "|", ", ".join(x["categories"]))
 print(f"  błędy wywołań modelu: {len(au.get('llm_errors', []))}")
+for k, st in (au.get("candidate_stats") or {}).items():
+    print(f"  tryb kandydatów [{k}]: zdań do klasyfikacji={st['candidates']}, przyjęte={st['accepted']}, wywołań modelu={st['batches']}")

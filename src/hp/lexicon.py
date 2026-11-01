@@ -46,13 +46,13 @@ def matched_terms(text: str) -> dict[str, int]:
 
 # --- bazowe kodowanie słownikowe instrumentów (benchmark; pełne kodowanie robi LLM)
 INSTRUMENT_PATTERNS: dict[str, str] = {
-    "I01": r"budow\w+\s+(?:budynk\w+|lokal\w+|mieszka\w+)\s+(?:komunaln|socjaln)\w*|budownictw\w*\s+komunaln\w*",
+    "I01": r"\bbudow\w+\s+(?:budynk\w+|lokal\w+|mieszka\w+)\s+(?:komunaln|socjaln)\w*|budownictw\w*\s+komunaln\w*",
     "I02": r"\bTBS\b|\bSIM\b|Społeczn\w+\s+Inicjatyw\w+\s+Mieszkaniow\w*",
     "I03": r"(?:zakup|nabywani\w+|pozyskiwani\w+)\s+(?:lokal|budynk)\w*|adaptacj\w+\s+(?:budynk|pomieszcze)\w*",
     "I04": r"wynajm\w+\s+(?:lokal|mieszka)\w*\s+(?:od|na\s+wolnym)\w*|podnajm\w*",
     "I07": r"termomodernizacj\w*|likwidacj\w+\s+pieców|niskoemisj\w*",
     "I12": r"najem\s+socjaln\w*|lokal\w*\s+socjaln\w*|pomieszcze\w+\s+tymczasow\w*|lokal\w*\s+kryzysow\w*",
-    "I13": r"mieszka\w+\s+(?:chronion|wspierany|wspieran|treningow)\w*",
+    "I13": r"mieszka(?:nia|ń|niach|niami|nie|niu)\s+(?:chronion|wspierany|wspieran|treningow)\w*",
     "I14": r"Housing\s+First|wychodzeni\w+\s+z\s+bezdomności|usamodzielni\w+",
     "I16": r"dodat\w+\s+mieszkaniow\w*",
     "I17": r"obniżk\w+\s+czynszu",
@@ -89,3 +89,47 @@ _PROB = {k: re.compile(v, re.I) for k, v in PROBLEM_PATTERNS.items()}
 
 def baseline_problems(text: str) -> set[str]:
     return {k for k, rx in _PROB.items() if rx.search(text)}
+
+
+# --- PEŁNE wzorce (tryb czytnika „cytaty”): wszystkie instrumenty i problemy, wiele etykiet na zdanie
+INSTRUMENT_PATTERNS_FULL: dict[str, str] = {
+    "I01": r"\bbudow\w+\s+(?:budynk\w+|lokal\w+|mieszka\w+)[^.]{0,40}(?:komunaln|socjaln|gminn)|budownictw\w*\s+(?:komunaln|socjaln)|inwestycj\w+\s+mieszkaniow|lokali\s+planowanych\s+do\s+wybudowania|powstanie\s+\d+\s+mieszka",
+    "I02": r"\bTBS\b|\bSIM\b|Społeczn\w+\s+Inicjatyw\w+\s+Mieszkaniow\w*|\bKZN\b|Towarzystw\w+\s+Budownictwa\s+Społeczn",
+    "I03": r"(?:zakup|nabywani\w+|pozyskiwani\w+)\s+(?:lokal|budynk|mieszka)\w*|lokali\s+planowanych\s+do\s+zakupu|adaptacj\w+\s+(?:budynk|pomieszcze)\w*|przekwalifikowan\w+",
+    "I04": r"wynajm\w+\s+(?:lokal|mieszka)\w*[^.]{0,30}(?:wolnym\s+rynku|od\s+(?:osób|podmiot))|na\s+wolnym\s+rynku|podnajm\w*",
+    "I05": r"grunt\w*\s+(?:gminn|pod\s+(?:zabudow|mieszkalnictw))|\bPPP\b|współprac\w+\s+z\s+deweloper\w+|partnerstw\w+\s+(?:publiczno|z\s+deweloper)",
+    "I06": r"remont\w+|modernizac\w+",
+    "I07": r"termomodernizac\w*|likwidacj\w+\s+pieców|piec\w+\s+na\s+(?:opał|paliwo)|niskoemisj\w*|\bOZE\b|przyłączeni\w+\s+do\s+(?:miejskiej\s+)?sieci\s+ciepłown",
+    "I08": r"rozbiórk\w+|wyburz\w+|wykwaterowan\w+|likwidacj\w+\s+(?:lokali|niektórych|substandard)|scalani\w+",
+    "I09": r"rewitalizac\w+",
+    "I10": r"niepełnosprawn\w+|bez\s+barier|bezbarier\w+|\bwind\w+\b",
+    "I11": r"kryteri\w+\s+(?:dochod|przydział|wynajm)|list\w+\s+(?:osób|oczekując)|komisj\w+\s+(?:do\s+spraw\s+)?mieszka|zasad\w+\s+wynajmowan",
+    "I12": r"najem\s+socjaln\w*|lokal\w*\s+socjaln\w*|pomieszcze\w+\s+tymczasow\w*|lokal\w*\s+(?:zamienn|kryzysow)\w*",
+    "I13": r"mieszka(?:nia|ń|niach|niami|nie|niu)\s+(?:chronion|wspierany|wspieran|treningow)\w*",
+    "I14": r"Housing\s+First|wychodzeni\w+\s+z\s+bezdomności|usamodzielni\w+|pieczy\s+zastępcz\w+",
+    "I15": r"mieszka\w+\s+(?:dla\s+(?:senior|młod\w+\s+rodzin|nauczyciel|pracowni\w+|rodzin\s+wielodzietn)|służbow)\w*|program\w*\s+(?:dla\s+)?senior\w+|mieszkani\w+\s+służbow\w+",
+    "I16": r"dodat\w+\s+mieszkaniow\w*|dodat\w+\s+energetyczn\w*",
+    "I17": r"obniżk\w+\s+czynszu|obniżen\w+\s+czynszu|obniżać\s+czynsz",
+    "I18": r"odpracowani\w+|rozłożeni\w+\s+na\s+raty|\bugod\w+|trening\w*\s+budżetow\w+",
+    "I19": r"Mieszkanie\s+na\s+start|dopłat\w+\s+do\s+(?:czynszu|najmu)",
+    "I20": r"zamian\w+\s+lokal\w*|Biur\w+\s+Zamian|zamian\w+\s+mieszka\w*",
+    "I21": r"sprzedaż\w*\s+(?:gminnych\s+)?lokali|sprzedaż\w*\s+lokal|bonifikat\w+|wykup\w*\s+lokal",
+    "I22": r"stawk\w+\s+czynszu|polityk\w+\s+czynszow\w+|weryfikacj\w+\s+(?:dochod|spełnian)\w*|wartoś\w+\s+odtworzeniow\w+",
+    "I23": r"windykac\w+|egzekucj\w+|wypowiedzeni\w+\s+umow|wezwani\w+\s+do\s+zapłaty",
+    "I24": r"partycypacyjn\w+|zarządzani\w+\s+(?:zasobem|partycypac)|przekształceni\w+\s+(?:ZLiBK|zakład|jednostk)|cyfryzac\w+|upodmiotowieni\w+",
+    "I25": r"miejscow\w+\s+plan|studium\s+uwarunkowań|planowani\w+\s+przestrzenn\w+|uzbrojeni\w+\s+teren\w+",
+    "I26": r"obserwatori\w+|monitoring\w*\s+(?:rynku|potrzeb)|badani\w+\s+potrzeb|najem\s+krótkoterminow\w+",
+    "I28": r"\bBGK\b|Fundusz\w*\s+Dopłat|\bKPO\b|Krajow\w+\s+Plan\w*\s+Odbudowy|środk\w+\s+(?:zewnętrzn|unijn)|fundusz\w+\s+(?:UE|europejsk)|NFOŚiGW|dofinansowan\w+",
+    "I29": r"organizacj\w+\s+pozarządow\w+|\bNGO\b|spółdzielni\w+|współpra\w+\s+z\s+wspólnot",
+}
+PROBLEM_PATTERNS_FULL: dict[str, str] = {
+    **PROBLEM_PATTERNS,
+    "P01": PROBLEM_PATTERNS["P01"] + r"|brak\w*\s+mieszka|niewystarczając\w+\s+(?:liczb|podaż)",
+    "P08": r"osób\s+(?:z\s+niepełnosprawn|starszych)|niepełnosprawn\w+|rodzin\w*\s+wielodzietn|młod\w+\s+rodzin|niesamodzieln\w+\s+i\s+zależn",
+    "P09": r"starzen\w+\s+(?:się\s+)?(?:społeczeństw|ludności)|depopulac\w+|odpływ\w*\s+(?:młod|ludności)|migrac\w+|suburbaniz\w+",
+    "P10": r"chaos\w*\s+przestrzenn|rozpraszan\w+\s+zabudow|rozlewan\w+|degradac\w+|brak\w*\s+infrastruktur",
+    "P12": r"najem\s+krótkoterminow\w+|rynek\s+najmu|czynsz\w*\s+rynkow|ceny\s+(?:mieszka|najmu)",
+    "P14": r"segregac\w+|koncentrac\w+\s+(?:problem|ubóstw)|patolog\w+|bezpieczeństw\w+",
+}
+_PROB_FULL = {k: re.compile(v, re.I) for k, v in PROBLEM_PATTERNS_FULL.items()}
+_INSTR_FULL = {k: re.compile(v, re.I) for k, v in INSTRUMENT_PATTERNS_FULL.items()}

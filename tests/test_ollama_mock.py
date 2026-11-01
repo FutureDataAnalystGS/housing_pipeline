@@ -49,6 +49,19 @@ class H(BaseHTTPRequestHandler):
         page = (re.findall(r"\[\[strona (\d+)\]\]", user) or ["1"])[0]
         if BEHAVIOUR["truncate_over"] and len(user) > BEHAVIOUR["truncate_over"] and "actions" in props:
             return self._chat(p, "{", "length", 500, 3000)
+        if "results" in props:                                  # tryb „kandydaci”: lista „[n] zdanie”
+            is_actions = "DZIAŁANIE" in p["messages"][0]["content"]
+            res = []
+            for n, txt in re.findall(r"^\[(\d+)\] (.*)$", user, re.M):
+                lab = "NONE"
+                if is_actions and ("nie będzie prowadzon" in txt or "wstrzym" in txt):
+                    lab = "I21"
+                elif is_actions and "termomodernizac" in txt.lower():
+                    lab = "I07"
+                elif not is_actions and ("eksmisj" in txt or "niepodłączonych" in txt):
+                    lab = "P05" if "eksmisj" in txt else "P02"
+                res.append(dict(id=int(n), label=lab))
+            return self._chat(p, json.dumps({"results": res}), "stop", 1200, 60)
         if "problems" in props:
             q = "To zdanie nie istnieje w dokumencie" if BEHAVIOUR["fake_quote"] else sentence(user, "każda wykonywana w mieście eksmisja")
             out = {"problems": [dict(quote=q, page=int(page), category="P05 Niedobór zasobu komunalnego i socjalnego", severity="key", statement="Eksmisje obciążają gminę.")] if q else []}
@@ -96,7 +109,7 @@ def _run(host, tmp_path, **over):
 
 @need_pages
 def test_prompt_carries_codebook_and_context_window_is_set(host, tmp_path):
-    rec = _run(host, tmp_path)
+    rec = _run(host, tmp_path, mode="chunks")
     assert all(c["options"]["num_ctx"] == 12288 and c["options"]["seed"] == 7 for c in CALLS)       # okno kontekstu zawsze jawne
     sys_prompts = [c["messages"][0]["content"] for c in CALLS if "problems" in c["format"]["properties"]]
     assert sys_prompts and "P05 Niedobór zasobu komunalnego i socjalnego —" in sys_prompts[0]      # definicje kodów są w prompcie
@@ -108,7 +121,7 @@ def test_prompt_carries_codebook_and_context_window_is_set(host, tmp_path):
 
 @need_pages
 def test_items_are_found_verified_and_page_resolved(host, tmp_path):
-    rec = _run(host, tmp_path)
+    rec = _run(host, tmp_path, mode="chunks")
     it = rec["items"]
     assert it["problems"] and it["problems"][0]["category"] == "P05" and it["problems"][0]["evidence"]["page"] == 4
     assert it["actions"] and it["actions"][0]["instrument"] == "I21" and it["goals"]
@@ -119,7 +132,7 @@ def test_items_are_found_verified_and_page_resolved(host, tmp_path):
 def test_truncated_answer_triggers_split_not_loss(host, tmp_path):
     BEHAVIOUR["truncate_over"] = 2200
     try:
-        rec = _run(host, tmp_path, tasks=["actions"])
+        rec = _run(host, tmp_path, tasks=["actions"], mode="chunks")
     finally:
         BEHAVIOUR["truncate_over"] = None
     assert rec["items"]["actions"], "po podziale fragmentu akcja powinna zostać znaleziona"
@@ -129,7 +142,7 @@ def test_truncated_answer_triggers_split_not_loss(host, tmp_path):
 def test_invented_quote_is_rejected(host, tmp_path):
     BEHAVIOUR["fake_quote"] = True
     try:
-        rec = _run(host, tmp_path, tasks=["problems"])
+        rec = _run(host, tmp_path, tasks=["problems"], mode="chunks")
     finally:
         BEHAVIOUR["fake_quote"] = False
     assert not rec["items"]["problems"] and rec["audit"]["items_rejected"]
@@ -181,7 +194,7 @@ def test_quality_flags_on_real_false_positives_from_gdynia_run():
     good = ["każda wykonywana w mieście eksmisja wiąże się z obowiązkiem zapewnienia lokalu przez gminę",
             "Gmina Miasta Gdyni posiada 5 budynków niepodłączonych do kanalizacji sanitarnej"]
     assert all(not E.quality_flags("problems", q) for q in good)
-    assert "table_row" not in E.quality_flags("actions", "termomodernizacja budynków") and "no_problem_cue" not in [f for f in E.quality_flags("actions", "x" * 40)] or True
+    assert "table_row" not in E.quality_flags("actions", "termomodernizacja budynków objętych programem")
 
 
 @need_pages
@@ -196,3 +209,28 @@ def test_fuzzy_quote_tolerates_list_numbering_but_rejects_invented_numbers():
     # zmyślone liczby w wierszu tabeli nie mogą przejść
     page, _ = E.resolve_page("liczba wyroków do realizacji narastająco 630 750 770 790 910", 5, by_page)
     assert page is None
+
+
+@need_pages
+def test_candidate_mode_classifies_only_prose_sentences_and_keeps_exact_quotes(host, tmp_path):
+    from hp import candidates as CAND
+    rec = _run(host, tmp_path, tasks=["problems", "actions"])           # domyślny tryb: kandydaci
+    cls_calls = [c for c in CALLS if "results" in c["format"]["properties"]]
+    assert cls_calls and all(c["options"]["num_ctx"] == 12288 for c in cls_calls)
+    prob_sent = [m for c in cls_calls if "PROBLEM" in c["messages"][0]["content"] for m in re.findall(r"^\[\d+\] (.*)$", c["messages"][-1]["content"], re.M)]
+    assert prob_sent and not any(CAND.is_table_like(s) for s in prob_sent)     # wiersze tabel nie trafiają do klasyfikacji problemów
+    it = rec["items"]
+    assert any(p["category"] == "P05" and p["evidence"]["page"] == 4 for p in it["problems"])
+    a21 = [a for a in it["actions"] if a["instrument"] == "I21"]
+    assert a21 and a21[0]["stance"] == "restrict"                                # stance z heurystyki, nie z modelu
+    assert rec["audit"]["share_verified"] == 1.0                                  # cytat = zdanie z dokumentu, więc zawsze dokładny
+    st = rec["audit"]["candidate_stats"]
+    assert st["problems"]["candidates"] > 10 and st["actions"]["batches"] >= 5
+
+
+def test_candidate_units_keep_list_context_and_table_rule_is_not_too_broad():
+    from hp import candidates as CAND
+    assert not CAND.is_table_like("Gmina jest właścicielem 150 budynków mieszkalnych, w tym: 1) 103 budynki wybudowane przed 1945 rokiem 2) 39 budynków wybudowanych w latach 1945 -1980,")
+    assert CAND.is_table_like("remonty dachów wraz z obróbkami blacharskimi i remontem kominów 2 500 000")
+    assert CAND.is_table_like("Zgony i inne przyczyny 35 26 36 37 40")
+    assert not CAND.is_table_like("Program obowiązuje do 2026")

@@ -421,3 +421,26 @@ def to_action_item(a: dict) -> dict:
                 has_budget_or_source=a.get("budget_pln") is not None, budget_pln=a.get("budget_pln"),
                 has_deadline_or_owner=bool(a.get("period") or a.get("responsible")), responsible=a.get("responsible"), period=a.get("period"),
                 addresses_problems=[], link_explicit=False, evidence=dict(page=a["page"], quote=a["quote"]))
+
+
+# =============================================================== Tryb „kandydaci”: klasyfikacja gotowych zdań
+ProblemLabel = Enum("ProblemLabel", {**{k: k for k in PROBLEMS}, "NONE": "NONE"}, type=str)
+InstrumentLabel = Enum("InstrumentLabel", {**{k: k for k in INSTRUMENTS}, "NONE": "NONE"}, type=str)
+
+
+class ClassP(BaseModel):
+    id: int = Field(..., description="Numer zdania z listy.")
+    label: ProblemLabel = Field(..., description="Kod kategorii problemu albo NONE.")
+
+
+class ClassA(BaseModel):
+    id: int = Field(..., description="Numer zdania z listy.")
+    label: InstrumentLabel = Field(..., description="Kod instrumentu albo NONE.")
+
+
+class ClassifyProblems(BaseModel):
+    results: list[ClassP]
+
+
+class ClassifyActions(BaseModel):
+    results: list[ClassA]

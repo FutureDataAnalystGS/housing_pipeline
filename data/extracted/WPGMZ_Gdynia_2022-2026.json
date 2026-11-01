@@ -22,25 +22,8 @@
   "relevant": true,
   "problems": [
    {
-    "category": "P08",
-    "statement": "Gmina zaspokaja potrzeby grup szczególnych, takich jak osoby z niepełnosprawnościami, osoby opuszczone z placówek opiekuńczo-wychowawczych, osoby usamodzielniające się, osoby z potrzebami zdrowotnymi.",
-    "severity": "notable",
-    "quantified": false,
-    "quant_text": null,
-    "affected_groups": [],
-    "section": null,
-    "evidence": {
-     "page": 2,
-     "quote": "Gmina Miasta Gdyni zaspokaja potrzeby mieszkaniowe gdynian wykorzystując inne narzędzia adekwatne do sytuacji zdrowotnej, majątkowej i społecznej poszczególnych osób i rodzin."
-    },
-    "flags": [
-     "no_problem_cue"
-    ],
-    "low_confidence": true
-   },
-   {
-    "category": "P02",
-    "statement": "Znaleziono 5 budynków niepodłączonych do kanalizacji, co może stanowić zagrożenie dla hygieny i środowiska.",
+    "category": "P05",
+    "statement": "Gmina Miasta Gdyni jest właścicielem 150 budynków mieszkalnych, w tym: 1) 103 budynki wybudowane przed 1945 rokiem 2) 39 budynków wybudowanych w latach 1945 -1980,",
     "severity": "notable",
     "quantified": true,
     "quant_text": null,
@@ -48,123 +31,262 @@
     "section": null,
     "evidence": {
      "page": 3,
-     "quote": "Gmina Miasta Gdyni posiada 5 budynków niepodłączonych do kanalizacji sanitarnej"
+     "quote": "Gmina Miasta Gdyni jest właścicielem 150 budynków mieszkalnych, w tym: 1) 103 budynki wybudowane przed 1945 rokiem 2) 39 budynków wybudowanych w latach 1945 -1980,"
     },
     "flags": [],
     "low_confidence": false
    },
    {
     "category": "P02",
-    "statement": "Gmina posiada 103 budynki wybudowane przed 1945 rokiem, co sugeruje starość budynków i potencjalne problemy techniczne.",
-    "severity": "key",
+    "statement": "3) 8 budynków wybudowanych po 1980 roku. 3. Gmina Miasta Gdyni posiada 3 451 lokali wyposażonych w instalację centralnego ogrzewania i 309 lokali wyposażonych w piece grzewcze na paliwo stałe. Pozosta",
+    "severity": "notable",
     "quantified": true,
     "quant_text": null,
     "affected_groups": [],
     "section": null,
     "evidence": {
      "page": 3,
-     "quote": "Gmina Miasta Gdyni jest właścicielem 150 budynków mieszkalnych, w tym: 103 budynki wybudowane przed 1945 rokiem"
+     "quote": "3) 8 budynków wybudowanych po 1980 roku. 3. Gmina Miasta Gdyni posiada 3 451 lokali wyposażonych w instalację centralnego ogrzewania i 309 lokali wyposażonych w piece grzewcze na paliwo stałe. Pozostałe lokale posiadają ogrzewanie elektryczne lub gazowe."
     },
-    "flags": [
-     "no_problem_cue",
-     "fuzzy_quote"
-    ],
-    "low_confidence": true
+    "flags": [],
+    "low_confidence": false
    },
    {
-    "category": "P05",
-    "statement": "Każda eksmisja obciąża gminę obowiązkiem dostarczenia lokalu.",
-    "severity": "key",
-    "quantified": false,
+    "category": "P04",
+    "statement": "W ramach Gdyńskiego Programu likwidacji pieców na paliwo stałe w gminnych budynkach mieszkalnych na lata 2020-2023 do końca roku 2021 Gmina Miasta Gdyni zlikwidowała 201 pieców.",
+    "severity": "notable",
+    "quantified": true,
+    "quant_text": null,
+    "affected_groups": [],
+    "section": null,
+    "evidence": {
+     "page": 3,
+     "quote": "W ramach Gdyńskiego Programu likwidacji pieców na paliwo stałe w gminnych budynkach mieszkalnych na lata 2020-2023 do końca roku 2021 Gmina Miasta Gdyni zlikwidowała 201 pieców."
+    },
+    "flags": [],
+    "low_confidence": false
+   },
+   {
+    "category": "P02",
+    "statement": "4. Spośród 150 gminnych budynków mieszkalnych, Gmina Miasta Gdyni posiada 5 budynków niepodłączonych do kanalizacji sanitarnej.",
+    "severity": "notable",
+    "quantified": true,
+    "quant_text": null,
+    "affected_groups": [],
+    "section": null,
+    "evidence": {
+     "page": 3,
+     "quote": "4. Spośród 150 gminnych budynków mieszkalnych, Gmina Miasta Gdyni posiada 5 budynków niepodłączonych do kanalizacji sanitarnej."
+    },
+    "flags": [],
+    "low_confidence": false
+   },
+   {
+    "category": "P03",
+    "statement": "5. Remonty części wspólnych w budynkach wspólnotowych wymagają partycypacji członków wspólnoty mieszkaniowej w kosztach proporcjonalnie do wysokości udziałów. Zgodnie z obowiązującymi przepisami remon",
+    "severity": "notable",
+    "quantified": true,
     "quant_text": null,
     "affected_groups": [],
     "section": null,
     "evidence": {
      "page": 4,
-     "quote": "każda wykonywana w mieście eksmisja wiąże się z obowiązkiem zapewnienia lokalu przez gminę"
+     "quote": "5. Remonty części wspólnych w budynkach wspólnotowych wymagają partycypacji członków wspólnoty mieszkaniowej w kosztach proporcjonalnie do wysokości udziałów. Zgodnie z obowiązującymi przepisami remonty takie finansowane są ze środków gromadzonych na koncie funduszu remontowego."
     },
     "flags": [],
     "low_confidence": false
    },
    {
     "category": "P01",
-    "statement": "Likwidacja placówek oświatowych prowadzi do utraty zasobu mieszkalnego, co może prowadzić do dalszego deficytu.",
-    "severity": "notable",
+    "statement": "W ramach kontroli sprawdzany jest: stan sprawności technicznej i przydatności do użytkowania budynków mieszkalnych wraz z instalacjami i urządzeniami, estetyka budynku oraz jego otoczenia, badanie ins",
+    "severity": "mention",
     "quantified": false,
     "quant_text": null,
     "affected_groups": [],
     "section": null,
     "evidence": {
-     "page": 6,
-     "quote": "Likwidacja lokali mieszkalnych w placówkach oświatowych będzie następiała stopniowo"
+     "page": 4,
+     "quote": "W ramach kontroli sprawdzany jest: stan sprawności technicznej i przydatności do użytkowania budynków mieszkalnych wraz z instalacjami i urządzeniami, estetyka budynku oraz jego otoczenia, badanie instalacji elektrycznej i piorunochronowej w zakresie stanu połączeń, osprzętu, zabezpieczeń i środków ochrony od porażeń, odporności izolacji oraz wykonywane są coroczne kontrole elementów budynku i instalacji narażonych na szkodliwe wpływy atmosferyczne i niszczące działania czynników występujących podczas użytkowania obiektów, instalacji gazowych oraz przewodów kominowych."
     },
-    "flags": [
-     "no_problem_cue",
-     "fuzzy_quote"
-    ],
-    "low_confidence": true
+    "flags": [],
+    "low_confidence": false
+   },
+   {
+    "category": "P05",
+    "statement": "Zasób mieszkaniowy jest jednym z elementów polityki społecznej miasta, służącym zaspokojeniu potrzeb mieszkaniowych następujących grup: 1) mieszkańców Gdyni pozostających w niedostatku, 2) mieszkańców",
+    "severity": "notable",
+    "quantified": true,
+    "quant_text": null,
+    "affected_groups": [],
+    "section": null,
+    "evidence": {
+     "page": 5,
+     "quote": "Zasób mieszkaniowy jest jednym z elementów polityki społecznej miasta, służącym zaspokojeniu potrzeb mieszkaniowych następujących grup: 1) mieszkańców Gdyni pozostających w niedostatku, 2) mieszkańców Gdyni posiadających niskie dochody, 3) mieszkańców Gdyni wykwaterowanych z budynków do rozbiórki lub zagrożonych katastrofą budowlaną,"
+    },
+    "flags": [],
+    "low_confidence": false
+   },
+   {
+    "category": "P06",
+    "statement": "2. Konieczność tworzenia i powiększania zasobu lokali gminnych jest przede wszystkim następstwem regulacji ustawowej, zgodnie z którą sądy powszechne w wyroku nakazującym opróżnienie lokalu orzekają o",
+    "severity": "notable",
+    "quantified": true,
+    "quant_text": null,
+    "affected_groups": [],
+    "section": null,
+    "evidence": {
+     "page": 4,
+     "quote": "2. Konieczność tworzenia i powiększania zasobu lokali gminnych jest przede wszystkim następstwem regulacji ustawowej, zgodnie z którą sądy powszechne w wyroku nakazującym opróżnienie lokalu orzekają o uprawnieniu do otrzymania oferty najmu socjalnego lokalu. Z kolei w przypadku braku takiego uprawnienia, gmina ma obowiązek zapewnić pomieszczenie tymczasowe."
+    },
+    "flags": [],
+    "low_confidence": false
    },
    {
     "category": "P07",
-    "statement": "Wstrzymana sprzedaż lokali na rzecz najemców może prowadzić do zwiększenia zaległości czynszowych.",
-    "severity": "notable",
+    "statement": "Oznacza to, że obecnie każda wykonywana w mieście eksmisja wiąże się z obowiązkiem zapewnienia lokalu przez gminę. Niewykonanie przez Gminę obowiązku dostarczenia lokalu powoduje powstanie roszczenia ",
+    "severity": "mention",
     "quantified": false,
+    "quant_text": null,
+    "affected_groups": [],
+    "section": null,
+    "evidence": {
+     "page": 4,
+     "quote": "Oznacza to, że obecnie każda wykonywana w mieście eksmisja wiąże się z obowiązkiem zapewnienia lokalu przez gminę. Niewykonanie przez Gminę obowiązku dostarczenia lokalu powoduje powstanie roszczenia o zapłatę odszkodowania po stronie właściciela lokalu zajmowanego przez osoby objęte wyrokiem eksmisyjnym."
+    },
+    "flags": [],
+    "low_confidence": false
+   },
+   {
+    "category": "P08",
+    "statement": "4) niesamodzielnych i zależnych mieszkańców Gdyni, mogących funkcjonować tylko w ramach mieszkalnictwa wspieranego lub chronionego, 5) mieszkańców Gdyni, którzy znaleźli się w wyjątkowych sytuacjach i",
+    "severity": "notable",
+    "quantified": true,
+    "quant_text": null,
+    "affected_groups": [],
+    "section": null,
+    "evidence": {
+     "page": 5,
+     "quote": "4) niesamodzielnych i zależnych mieszkańców Gdyni, mogących funkcjonować tylko w ramach mieszkalnictwa wspieranego lub chronionego, 5) mieszkańców Gdyni, którzy znaleźli się w wyjątkowych sytuacjach i konieczna jest reakcja Gminy Gdynia na rozwiązanie tego kryzysu, bądź wobec których wynajęcie lokalu jest w świetle zasad współżycia społecznego szczególnie uzasadnione. 2."
+    },
+    "flags": [],
+    "low_confidence": false
+   },
+   {
+    "category": "P11",
+    "statement": "Ubytek liczby lokali mieszkalnych w zasobie Gminy Miasta Gdyni uzależniony jest od następujących działań:",
+    "severity": "mention",
+    "quantified": false,
+    "quant_text": null,
+    "affected_groups": [],
+    "section": null,
+    "evidence": {
+     "page": 5,
+     "quote": "Ubytek liczby lokali mieszkalnych w zasobie Gminy Miasta Gdyni uzależniony jest od następujących działań:"
+    },
+    "flags": [],
+    "low_confidence": false
+   },
+   {
+    "category": "P10",
+    "statement": "1) rozbiórki budynków- w złym stanie technicznym, 2) rozbiórki budynkówkolidujących z inwestycjami, 3) zmiany sposobu użytkowania lokali, 4) rozbiórki budynkówktórych remont jest nieopłacalny. 3.",
+    "severity": "notable",
+    "quantified": true,
+    "quant_text": null,
+    "affected_groups": [],
+    "section": null,
+    "evidence": {
+     "page": 5,
+     "quote": "1) rozbiórki budynków- w złym stanie technicznym, 2) rozbiórki budynkówkolidujących z inwestycjami, 3) zmiany sposobu użytkowania lokali, 4) rozbiórki budynkówktórych remont jest nieopłacalny. 3."
+    },
+    "flags": [],
+    "low_confidence": false
+   },
+   {
+    "category": "P06",
+    "statement": "Wzrost zapotrzebowania na pomoc mieszkaniową w Gminie Miasta Gdyni wynika z następujących czynników: 1) wyroki sądowe o eksmisje z zasobów właścicieli innych niż Gmina, 2) rosnąca liczba osób niesamod",
+    "severity": "notable",
+    "quantified": true,
+    "quant_text": null,
+    "affected_groups": [],
+    "section": null,
+    "evidence": {
+     "page": 5,
+     "quote": "Wzrost zapotrzebowania na pomoc mieszkaniową w Gminie Miasta Gdyni wynika z następujących czynników: 1) wyroki sądowe o eksmisje z zasobów właścicieli innych niż Gmina, 2) rosnąca liczba osób niesamodzielnych, nieposiadających rodziny, wymagających wsparcia w ramach mieszkań wspieranych lub chronionych."
+    },
+    "flags": [],
+    "low_confidence": false
+   },
+   {
+    "category": "P05",
+    "statement": "2022 2023 2024 2025 2026 ZAPOTRZEBOWANIE NA NAJEM SOCJALNY LOKALU liczba wyroków do realizacji narastająco 550 570 590 610 630 liczba rodzin oczekujących na najem socjalny lokalu umieszczonych na list",
+    "severity": "notable",
+    "quantified": true,
+    "quant_text": null,
+    "affected_groups": [],
+    "section": null,
+    "evidence": {
+     "page": 5,
+     "quote": "2022 2023 2024 2025 2026 ZAPOTRZEBOWANIE NA NAJEM SOCJALNY LOKALU liczba wyroków do realizacji narastająco 550 570 590 610 630 liczba rodzin oczekujących na najem socjalny lokalu umieszczonych na listach (narastająco) 80 180 180 180 280 razem najem socjalny i tymczasowy"
+    },
+    "flags": [],
+    "low_confidence": false
+   },
+   {
+    "category": "P06",
+    "statement": "8. Przewiduje się likwidację niektórych substandardowych budynków mieszkalnych, ze względu na zły stan techniczny i nieopłacalność przeprowadzania remontów oraz wyburzenia budynków gminnych w związku ",
+    "severity": "notable",
+    "quantified": true,
     "quant_text": null,
     "affected_groups": [],
     "section": null,
     "evidence": {
      "page": 6,
-     "quote": "nie jest przewidywany ubytek w mieszkaniowym zasobie Gminy Miasta Gdyni związany ze sprzedaży, gdyż wstrzymana została sprzedaż lokali na rzecz najemców, zarówno w budynkach należących"
+     "quote": "8. Przewiduje się likwidację niektórych substandardowych budynków mieszkalnych, ze względu na zły stan techniczny i nieopłacalność przeprowadzania remontów oraz wyburzenia budynków gminnych w związku ze sprzedażą nieruchomości i inwestycjami miejskimi. Rozbiórka tych obiektów będzie zależna od możliwości wykwaterowania ich mieszkańców. 9."
     },
-    "flags": [
-     "no_problem_cue",
-     "fuzzy_quote"
-    ],
-    "low_confidence": true
-   },
-   {
-    "category": "P02",
-    "statement": "Gmina koncentruje się na zabezpieczeniu przeciwpożarowym, co sugeruje zły stan techniczny budynków.",
-    "severity": "notable",
-    "quantified": false,
-    "quant_text": null,
-    "affected_groups": [],
-    "section": null,
-    "evidence": {
-     "page": 7,
-     "quote": "zabezpieczenia przeciwpożarowego"
-    },
-    "flags": [
-     "fragment"
-    ],
-    "low_confidence": true
+    "flags": [],
+    "low_confidence": false
    },
    {
     "category": "P04",
-    "statement": "Gmina planuje modernizację instalacji ciepłowniczych, co sugeruje niską efektywność energetyczną.",
+    "statement": "12. W lokalach gminnych zlikwidowane zostaną piece na opał stały, a w zamian ciepło dostarczane będzie z miejskiej sieci cieplnej lub będą zasilane z sieci gazowej. W budynkach wykonana zostanie nowa ",
     "severity": "notable",
-    "quantified": false,
+    "quantified": true,
     "quant_text": null,
     "affected_groups": [],
     "section": null,
     "evidence": {
-     "page": 7,
-     "quote": "pieców na opał stały i przyłączenie do miejskiej sieci ciepłowniczej lub zastosowanie pomp ciepła, a także montaż kotłów gazowych dwufunkcyjnych lub ogrzewanie elektryczne"
+     "page": 6,
+     "quote": "12. W lokalach gminnych zlikwidowane zostaną piece na opał stały, a w zamian ciepło dostarczane będzie z miejskiej sieci cieplnej lub będą zasilane z sieci gazowej. W budynkach wykonana zostanie nowa instalacja c.o. i c.w.u. We wszystkich lokalach zamontowane zostanie indywidualne opomiarowanie zużycia ciepła."
     },
     "flags": [],
     "low_confidence": false
    },
    {
     "category": "P02",
-    "statement": "Budynki wymagają regularnych remontów, co może być kosztowne i nieefektywne.",
+    "statement": "Potrzeby remontowe, modernizacyjne i inwestycyjne w gminnych lokalach mieszkalnych w budynkach wspólnot mieszkaniowych, w których Gmina Miasta Gdyni posiada swoje udziały: GRUPA ROBÓT NAKŁADY W ZŁ rem",
     "severity": "notable",
-    "quantified": false,
+    "quantified": true,
     "quant_text": null,
     "affected_groups": [],
     "section": null,
     "evidence": {
-     "page": 12,
-     "quote": "budynek wymagający remontu bieżącego — budynek wymagający wykonania robót polegających na stałej konserwacji urządzeń, elementów, detali wyposażenia niezbędnych do utrzymania budynku oraz jego otoczenia"
+     "page": 7,
+     "quote": "Potrzeby remontowe, modernizacyjne i inwestycyjne w gminnych lokalach mieszkalnych w budynkach wspólnot mieszkaniowych, w których Gmina Miasta Gdyni posiada swoje udziały: GRUPA ROBÓT NAKŁADY W ZŁ remonty instalacji grzewczej, elektrycznej, sanitarnej 1 000 000 likwidacja pieców na opał stały 9 000 000 odgrzybianie lokali, usuwanie związków toksycznych, wymiana podłóg, wymiana stolarki budowlanej"
+    },
+    "flags": [],
+    "low_confidence": false
+   },
+   {
+    "category": "P02",
+    "statement": "2 000 000 roboty zduńskie 100 000 remonty lokali mieszkalnych - pustostany 5 000 000 razem 17 100 000 § 6. Plan remontów i modernizacji wynikający ze stanu technicznego budynków i lokali",
+    "severity": "notable",
+    "quantified": true,
+    "quant_text": null,
+    "affected_groups": [],
+    "section": null,
+    "evidence": {
+     "page": 7,
+     "quote": "2 000 000 roboty zduńskie 100 000 remonty lokali mieszkalnych - pustostany 5 000 000 razem 17 100 000 § 6. Plan remontów i modernizacji wynikający ze stanu technicznego budynków i lokali"
     },
     "flags": [
      "definition_like"
@@ -172,92 +294,160 @@
     "low_confidence": true
    },
    {
-    "category": "P02",
-    "statement": "Budynki wymagają remontu kapitalnego, co sugeruje zły stan techniczny i wiek zasobu.",
-    "severity": "notable",
-    "quantified": false,
+    "category": "P06",
+    "statement": "1. Wskazuje się jako priorytet przy tworzeniu rocznych planów remontowych eliminację zagrożenia bezpieczeństwa użytkowania lokali i ich mienia, w związku z tym w pierwszej kolejności podejmowane są pr",
+    "severity": "key",
+    "quantified": true,
     "quant_text": null,
     "affected_groups": [],
     "section": null,
     "evidence": {
-     "page": 12,
-     "quote": "do kapitalnego remontu - budynek wymagający wykonania robót przywracających całemu budynkowi lub jego części (np.: określonemu elementowi konstrukcyjnemu budynku) pierwotnej lub prawie pierwotnej wartości technicznej i użytkowej, a nie stanowiących bieżącej konserwacji"
+     "page": 7,
+     "quote": "1. Wskazuje się jako priorytet przy tworzeniu rocznych planów remontowych eliminację zagrożenia bezpieczeństwa użytkowania lokali i ich mienia, w związku z tym w pierwszej kolejności podejmowane są prace zmierzające do zabezpieczenia konstrukcji budynków, remontów i zabezpieczenia instalacji technicznych oraz zabezpieczenia przeciwpożarowego."
     },
-    "flags": [
-     "fuzzy_quote"
-    ],
+    "flags": [],
+    "low_confidence": false
+   },
+   {
+    "category": "P02",
+    "statement": "1) remonty kompleksowe lokali mieszkalnych opróżnionych w wyniku eksmisji lub lokali odzyskanych w wyniku zgonów najemców, 2) remonty budynków i zasiedlonych lokali: a) remonty dachów i przewodów komi",
+    "severity": "notable",
+    "quantified": true,
+    "quant_text": null,
+    "affected_groups": [],
+    "section": null,
+    "evidence": {
+     "page": 7,
+     "quote": "1) remonty kompleksowe lokali mieszkalnych opróżnionych w wyniku eksmisji lub lokali odzyskanych w wyniku zgonów najemców, 2) remonty budynków i zasiedlonych lokali: a) remonty dachów i przewodów kominowych, b) wymiana stolarki budowlanej, c) remonty instalacji elektrycznej, wodno-kanalizacyjnej, grzewczej i gazowej, d) remonty podłóg, e) izolacja przeciwwilgociowa ścian fundamentowych wraz z odgrzybieniem, f) roboty budowlane związane z dociepleniem budynków i naprawą elewacji,"
+    },
+    "flags": [],
+    "low_confidence": false
+   },
+   {
+    "category": "P04",
+    "statement": "g) podłączenie do miejskiej sieci kanalizacji sanitarnej, h) uszczelnienie lub wymiana zbiorników bezodpływowych na nieczystości ciekłe, i) likwidacja pieców na opał stały i przyłączenie do miejskiej ",
+    "severity": "notable",
+    "quantified": true,
+    "quant_text": null,
+    "affected_groups": [],
+    "section": null,
+    "evidence": {
+     "page": 7,
+     "quote": "g) podłączenie do miejskiej sieci kanalizacji sanitarnej, h) uszczelnienie lub wymiana zbiorników bezodpływowych na nieczystości ciekłe, i) likwidacja pieców na opał stały i przyłączenie do miejskiej sieci ciepłowniczej lub zastosowanie pomp ciepła, a także montaż kotłów gazowych dwufunkcyjnych lub ogrzewanie elektryczne w przypadku braku możliwości przyłączenia do miejskiej sieci ciepłowniczej lub sieci gazowej, 3) remonty dróg i chodników osiedlowych,,"
+    },
+    "flags": [],
     "low_confidence": false
    },
    {
     "category": "P05",
-    "statement": "Gmina tworzy zasób pomieszczeń tymczasowych, ale nie jest to główny problem.",
+    "statement": "1) centralnym ogrzewaniu - rozumie się przez to ogrzewanie energią cieplną dostarczoną z elektrociepłowni, ciepłowni, kotłowni lokalnych (osiedlowych lub znajdujących się w budynku), 2) łazience - roz",
     "severity": "notable",
-    "quantified": false,
+    "quantified": true,
+    "quant_text": null,
+    "affected_groups": [],
+    "section": null,
+    "evidence": {
+     "page": 11,
+     "quote": "1) centralnym ogrzewaniu - rozumie się przez to ogrzewanie energią cieplną dostarczoną z elektrociepłowni, ciepłowni, kotłowni lokalnych (osiedlowych lub znajdujących się w budynku), 2) łazience - rozumie się przez to trwale wydzielone w mieszkaniu pomieszczenie posiadające instalacje umożliwiające podłączenie wanny, brodzika, natrysku, baterii, piecyka kąpielowego (gazowego, elektrycznego itp.), miski ustępowej,"
+    },
+    "flags": [
+     "definition_like"
+    ],
+    "low_confidence": true
+   },
+   {
+    "category": "P05",
+    "statement": "2) nie ma zaległości w opłatach za używanie lokalu, a w przypadku lokali zadłużonych, Gmina wyraziła zgodę na spłatę zaległości w ratach i dłużnik dokonuje terminowej spłaty naliczonych rat,",
+    "severity": "notable",
+    "quantified": true,
     "quant_text": null,
     "affected_groups": [],
     "section": null,
     "evidence": {
      "page": 14,
-     "quote": "Gmina Miasta Gdyni tworzy zasób pomieszczeń tymczasowych, które przeznacza na wynajem z tytułu realizacji wyroków sądowych orzekających eksmisję bez prawa do lokalu o najmie socjalnym lub zamiennego"
+     "quote": "2) nie ma zaległości w opłatach za używanie lokalu, a w przypadku lokali zadłużonych, Gmina wyraziła zgodę na spłatę zaległości w ratach i dłużnik dokonuje terminowej spłaty naliczonych rat,"
     },
     "flags": [],
     "low_confidence": false
    },
    {
     "category": "P07",
-    "statement": "Gmina nie pobiera opłat czynszowych za najem lokali kryzysowych, co może prowadzić do zaległości finansowych.",
+    "statement": "2) nie ma zaległości w opłatach za używanie lokalu, a w przypadku lokali zadłużonych, Gmina wyraziła zgodę na spłatę zaległości w ratach i dłużnik dokonuje terminowej spłaty naliczonych rat,",
     "severity": "notable",
-    "quantified": false,
+    "quantified": true,
     "quant_text": null,
     "affected_groups": [],
     "section": null,
     "evidence": {
      "page": 14,
-     "quote": "Gmina Miasta Gdyni nie pobiera opłat czynszowych za najem lokali kryzysowych"
+     "quote": "2) nie ma zaległości w opłatach za używanie lokalu, a w przypadku lokali zadłużonych, Gmina wyraziła zgodę na spłatę zaległości w ratach i dłużnik dokonuje terminowej spłaty naliczonych rat,"
     },
-    "flags": [
-     "no_problem_cue"
-    ],
-    "low_confidence": true
-   },
-   {
-    "category": "P07",
-    "statement": "Gmina musi finansować różne koszty związani z utrzymaniem i remontem zasobu mieszkalnego, co może prowadzić do zaległości finansowych.",
-    "severity": "notable",
-    "quantified": false,
-    "quant_text": null,
-    "affected_groups": [],
-    "section": null,
-    "evidence": {
-     "page": 16,
-     "quote": "Gospodarka mieszkaniowym zasobem Gminy Miasta Gdyni finansowana jest bezpośrednio z budżetu samorządu gminnego według określonego harmonogramu potrzeb na środki pieniężne przez jednostki z przeznaczeniem na: pokrycie kosztów utrzymania gminnych lokali mieszkalnych i budynków komunalnych, pokrycie kosztów remontów gminnych lokali mieszkalnych i budynków komunalnych, finansowanie kosztów realizacji inwestycji, pokrycie kosztów dozoru lub zabezpieczenia budynków i lokali mieszkalnych czasowo wolnych oraz budynków mieszkalnych, zagospodarowanie terenów wokół budynków mieszkalnych."
-    },
-    "flags": [
-     "fuzzy_quote"
-    ],
+    "flags": [],
     "low_confidence": false
    },
    {
-    "category": "P05",
-    "statement": "Gmina jest zobowiązana do tworzenia i powiększania zasobu komunalnego, co może stanowić kluczowe wyzwanie.",
+    "category": "P08",
+    "statement": "2. Zakłada się kontynuowanie działań zmierzających do stopniowego likwidowania niesamodzielnych lokali mieszkalnych poprzez scalanie ich w celu uzyskania lokali w pełni samodzielnych. 3. Lokale mieszk",
     "severity": "notable",
     "quantified": true,
     "quant_text": null,
     "affected_groups": [],
     "section": null,
     "evidence": {
-     "page": 20,
-     "quote": "Stosownie do art. 21 ust. 1 ustawy z dnia 21 czerwca 2001 r. o ochronie praw lokatorów, mieszkaniowym zasobie gminy i zmianie Kodeksu cywilnego (t.j. Dz.U. 2020 poz. 611 z późn.zm.), Rada Gminy uchwala wieloletnie programy gospodarowania mieszkaniowym zasobem gminnym."
+     "page": 18,
+     "quote": "2. Zakłada się kontynuowanie działań zmierzających do stopniowego likwidowania niesamodzielnych lokali mieszkalnych poprzez scalanie ich w celu uzyskania lokali w pełni samodzielnych. 3. Lokale mieszkalne wymagające remontu, których położenie i układ pomieszczeń umożliwiają dostęp osobom na wózkach inwalidzkich, będą przystosowywane do potrzeb osób z niepełnosprawnościami."
     },
-    "flags": [
-     "legal_basis",
-     "no_problem_cue"
-    ],
-    "low_confidence": true
+    "flags": [],
+    "low_confidence": false
    },
    {
-    "category": "P01",
-    "statement": "Gmina ma na uwadze zaspokajanie potrzeb mieszkaniowych mieszkańców, co sugeruje istnienie niedoboru mieszkań.",
+    "category": "P07",
+    "statement": "9. Prowadzone będą działania mające na celu prawidłowe funkcjonowania osób i rodzin trafiających do zasobu komunalnego w ramach realizacji wyroków eksmisyjnych, polegające na bieżącym monitorowaniu pł",
+    "severity": "notable",
+    "quantified": true,
+    "quant_text": null,
+    "affected_groups": [],
+    "section": null,
+    "evidence": {
+     "page": 18,
+     "quote": "9. Prowadzone będą działania mające na celu prawidłowe funkcjonowania osób i rodzin trafiających do zasobu komunalnego w ramach realizacji wyroków eksmisyjnych, polegające na bieżącym monitorowaniu płatności, zaś w przypadku zaległości podejmowaniu działań zmierzających do podniesienia kompetencji najemców, m.in. prowadzenie treningu budżetowego."
+    },
+    "flags": [],
+    "low_confidence": false
+   },
+   {
+    "category": "P06",
+    "statement": "10. Gmina będzie podejmować starania na rzecz szybkiej realizacji wyroków eksmisyjnych skierowanych do osób, wobec których nie orzeczono uprawnienia do wskazania najmu socjalnego lokalu poprzez wskazy",
+    "severity": "notable",
+    "quantified": true,
+    "quant_text": null,
+    "affected_groups": [],
+    "section": null,
+    "evidence": {
+     "page": 18,
+     "quote": "10. Gmina będzie podejmować starania na rzecz szybkiej realizacji wyroków eksmisyjnych skierowanych do osób, wobec których nie orzeczono uprawnienia do wskazania najmu socjalnego lokalu poprzez wskazywanie pomieszczeń tymczasowych zapewnianych na okres do 6 miesięcy."
+    },
+    "flags": [],
+    "low_confidence": false
+   },
+   {
+    "category": "P04",
+    "statement": "11. W przypadku konieczności zabezpieczenia na dłuższy czas schronienia osobom, którym nie przysługuje prawo do lokalu z mieszkaniowego zasobu Gminy za pośrednictwem Miejskiego Ośrodka Pomocy Społeczn",
+    "severity": "notable",
+    "quantified": true,
+    "quant_text": null,
+    "affected_groups": [],
+    "section": null,
+    "evidence": {
+     "page": 18,
+     "quote": "11. W przypadku konieczności zabezpieczenia na dłuższy czas schronienia osobom, którym nie przysługuje prawo do lokalu z mieszkaniowego zasobu Gminy za pośrednictwem Miejskiego Ośrodka Pomocy Społecznej realizowane będą programy wsparcia polegające na wynajęciu lokalu na wolnym rynku z długofalowym dofinansowaniem z budżetu miasta."
+    },
+    "flags": [],
+    "low_confidence": false
+   },
+   {
+    "category": "P13",
+    "statement": "Przyjęty Uchwałą nr XXVII/663/16 Rady Miasta Gdyni „Wieloletni Program Gospodarowania Mieszkaniowym Zasobem Gminy Miasta Gdyni” z dnia 21 grudnia 2016 r. obejmował lata 2017 - 2021. W związku z powyżs",
     "severity": "notable",
     "quantified": true,
     "quant_text": null,
@@ -265,157 +455,30 @@
     "section": null,
     "evidence": {
      "page": 20,
-     "quote": "Tworzenie warunków do zaspokajania potrzeb mieszkaniowych mieszkańców Miasta zgodnie z art. 4 ustawy o ochronie praw lokatorów, mieszkaniowym zasobie gminy i zmianie Kodeksu cywilnego, jest podstawowym zadaniem Gminy."
+     "quote": "Przyjęty Uchwałą nr XXVII/663/16 Rady Miasta Gdyni „Wieloletni Program Gospodarowania Mieszkaniowym Zasobem Gminy Miasta Gdyni” z dnia 21 grudnia 2016 r. obejmował lata 2017 - 2021. W związku z powyższym wymagana jest jego aktualizacja poprzez przyjęcie programu na kolejny okres pięcioletni."
     },
-    "flags": [
-     "legal_basis",
-     "no_problem_cue"
-    ],
-    "low_confidence": true
+    "flags": [],
+    "low_confidence": false
    }
   ],
   "goals": [],
   "actions": []
  },
  "audit": {
-  "n_evidence": 15,
+  "n_evidence": 29,
   "share_verified": 1.0,
-  "share_exact_on_cited_page": 0.6666666666666666,
+  "share_exact_on_cited_page": 1.0,
   "unverified": [],
-  "items_low_confidence": 9,
-  "items_rejected": [
-   {
-    "kind": "problems",
-    "quote": "Zgony i inne przyczyny 35 26 36 37 40",
-    "reason": "wiersz tabeli/kwoty: to wskaźnik (blok faktów), nie problem ani cel"
-   },
-   {
-    "kind": "problems",
-    "quote": "liczba wyroków do realizacji narastająco 550 570 590 610 630",
-    "reason": "wiersz tabeli/kwoty: to wskaźnik (blok faktów), nie problem ani cel"
-   },
-   {
-    "kind": "problems",
-    "quote": "liczba rodzin oczekujących na najem socjalny lokalu umieszczonych na listach (narastająco) 80 180 180 180 280",
-    "reason": "wiersz tabeli/kwoty: to wskaźnik (blok faktów), nie problem ani cel"
-   },
-   {
-    "kind": "problems",
-    "quote": "liczba rodzin oczekujących na najem na czas nieoznaczony umieszczonych na listach 60 140 140 140 220",
-    "reason": "wiersz tabeli/kwoty: to wskaźnik (blok faktów), nie problem ani cel"
-   },
-   {
-    "kind": "problems",
-    "quote": "liczba wyroków do realizacji narastająco 630 750 770 790 910",
-    "reason": "cytat nie występuje w dokumencie"
-   },
-   {
-    "kind": "problems",
-    "quote": "liczba lokali planowanych do wybudowania 0 21 0 30 0",
-    "reason": "wiersz tabeli/kwoty: to wskaźnik (blok faktów), nie problem ani cel"
-   },
-   {
-    "kind": "problems",
-    "quote": "liczba lokali planowanych do zakupu 5 5 5 5 5",
-    "reason": "wiersz tabeli/kwoty: to wskaźnik (blok faktów), nie problem ani cel"
-   },
-   {
-    "kind": "problems",
-    "quote": "liczba lokali w budynkach zaplanowanych do wyburzenia -24 -24 0 0 0",
-    "reason": "wiersz tabeli/kwoty: to wskaźnik (blok faktów), nie problem ani cel"
-   },
-   {
-    "kind": "problems",
-    "quote": "remonty dachów wraz z obróbkami blacharskimi i remontem kominów 2 500 000",
-    "reason": "wiersz tabeli/kwoty: to wskaźnik (blok faktów), nie problem ani cel"
-   },
-   {
-    "kind": "problems",
-    "quote": "likwidacja pieców na opał stały 5 000 000",
-    "reason": "wiersz tabeli/kwoty: to wskaźnik (blok faktów), nie problem ani cel"
-   },
-   {
-    "kind": "problems",
-    "quote": "remonty lokali mieszkalnych - pustostany 7 500 000",
-    "reason": "wiersz tabeli/kwoty: to wskaźnik (blok faktów), nie problem ani cel"
-   },
-   {
-    "kind": "problems",
-    "quote": "remonty instalacji grzewczej, elektrycznej, sanitarnej 1 000 000",
-    "reason": "wiersz tabeli/kwoty: to wskaźnik (blok faktów), nie problem ani cel"
-   },
-   {
-    "kind": "problems",
-    "quote": "likwidacja pieców na opał stały 9 000 000",
-    "reason": "wiersz tabeli/kwoty: to wskaźnik (blok faktów), nie problem ani cel"
-   },
-   {
-    "kind": "problems",
-    "quote": "Konieczność tworzenia i powiększania zasobu lokali gminnych jest przede wszystkim następstwem regulacji ustawowej. Oznac",
-    "reason": "cytat nie występuje w dokumencie"
-   },
-   {
-    "kind": "problems",
-    "quote": "6 000 000 5 000 000 3 000 000 2 800 000 2 800 000",
-    "reason": "wiersz tabeli/kwoty: to wskaźnik (blok faktów), nie problem ani cel"
-   },
-   {
-    "kind": "problems",
-    "quote": "4 334 000 4 550 000 4 780 000 5 020 000 5 270 000",
-    "reason": "wiersz tabeli/kwoty: to wskaźnik (blok faktów), nie problem ani cel"
-   },
-   {
-    "kind": "problems",
-    "quote": "5 260 000 5 520 000 5 800 000 6 090 000 6 400 000",
-    "reason": "wiersz tabeli/kwoty: to wskaźnik (blok faktów), nie problem ani cel"
+  "candidate_stats": {
+   "problems": {
+    "candidates": 53,
+    "accepted": 30,
+    "batches": 6
    }
-  ],
-  "possible_misses": [
-   {
-    "pages": "2–3",
-    "categories": [
-     "P05",
-     "P06"
-    ]
-   },
-   {
-    "pages": "3–4",
-    "categories": [
-     "P04"
-    ]
-   },
-   {
-    "pages": "4–5",
-    "categories": [
-     "P02"
-    ]
-   },
-   {
-    "pages": "12–13",
-    "categories": [
-     "P03"
-    ]
-   },
-   {
-    "pages": "13–14",
-    "categories": [
-     "P03"
-    ]
-   },
-   {
-    "pages": "14–15",
-    "categories": [
-     "P07"
-    ]
-   },
-   {
-    "pages": "17–18",
-    "categories": [
-     "P03",
-     "P05"
-    ]
-   }
-  ],
+  },
+  "items_low_confidence": 2,
+  "items_rejected": [],
+  "possible_misses": [],
   "numbers_unsupported": [],
   "llm_errors": []
  },
@@ -426,7 +489,8 @@
   "num_ctx": 8192,
   "seed": 7,
   "chunk_chars": 3000,
-  "run_date": "2026-10-29",
+  "mode": "candidates",
+  "run_date": "2026-10-31",
   "segmentation_fallback": false
  }
 }

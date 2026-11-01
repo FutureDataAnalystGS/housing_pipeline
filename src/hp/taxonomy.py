@@ -136,3 +136,18 @@ WPGMZ_ELEMENTS: dict[str, str] = {
     "E7": "Wysokość kosztów (eksploatacja, remonty, modernizacje, zarząd wspólnotami, inwestycje)",
     "E8": "Opis innych działań (zamiany, racjonalizacja, zwiększenie zasobu)",
 }
+
+
+# ------------------------------------------------------------------ Poziomy działań (hipoteza robocza do pytania „czy gmina ma własną politykę mieszkaniową?”)
+# A = rozszerzanie oferty mieszkaniowej i wsparcie wykraczające poza utrzymanie zasobu (działania „własne”, w dużej mierze dobrowolne)
+# B = zarządzanie i utrzymanie zasobu (obowiązki właściciela, racjonalizacja, finansowanie, planowanie)
+# C = obowiązki ustawowe i osłona najemców (najem socjalny, lokale tymczasowe, dodatki, obniżki, windykacja)
+# Przypisanie jest założeniem badawczym — zmień je tutaj, a arkusz „Własna_polityka” przeliczy się przy następnym uruchomieniu.
+POLICY_TIER: dict[str, str] = {
+    **{k: "A" for k in ("I01", "I02", "I03", "I04", "I05", "I13", "I14", "I15", "I19")},
+    **{k: "B" for k in ("I06", "I07", "I08", "I09", "I10", "I20", "I21", "I22", "I24", "I25", "I26", "I28", "I29")},
+    **{k: "C" for k in ("I11", "I12", "I16", "I17", "I18", "I23")},
+}
+TIER_NAMES = {"A": "A: działania własne (rozszerzanie oferty i wsparcie ponad obowiązek)",
+              "B": "B: zarządzanie i utrzymanie zasobu",
+              "C": "C: obowiązki ustawowe i osłona najemców"}

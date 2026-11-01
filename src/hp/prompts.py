@@ -159,3 +159,39 @@ def field_guide(model: type[BaseModel]) -> str:
 def facts_messages(model: type[BaseModel], chunk: str, header: str = "") -> list[dict]:
     sys = FACTS_SYSTEM + "\n\nPOLA DO WYPEŁNIENIA:\n" + field_guide(model)
     return [{"role": "system", "content": sys}, {"role": "user", "content": f"{header}<fragment>\n{chunk}\n</fragment>"}]
+
+
+# ---------------------------------------------------------------- tryb „kandydaci”: klasyfikacja numerowanych zdań
+def _problem_list() -> str:
+    return "\n".join(f"{k} {v['name']} ({v['definition'][:85].rstrip(' ,;')}…)" for k, v in PROBLEMS.items() if k != "P99")
+
+
+def _instrument_list() -> str:
+    return "\n".join(f"{k} {v['name']}" for k, v in INSTRUMENTS.items() if k != "I99")
+
+
+CLS_SYSTEM = {
+    "problems": """Dostajesz numerowane zdania z polskiego dokumentu o polityce mieszkaniowej gminy. Dla KAŻDEGO zdania zdecyduj, czy OPISUJE PROBLEM mieszkaniowy (diagnoza: brak, niedobór, zły stan, zaległości, zagrożenie, niezaspokojona potrzeba, obowiązek obciążający gminę). Jeśli tak, podaj kod kategorii z listy. Jeśli zdanie opisuje to, co gmina robi, zapewnia lub planuje, albo jest definicją, zasadą, podstawą prawną lub opisem procedury — podaj NONE.
+Odpowiedz JSON: {"results":[{"id":1,"label":"P05"},{"id":2,"label":"NONE"}]} dla każdego zdania, w kolejności.
+Kategorie:
+""" + _problem_list(),
+    "actions": """Dostajesz numerowane zdania z polskiego dokumentu o polityce mieszkaniowej gminy. Dla KAŻDEGO zdania zdecyduj, czy opisuje DZIAŁANIE gminy w polityce mieszkaniowej (co gmina robi, zapewnia, planuje; także decyzję o wstrzymaniu lub ograniczeniu). Jeśli tak, podaj kod instrumentu z listy. Jeśli zdanie opisuje problem, definicję, podstawę prawną, zasadę ogólną albo nic konkretnego — podaj NONE.
+Odpowiedz JSON: {"results":[{"id":1,"label":"I21"},{"id":2,"label":"NONE"}]} dla każdego zdania, w kolejności.
+Instrumenty:
+""" + _instrument_list(),
+}
+CLS_FEWSHOT = {
+    "problems": ("[1] Gmina posiada 309 lokali wyposażonych w piece grzewcze na paliwo stałe.\n[2] Sprzedaż gminnych lokali na rzecz najemców nie będzie prowadzona.\n"
+                 "[3] Stawkę czynszu ustala Prezydent Miasta w drodze zarządzenia.\n[4] Obecnie każda wykonywana w mieście eksmisja wiąże się z obowiązkiem zapewnienia lokalu przez gminę.",
+                 '{"results":[{"id":1,"label":"P04"},{"id":2,"label":"NONE"},{"id":3,"label":"NONE"},{"id":4,"label":"P05"}]}'),
+    "actions": ("[1] Sprzedaż gminnych lokali mieszkalnych na rzecz najemców nie będzie prowadzona.\n[2] Obecnie każda eksmisja wiąże się z obowiązkiem zapewnienia lokalu przez gminę.\n"
+                "[3] Termomodernizacją zostanie objętych 23 budynki mieszkalne.\n[4] Lokale położone w suterenach zostaną przekwalifikowane na lokale użytkowe.",
+                '{"results":[{"id":1,"label":"I21"},{"id":2,"label":"NONE"},{"id":3,"label":"I07"},{"id":4,"label":"I08"}]}'),
+}
+
+
+def classify_messages(kind: str, batch: list) -> list[dict]:
+    ex_user, ex_ans = CLS_FEWSHOT[kind]
+    listing = "\n".join(f"[{i}] {u.text}" for i, u in enumerate(batch, 1))
+    return [{"role": "system", "content": CLS_SYSTEM[kind]}, {"role": "user", "content": ex_user}, {"role": "assistant", "content": ex_ans},
+            {"role": "user", "content": listing}]

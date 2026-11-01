@@ -1,5 +1,5 @@
 """Interfejs wiersza poleceń:  python -m hp.cli <etap> [opcje]
-Etapy: inventory | ingest | metadata | segment | extract | validate | aggregate | analyze | report | codebook
+Etapy: inventory | ingest | metadata | segment | cytaty | extract | validate | aggregate | analyze | report | codebook
 """
 from __future__ import annotations
 
@@ -90,6 +90,26 @@ def main(argv=None):
     elif a.stage == "report":
         recs = A.load_records(P["extracted"])
         (Path(P["outputs"]) / "streszczenia.md").write_text("\n\n---\n\n".join(SM.card_markdown(r) for r in recs), encoding="utf-8"); print(len(recs), "kart")
+    elif a.stage == "cytaty":                                # czytnik: dosłowne cytaty + ocena „działań własnych” (bez modelu językowego)
+        from . import reader
+        from .aggregate import city_key_from_doc_id
+        rows, sums, metas = [], [], {}
+        for r in reg.itertuples():
+            pages = I.load_pages(r.doc_id, P["interim"])
+            city = (getattr(r, "city", "") if isinstance(getattr(r, "city", ""), str) else "") or city_key_from_doc_id(r.doc_id)
+            rr, ss = reader.read_document(r.doc_id, r.doc_type, pages, city)
+            rows += rr; sums.append(ss); metas[r.doc_id] = M.extract_metadata([p.text for p in pages], r.doc_type)
+            print(f"{r.doc_id}: {len(rr)} cytatów (A={ss['poziom_A']}, B={ss['poziom_B']}, C={ss['poziom_C']})")
+        from . import card as K
+        crow = []
+        for r in reg.itertuples():
+            pages = I.load_pages(r.doc_id, P["interim"])
+            city = (getattr(r, "city", "") if isinstance(getattr(r, "city", ""), str) else "") or city_key_from_doc_id(r.doc_id)
+            crow += K.answer_questions(r.doc_id, r.doc_type, city, pages)
+        out = reader.export_xlsx(rows, sums, Path(P["outputs"]) / "cytaty.xlsx", metas)
+        K.append_sheets(out, crow)
+        pd.DataFrame(rows).to_csv(Path(P["outputs"]) / "cytaty.csv", index=False, encoding="utf-8-sig")
+        pd.DataFrame(crow).to_csv(Path(P["outputs"]) / "karta_cytaty.csv", index=False, encoding="utf-8-sig"); print("->", out)
     elif a.stage == "codebook":
         print(export_codebook.export())
     else:
